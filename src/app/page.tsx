@@ -3,10 +3,8 @@
 import Head from 'next/head';
 import * as React from 'react';
 
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
+import Button from '@/components/buttons/Button';
 import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
 
 /**
  * SVGR Support
@@ -22,6 +20,84 @@ import Logo from '~/svg/Logo.svg';
 // to customize the default configuration.
 
 export default function HomePage() {
+  type Restaurant = {
+    id: number;
+    attributes: {
+      Description: string;
+      Name: string;
+      createdAt: '2023-10-10T21:03:05.244Z';
+      publishedAt: '2023-10-10T21:03:29.354Z';
+      updatedAt: '2023-10-10T21:03:29.359Z';
+    };
+  };
+  const [restaurants, setRestaurants] = React.useState<Restaurant[]>();
+
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:1337/api/restaurants');
+    const data = await response.json();
+    return data;
+  };
+
+  React.useEffect(() => {
+    fetchData().then((v) => setRestaurants(v.data));
+  }, []);
+
+  React.useEffect(() => {
+    setRestaurants(restaurants);
+    console.log(restaurants);
+  }, [restaurants]);
+
+  type loginData = {
+    email: string;
+    password: string;
+  };
+
+  type userResponse = {
+    jwt: string;
+    user: string;
+  };
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [user, setUser] = React.useState<userResponse>({
+    jwt: 'dasd',
+    user: 'djasidjai',
+  });
+
+  const handleFormChange = (event: any) => {
+    if (event.target.name === 'email') {
+      setEmail(event.target.value);
+    }
+    if (event.target.name === 'password') {
+      setPassword(event.target.value);
+    }
+  };
+
+  const login = async (e: any) => {
+    e.preventDefault();
+    const loginData = {
+      identifier: email,
+      password: password,
+    };
+
+    const res = await fetch(`http://localhost:1337/api/auth/local`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to login');
+    }
+    const data = await res.json();
+
+    return setUser(data);
+  };
+
   return (
     <main>
       <Head>
@@ -30,38 +106,38 @@ export default function HomePage() {
       <section className='bg-white'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
           <Logo className='w-16' />
-          <h1 className='mt-4'>Next.js + Tailwind CSS + TypeScript Starter</h1>
-          <p className='mt-2 text-sm text-gray-800'>
-            A starter for Next.js, Tailwind CSS, and TypeScript with Absolute
-            Import, Seo, Link component, pre-configured with Husky{' '}
-          </p>
-          <p className='mt-2 text-sm text-gray-700'>
-            <ArrowLink href='https://github.com/theodorusclarence/ts-nextjs-tailwind-starter'>
-              See the repository
-            </ArrowLink>
-          </p>
-
-          <ButtonLink className='mt-6' href='/components' variant='light'>
-            See all components
-          </ButtonLink>
-
-          <UnstyledLink
-            href='https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter'
-            className='mt-4'
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              width='92'
-              height='32'
-              src='https://vercel.com/button'
-              alt='Deploy with Vercel'
+          <div>
+            {restaurants ? (
+              restaurants.map((res) => (
+                <div key={res.id}>
+                  <h1>{res.attributes.Name}</h1>
+                  <h2>{res.attributes.Description}</h2>
+                </div>
+              ))
+            ) : (
+              <Button isLoading={true}> Carregando </Button>
+            )}
+          </div>
+          <form>
+            <input
+              value={email}
+              name='email'
+              onChange={(e) => handleFormChange(e)}
+              type='email'
             />
-          </UnstyledLink>
+            <input
+              type='password'
+              value={password}
+              name='password'
+              onChange={(e) => handleFormChange(e)}
+            />
+            <button onClick={(e) => login(e)}>Login</button>
+          </form>
 
           <footer className='absolute bottom-2 text-gray-700'>
             © {new Date().getFullYear()} By{' '}
-            <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
-              Theodorus Clarence
+            <UnderlineLink href='https://matheusdamiao.com.br'>
+              Matheus Damião
             </UnderlineLink>
           </footer>
         </div>

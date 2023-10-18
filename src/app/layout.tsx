@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.title,
     images: [`${siteConfig.url}/images/og.jpg`],
     type: 'website',
-    locale: 'en_US',
+    locale: 'pt_BR',
   },
   twitter: {
     card: 'summary_large_image',
@@ -55,6 +55,9 @@ export default function RootLayout({
 }) {
   return (
     <html>
+      <nav>
+        <a href=''>link</a>
+      </nav>
       <body>{children}</body>
     </html>
   );
