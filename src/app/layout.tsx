@@ -55,9 +55,6 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <nav>
-        <a href=''>link</a>
-      </nav>
       <body>{children}</body>
     </html>
   );
