@@ -44,25 +44,10 @@ export default function HomePage() {
 
   React.useEffect(() => {
     setRestaurants(restaurants);
-    console.log(restaurants);
   }, [restaurants]);
-
-  type loginData = {
-    email: string;
-    password: string;
-  };
-
-  type userResponse = {
-    jwt: string;
-    user: string;
-  };
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [user, setUser] = React.useState<userResponse>({
-    jwt: 'dasd',
-    user: 'djasidjai',
-  });
 
   const handleFormChange = (event: any) => {
     if (event.target.name === 'email') {
@@ -95,7 +80,7 @@ export default function HomePage() {
     }
     const data = await res.json();
 
-    return setUser(data);
+    return data;
   };
 
   return (
