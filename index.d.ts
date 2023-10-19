@@ -1,7 +1,7 @@
+type SvgrComponent = React.StatelessComponent<React.SVGAttributes<SVGElement>>;
+
 declare module '*.svg' {
-  const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-  const content: string;
+  const ReactComponent: SvgrComponent;
 
   export { ReactComponent };
-  export default content;
 }
