@@ -90,7 +90,7 @@ export default function HomePage() {
       </Head>
       <section className='bg-white'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-          <Logo className='w-16' />
+          <Logo />
           <div>
             {restaurants ? (
               restaurants.map((res) => (
