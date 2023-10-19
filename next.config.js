@@ -30,7 +30,8 @@ const nextConfig = {
       // Convert all other *.svg imports to React components
       {
         test: /\.svg$/i,
-        issuer: { not: /\.(css|scss|sass)$/ },
+        // issuer: { not: /\.(css|scss|sass)$/ },
+        issuer: /\.[jt]sx?$/,
         resourceQuery: { not: /url/ }, // exclude if *.svg?url
         loader: '@svgr/webpack',
         options: {
@@ -41,7 +42,7 @@ const nextConfig = {
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i;
+    // fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },
