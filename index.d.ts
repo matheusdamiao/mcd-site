@@ -1,3 +1,13 @@
+declare module '*.png' {
+  export default '' as string;
+}
+declare module '*.webp' {
+  export default '' as string;
+}
+declare module '*.jpg' {
+  export default '' as string;
+}
+
 declare module '*.svg' {
   const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
   const content: string;
@@ -5,10 +15,6 @@ declare module '*.svg' {
   export { ReactComponent };
   export default content;
 }
-
-declare module '*.webp';
-
-declare module '*.png';
 
 export declare module 'next-auth' {
   /**
