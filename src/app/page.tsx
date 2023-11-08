@@ -11,7 +11,6 @@ import NavBar from '@/components/navbar/Navbar';
 
 import arrowRight from './../../public/icons/arrow-right.webp';
 import cooperationicon from './../../public/icons/cooperation-1.webp';
-import customericon from './../../public/icons/customer-review-1.webp';
 import icon3 from './../../public/icons/data-report.png';
 import icon2 from './../../public/icons/focus.png';
 import icon1 from './../../public/icons/management.png';
@@ -35,7 +34,10 @@ import empresa1 from './../../public/images/empresa-illustration-1.png';
 import empresa2 from './../../public/images/empresa-illustration-2.png';
 import empresa3 from './../../public/images/empresa-illustration-3.png';
 import iob from './../../public/images/iob.webp';
-import nibo from './../../public/images/nibo.webp';
+
+import CustomerIcon from '~/svg/customer-rev.svg';
+
+const nibo = './images/nibo.webp';
 
 const customTheme: CustomFlowbiteTheme['carousel'] = {
   root: {
@@ -469,7 +471,8 @@ export default function HomePage() {
           <ul className='flex flex-col gap-14 py-10'>
             <li className='flex flex-col gap-2 '>
               <div>
-                <img src={customericon.src} alt='' className=' ' />
+                {/* <img src={customericon.src} alt='' className=' ' /> */}
+                <CustomerIcon width='90' />
               </div>
               <h3 className=' text-lg font-medium text-[#40494C] lg:text-xl'>
                 Time especialista para te atender
@@ -508,7 +511,7 @@ export default function HomePage() {
           <div className='mt-10 flex w-full flex-wrap items-center justify-center gap-10 lg:mt-20 lg:flex-nowrap lg:gap-20'>
             <div className='w-2/4 lg:w-auto'>
               {' '}
-              <img src={nibo.src} alt='' />
+              <img src={nibo} alt='' />
             </div>
             <div className='w-2/4 lg:w-auto '>
               {' '}

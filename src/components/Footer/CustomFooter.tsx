@@ -1,8 +1,8 @@
 import { CustomFlowbiteTheme, Footer } from 'flowbite-react';
 import React from 'react';
 
-import insta from './../../../public/icons/insta-icon.svg';
-import msg from './../../../public/icons/msg-icon.svg';
+import insta from './../../../public/svg/insta-icon.svg';
+import msg from './../../../public/svg/msg-icon.svg';
 
 const CustomFooter = () => {
   const customFooter: CustomFlowbiteTheme['footer'] = {
