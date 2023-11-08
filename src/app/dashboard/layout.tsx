@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 import React, { ReactElement } from 'react';
-
+export const dynamic = 'force-dynamic';
 import NavBar from '@/components/navbar/Navbar';
 
 import { authOptions } from '@/constant/authOptions';

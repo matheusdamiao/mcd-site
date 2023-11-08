@@ -1,5 +1,5 @@
 'use client';
-
+export const dynamic = 'force-dynamic';
 import { signOut, useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
@@ -53,7 +53,7 @@ export default function Profile() {
   React.useEffect(() => {
     saveUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [session]);
 
   const isLoading = status === 'loading';
   if (isLoading) return 'Loading...';
@@ -62,7 +62,7 @@ export default function Profile() {
     return (
       <div className='flex h-screen flex-col items-center justify-center'>
         <h2>Bem vindo, {session.user.user.email}</h2>
-        Signed in as {user?.username} <br />
+        Signed in as {user ? user.username : null} <br />
         <h2>
           {user
             ? user.empresas.map((a: Empresa) => (
