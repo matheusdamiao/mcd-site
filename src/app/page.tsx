@@ -36,7 +36,6 @@ import empresa2 from './../../public/images/empresa-illustration-2.png';
 import empresa3 from './../../public/images/empresa-illustration-3.png';
 import iob from './../../public/images/iob.webp';
 import nibo from './../../public/images/nibo.webp';
-import bgPattern from './../../public/images/patterns_MCD-01.webp';
 
 const customTheme: CustomFlowbiteTheme['carousel'] = {
   root: {
@@ -452,7 +451,11 @@ export default function HomePage() {
       </section>
 
       <section className='font-primary relative mt-28 h-full rounded-l-[80px] rounded-r-[80px] bg-[#F2F2F2]'>
-        <img src={bgPattern.src} alt='' className='absolute bottom-0 right-0' />
+        <img
+          src='/images/patterns_MCD-01.webp'
+          alt=''
+          className='absolute bottom-0 right-0'
+        />
         <div className='m-auto my-28 w-full max-w-7xl px-6 lg:px-0'>
           <h2 className='font-primary text-3xl  font-medium text-[#40494C]  lg:text-4xl'>
             Há mais de 10 anos ajudando empresários

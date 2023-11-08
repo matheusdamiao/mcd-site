@@ -3,7 +3,6 @@ import React from 'react';
 
 import insta from './../../../public/icons/insta-icon.svg';
 import msg from './../../../public/icons/msg-icon.svg';
-import mcdBranco from './../../../public/images/mcd-logo-branco.webp';
 
 const CustomFooter = () => {
   const customFooter: CustomFlowbiteTheme['footer'] = {
@@ -27,7 +26,7 @@ const CustomFooter = () => {
             <Footer.Brand
               className='w-full justify-center lg:justify-start [&>img]:h-full'
               href='https://mcdcontabilidade.com.br'
-              src={mcdBranco.src}
+              src='./images/mcd-logo-branco.webp'
               alt='MCD logo'
             />
 
