@@ -4,7 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 
 // import LogoDesktop from './../Logos/LogoDesktop';
-import logoPng from './../../../public/images/logo-png.png';
+// import logoPng from './../../../public/images/logo-png.png';
 import logoDesk from './../../../public/images/logo-png-desk.png';
 
 export default function NavBar() {
@@ -18,7 +18,7 @@ export default function NavBar() {
         <Navbar.Brand as={Link} href='/' className=' shrink-0 pl-4'>
           {/* <LogoDesktop /> */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoPng.src} alt='' className='w-full lg:hidden ' />
+          <img src='/svg/logo-mob.svg' alt='' className='w-full lg:hidden ' />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logoDesk.src} alt='' className='hidden lg:block' />
         </Navbar.Brand>
