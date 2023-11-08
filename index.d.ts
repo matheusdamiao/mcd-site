@@ -6,6 +6,10 @@ declare module '*.svg' {
   export default content;
 }
 
+declare module '*.webp';
+
+declare module '*.png';
+
 export declare module 'next-auth' {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
