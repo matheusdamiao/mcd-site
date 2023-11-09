@@ -1,9 +1,6 @@
 import { CustomFlowbiteTheme, Footer } from 'flowbite-react';
 import React from 'react';
 
-import insta from './../../../public/svg/insta-icon.svg';
-import msg from './../../../public/svg/msg-icon.svg';
-
 const CustomFooter = () => {
   const customFooter: CustomFlowbiteTheme['footer'] = {
     root: {
@@ -78,8 +75,10 @@ const CustomFooter = () => {
               year={2023}
             />
             <div className='mt-4 flex space-x-6 sm:mt-0 sm:justify-center'>
-              <Footer.Icon href='#' icon={insta} />
-              <Footer.Icon href='#' icon={msg} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src='/svg/insta-icon.svg' alt='' />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src='/svg/msg-icon.svg' alt='' />
             </div>
           </div>
         </div>
