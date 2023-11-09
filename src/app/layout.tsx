@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import * as React from 'react';
 
 import '@/styles/globals.css';
-// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
-import '@/styles/colors.css';
 
+// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
@@ -55,6 +55,24 @@ export default function RootLayout({
 }) {
   return (
     <html>
+      <Script id='chat'>
+        {` window.chatwootSettings = {"position":"right","type":"expanded_bubble","launcherTitle":"Falar com contador ?"};
+      (function(d,t) {
+        var BASE_URL="https://app.chatwoot.com";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: 'YmdDUu7ehWxs8EyDuohTgUGB',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+     `}
+      </Script>
       <body>{children}</body>
     </html>
   );
