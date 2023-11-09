@@ -3,10 +3,6 @@ import { Button, Navbar } from 'flowbite-react';
 import Link from 'next/link';
 import * as React from 'react';
 
-// import LogoDesktop from './../Logos/LogoDesktop';
-// import logoPng from './../../../public/images/logo-png.png';
-import logoDesk from './../../../public/images/logo-png-desk.png';
-
 export default function NavBar() {
   return (
     <div className='fixed left-0 z-[9999] m-auto w-full  lg:m-auto lg:mt-4 lg:px-14'>
@@ -20,7 +16,11 @@ export default function NavBar() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src='/svg/logo-mob.svg' alt='' className='w-full lg:hidden ' />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoDesk.src} alt='' className='hidden lg:block' />
+          <img
+            src='/svg/mcd-logo-desktop.svg'
+            alt=''
+            className='hidden lg:block'
+          />
         </Navbar.Brand>
 
         <Navbar.Toggle className='px-4 hover:bg-transparent focus:ring-0' />

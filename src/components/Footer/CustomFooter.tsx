@@ -60,10 +60,10 @@ const CustomFooter = () => {
                     Perguntas Frequentes (FAQ)
                   </Footer.Link>
                   <Footer.Link className='text-white' href='#'>
-                    Privacy Policy
+                    Política de Privacidade
                   </Footer.Link>
                   <Footer.Link className='text-white' href='#'>
-                    Terms &amp; Conditions
+                    Termos &amp; Condições
                   </Footer.Link>
                 </Footer.LinkGroup>
               </div>
