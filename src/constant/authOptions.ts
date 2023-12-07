@@ -1,6 +1,8 @@
 import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import { isProd } from './env';
+
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
@@ -14,16 +16,24 @@ export const authOptions: AuthOptions = {
         // console.log('credendials here:', credentials);
         // Add logic here to look up the user from the credentials supplied
         try {
-          const res = await fetch(`http://127.0.0.1:1337/api/auth/local`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              identifier: credentials?.email,
-              password: credentials?.password,
-            }),
-          });
+          // const res = await fetch(`http://127.0.0.1:1337/api/auth/local`, {
+          const res = await fetch(
+            `${
+              isProd
+                ? `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`
+                : 'http://127.0.0.1:1337/api/auth/local'
+            }`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                identifier: credentials?.email,
+                password: credentials?.password,
+              }),
+            }
+          );
 
           const user = await res.json();
 
