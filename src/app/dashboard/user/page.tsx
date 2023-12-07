@@ -1,5 +1,6 @@
 'use client';
 export const dynamic = 'force-dynamic';
+import { Button, Spinner } from 'flowbite-react';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
@@ -17,7 +18,7 @@ const Page = () => {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    Contratos: Contratos;
+    documentos: Documentos;
     dono: Dono;
   }
   interface Dono {
@@ -38,7 +39,7 @@ const Page = () => {
     createdAt: string;
     updatedAt: string;
   }
-  interface Contratos {
+  interface Documentos {
     data: Daum[];
   }
 
@@ -88,7 +89,7 @@ const Page = () => {
   const getCompanyDetails = async () => {
     if (session && session.user) {
       const data = await api<Company>(
-        'http://localhost:1337/api/empresas/1?populate=*'
+        `${process.env.NEXT_PUBLIC_API_URL}/api/empresas/1?populate=*`
       );
       setCompany(data);
     }
@@ -99,24 +100,26 @@ const Page = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
-  // const { data, error, isLoading } = useSWR(
-  //   ['http://localhost:1337/api/empresas/1?populate=*', session?.user.jwt],
-  //   fetcher
-  // );
-
-  if (status === 'loading') return <div>carregando</div>;
+  if (status === 'loading')
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className='flex h-screen items-center justify-center'>
-      <a
-        download='Example-PDF-document'
-        target='_blank'
-        rel='noreferrer'
-        href={`http://localhost:1337${company?.data.attributes.Contratos.data[0].attributes.url} `}
-      >
-        {' '}
-        Contrato????
-      </a>
+      <Button>
+        <a
+          download='Example-PDF-document'
+          target='_blank'
+          rel='noreferrer'
+          href={`${process.env.NEXT_PUBLIC_API_URL}${company?.data.attributes.documentos.data[0].attributes.url} `}
+        >
+          {' '}
+          Baixar meu contrato
+        </a>
+      </Button>
     </div>
   );
 };

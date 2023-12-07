@@ -2,7 +2,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
 import { Button, Spinner } from 'flowbite-react';
-import { UserStrapi } from 'index';
+import { Company, Root, UserStrapi } from 'index';
 import { redirect } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import React, { useState } from 'react';
@@ -10,18 +10,21 @@ import { toast } from 'react-toastify';
 
 import { isProd } from '@/constant/env';
 
-export default function Profile() {
+export default function Company() {
   const { data: session, status } = useSession();
   const [user, setUser] = useState<UserStrapi>();
+  const [company, setCompany] = useState<Company>();
+  const [fullData, setFullData] = useState<Root>();
 
   /////
+  const [file, setFile] = useState<File | null>(null);
   const [isEditable, setIsEditable] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [CPF, setCPF] = useState('');
-  const [RG, setRG] = useState('');
-  const [file, setFile] = useState<File | null>(null);
+  const [address, setAddress] = useState('');
+  const [CNPJ, setCNPJ] = useState('');
+  const [city, setCity] = useState('');
+  const [description, setDescription] = useState('');
 
   async function api<T>(url: string): Promise<T> {
     const res = await fetch(url, {
@@ -48,39 +51,75 @@ export default function Profile() {
 
   React.useEffect(() => {
     saveUserData();
-    // console.log(status);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
+  const saveCompanyData = async () => {
+    if (session && session.user) {
+      // console.log(user?.empresa.id);
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/empresas/${user?.empresa.id}?populate=*`,
+          {
+            headers: {
+              Authorization: `Bearer ${session?.user.jwt}`,
+            },
+          }
+        );
+
+        const companyData = await res.json();
+        // console.log(companyData);
+        setFullData(companyData);
+        setCompany(companyData.data.attributes);
+        if (res.ok) {
+          // console.log(res);
+        } else {
+          // return console.log(res);
+        }
+      } catch (error) {
+        toast.error('Ops! Ocorreu um erro. Tente novamente');
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    saveCompanyData();
+    // console.log(company);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   const editData = () => {
-    if (name !== user?.nome) {
-      setName(user?.nome);
+    if (name !== company?.nome) {
+      setName(company?.nome);
     }
-    if (email !== user?.email) {
-      setEmail(user?.email);
+    if (CNPJ !== company?.CNPJ) {
+      setCNPJ(company?.CNPJ);
     }
-    if (CPF !== user?.CPF) {
-      setCPF(user?.CPF);
+    if (description !== company?.descricao) {
+      setDescription(company?.descricao);
     }
-    if (RG !== user?.RG) {
-      setRG(user?.RG);
+    if (address !== company?.endereco) {
+      setAddress(company?.endereco);
     }
-    if (phone !== user?.telefone) {
-      setPhone(user?.telefone);
+    if (phone !== company?.telefone) {
+      setPhone(company?.telefone);
+    }
+    if (city !== company?.cidade) {
+      setCity(company?.cidade);
     }
   };
 
   React.useEffect(() => {
     editData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, isEditable]);
+  }, [company, isEditable]);
 
   const handleForm = async (e: any) => {
     e.preventDefault();
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${user?.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/empresas/${fullData?.data.id}`,
         {
           method: 'PUT',
           headers: {
@@ -88,17 +127,20 @@ export default function Profile() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            nome: name,
-            telefone: phone,
-            RG: RG,
-            CPF: CPF,
-            email: email,
+            data: {
+              nome: name,
+              CNPJ: CNPJ,
+              descricao: description,
+              endereco: address,
+              cidade: city,
+              telefone: phone,
+            },
           }),
         }
       );
       // const updatedUser = await res.json();
       if (res.ok) {
-        toast.success('Perfil atualizado!', { autoClose: 1500 });
+        toast.success('Empresa atualizada!', { autoClose: 1500 });
         return saveUserData();
       } else {
         return toast.error('Não fui possível atualizar. Tente novamente');
@@ -118,14 +160,14 @@ export default function Profile() {
     e.preventDefault();
 
     if (file) {
-      const load = toast.loading('Carregando imagem');
+      const load = toast.loading('Carregando arquivo');
 
       const formData = new FormData();
       formData.append('files', file);
-      formData.append('ref', 'plugin::users-permissions.user');
-      formData.append('refId', user?.id);
-      formData.append('field', 'avatar');
-      formData.append('source', 'users-permissions');
+      formData.append('ref', 'api::empresa.empresa');
+      formData.append('refId', String(fullData?.data.id));
+      formData.append('field', 'documentos');
+      //   formData.append('source', 'users-permissions');
 
       try {
         await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload/`, {
@@ -139,13 +181,13 @@ export default function Profile() {
         // const data = await result.json();
         // console.log(data);
         toast.update(load, {
-          render: 'Imagem carregada!',
+          render: 'Arquivo carregado!',
           type: 'success',
           autoClose: 1000,
           isLoading: false,
         });
       } catch (error) {
-        toast.error('Erro ao carregar a imagem. Tente novamente');
+        toast.error('Erro ao carregar o arquivo. Tente novamente');
       }
     }
   };
@@ -204,12 +246,12 @@ export default function Profile() {
               <img src='/svg/return.svg' alt='voltar icone' />
             </a>
             <img
-              src='/icons/person.svg'
+              src='/icons/building.svg'
               className='lg:w-14'
               alt='person icon'
             />
             <h3 className='font-primary text-base font-normal text-[#646262]'>
-              Seus dados pessoais
+              Sua empresa
             </h3>
           </div>
           <div className='relative w-full rounded-[18px] bg-[#F0F0F0] px-6 py-8'>
@@ -235,77 +277,112 @@ export default function Profile() {
             )}
 
             <div>
-              {user && !isEditable && (
+              {company && !isEditable && (
                 <>
                   <div>
                     <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
-                      Nome Completo
+                      Nome
                     </small>
                     <p className='font-primary min-h-[28px] rounded-sm px-2 py-1 lg:text-xl'>
-                      {user.nome}
+                      {company.nome}
                     </p>
                   </div>
                   <div>
                     <small className='font-primary text-[#9E9E9E]s text-[9px] lg:text-xs'>
+                      CNPJ
+                    </small>
+                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
+                      {company.CNPJ}
+                    </p>
+                  </div>
+                  <div>
+                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
+                      Descrição
+                    </small>
+                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
+                      {company.descricao}
+                    </p>
+                  </div>
+                  <div>
+                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
+                      Endereço
+                    </small>
+                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
+                      {company.endereco}
+                    </p>
+                  </div>
+                  <div>
+                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
+                      Cidade
+                    </small>
+                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
+                      {company.cidade}
+                    </p>
+                  </div>
+                  <div>
+                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
+                      Área de atuação
+                    </small>
+                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
+                      {company.area}
+                    </p>
+                  </div>
+                  <div>
+                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
                       Telefone
                     </small>
                     <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
-                      {user.telefone}
+                      {company.telefone}
                     </p>
                   </div>
+
                   <div>
                     <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
-                      CPF
+                      Status da Empresa
                     </small>
                     <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
-                      {user.CPF}
+                      {company.aberta ? 'aberta' : 'em progresso'}
                     </p>
                   </div>
+
                   <div>
                     <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
-                      RG
+                      Documentos
                     </small>
-                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
-                      {user.RG}
-                    </p>
-                  </div>
-                  <div>
-                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
-                      E-mail
-                    </small>
-                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
-                      {user.email}
-                    </p>
-                  </div>
-                  <div>
-                    <small className='font-primary text-[#9E9E9E]s text-[8px] lg:text-xs'>
-                      Foto de perfil
-                    </small>
-                    <p className='font-primary min-h-[28px] rounded-sm  px-2 py-1 lg:text-xl'>
-                      <img
-                        src={
-                          isProd
-                            ? user?.avatar?.url
-                            : user?.avatar?.url
-                            ? `${process.env.NEXT_PUBLIC_API_URL}${user?.avatar.url}`
-                            : '/svg/profile-place.svg'
-                        }
-                        alt='avatar'
-                        className='max-w-[80px] lg:max-w-[100px]'
-                      />
-                    </p>
+                    <div className='flex flex-col gap-4'>
+                      {company.documentos.data &&
+                        company.documentos.data.map((doc) => {
+                          return (
+                            <a
+                              key={`${doc.id}`}
+                              download='Example-PDF-document'
+                              target='_blank'
+                              rel='noreferrer'
+                              href={`${
+                                isProd
+                                  ? doc.attributes.url
+                                  : `${process.env.NEXT_PUBLIC_API_URL}${doc.attributes.url}`
+                              }`}
+                            >
+                              {' '}
+                              {doc.attributes.name}
+                            </a>
+                          );
+                        })}
+                    </div>
                   </div>
                 </>
               )}
+              {!company && <div>Você ainda não cadastrou da sua empresa</div>}
             </div>
 
-            {user && isEditable && (
+            {company && isEditable && (
               <form action='' className='flex flex-col gap-3 py-3'>
                 <div className='relative w-full'>
                   <input
                     type='text'
                     id='nome'
-                    value={name}
+                    value={name || ''}
                     onChange={(e) => setName(e.target.value)}
                     className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
                     placeholder=' '
@@ -314,14 +391,81 @@ export default function Profile() {
                     htmlFor='nome'
                     className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
                   >
-                    Nome Completo
+                    Nome
+                  </label>
+                </div>
+
+                <div className='relative w-full'>
+                  <input
+                    type='text'
+                    id='CNPJ'
+                    value={CNPJ || ''}
+                    onChange={(e) => setCNPJ(e.target.value)}
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    placeholder=' '
+                  />
+                  <label
+                    htmlFor='CNPJ'
+                    className=' absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                  >
+                    CNPJ
                   </label>
                 </div>
                 <div className='relative w-full'>
                   <input
                     type='text'
+                    id='description'
+                    value={description || ''}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    placeholder=' '
+                  />
+                  <label
+                    htmlFor='description'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                  >
+                    Descrição
+                  </label>
+                </div>
+
+                <div className='relative w-full'>
+                  <input
+                    type='text'
+                    id='endereço'
+                    value={address || ''}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    placeholder=' '
+                  />
+                  <label
+                    htmlFor='endereço'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                  >
+                    Endereço
+                  </label>
+                </div>
+                <div className='relative w-full'>
+                  <input
+                    type='text'
+                    id='cidade'
+                    value={city || ''}
+                    onChange={(e) => setCity(e.target.value)}
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    placeholder=' '
+                  />
+                  <label
+                    htmlFor='cidade'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                  >
+                    Cidade
+                  </label>
+                </div>
+
+                <div className='relative w-full'>
+                  <input
+                    type='text'
                     id='telefone'
-                    value={phone}
+                    value={phone || ''}
                     onChange={(e) => setPhone(e.target.value)}
                     className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
                     placeholder=' '
@@ -333,79 +477,35 @@ export default function Profile() {
                     Telefone
                   </label>
                 </div>
-
-                <div className='relative w-full'>
-                  <input
-                    type='text'
-                    id='CPF'
-                    value={CPF}
-                    onChange={(e) => setCPF(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
-                    placeholder=' '
-                  />
-                  <label
-                    htmlFor='CPF'
-                    className=' absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
-                  >
-                    CPF
-                  </label>
-                </div>
-
-                <div className='relative w-full'>
-                  <input
-                    type='text'
-                    id='RG'
-                    value={RG}
-                    onChange={(e) => setRG(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
-                    placeholder=' '
-                  />
-                  <label
-                    htmlFor='RG'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
-                  >
-                    RG
-                  </label>
-                </div>
-
-                <div className='relative w-full'>
-                  <input
-                    type='text'
-                    id='e-mail'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
-                    placeholder=' '
-                  />
-                  <label
-                    htmlFor='e-mail'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
-                  >
-                    E-mail
-                  </label>
-                </div>
-
                 <div className='relative w-full'>
                   <div className='flex h-full w-full items-center justify-between gap-2'>
-                    <div>
-                      <img
-                        src={
-                          isProd
-                            ? user?.avatar?.url
-                            : user?.avatar?.url
-                            ? `${process.env.NEXT_PUBLIC_API_URL}${user?.avatar.url}`
-                            : '/svg/profile-place.svg'
-                        }
-                        alt='avatar'
-                        className='max-w-[80px] lg:max-w-[150px]'
-                      />
+                    <div className='flex flex-col gap-4'>
+                      {company.documentos.data &&
+                        company.documentos.data.map((doc) => {
+                          return (
+                            <a
+                              key={`${doc.id}`}
+                              download='Example-PDF-document'
+                              target='_blank'
+                              rel='noreferrer'
+                              href={`${
+                                isProd
+                                  ? doc.attributes.url
+                                  : `${process.env.NEXT_PUBLIC_API_URL}${doc.attributes.url}`
+                              }`}
+                            >
+                              {' '}
+                              {doc.attributes.name}
+                            </a>
+                          );
+                        })}
                     </div>
 
                     <label
-                      className='z-20 flex h-full  w-full items-center text-sm text-blue-500 lg:text-xs'
+                      className='z-20 flex h-full  w-full cursor-pointer items-center text-sm text-blue-500 lg:text-xs'
                       htmlFor='avatar'
                     >
-                      Escolha seu avatar
+                      Adicionar documento
                     </label>
                     <input
                       type='file'
@@ -423,7 +523,7 @@ export default function Profile() {
                         className='rounded-lg border-2 border-gray-500 bg-white px-4 py-1'
                         onClick={handleUpload}
                       >
-                        Carregue sua imagem
+                        Carregue seu documento
                       </button>
                     </section>
                   )}
@@ -441,8 +541,6 @@ export default function Profile() {
   }
 
   if (status === 'unauthenticated') {
-    // return <div className='text-black'>Faça o login</div>;
-    // return <Login />;
     return redirect('/dashboard');
   }
 }

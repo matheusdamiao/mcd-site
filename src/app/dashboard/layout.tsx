@@ -1,11 +1,15 @@
 import { getServerSession } from 'next-auth';
 import React, { ReactElement } from 'react';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 export const dynamic = 'force-dynamic';
-import NavBar from '@/components/navbar/Navbar';
+
+import { ToastContainer } from 'react-toastify';
 
 import { authOptions } from '@/constant/authOptions';
 
-import Provider from './../context/client-provider';
+import Provider from '../context/client-provider';
 
 export default function DashboardLayout({
   children,
@@ -15,7 +19,8 @@ export default function DashboardLayout({
   const session = getServerSession(authOptions);
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
+      <ToastContainer />
       <Provider session={session}>{children}</Provider>
     </>
   );

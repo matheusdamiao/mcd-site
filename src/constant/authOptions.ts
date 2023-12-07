@@ -1,6 +1,8 @@
 import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import { isProd } from './env';
+
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
@@ -14,24 +16,33 @@ export const authOptions: AuthOptions = {
         // console.log('credendials here:', credentials);
         // Add logic here to look up the user from the credentials supplied
         try {
-          const res = await fetch(`http://127.0.0.1:1337/api/auth/local`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              identifier: credentials?.email,
-              password: credentials?.password,
-            }),
-          });
+          // const res = await fetch(`http://127.0.0.1:1337/api/auth/local`, {
+          const res = await fetch(
+            `${
+              isProd
+                ? `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`
+                : 'http://127.0.0.1:1337/api/auth/local'
+            }`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                identifier: credentials?.email,
+                password: credentials?.password,
+              }),
+            }
+          );
 
           const user = await res.json();
-          if (user) {
+
+          // console.log('user?',user);
+          if (user.jwt) {
             // Any object returned will be saved in `user` property of the JWT
             return user;
           }
         } catch (error) {
-          // console.error(error);
           return null;
         }
       },
@@ -39,10 +50,18 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
+      // console.log('tem token', token)
+      if (!user) {
+        // console.log('nao tem user', user);
+      }
+      if (user) {
+        // console.log('tem user?', user)
+      }
       return { ...token, ...user };
     },
 
     async session({ session, token }) {
+      // console.log('token',token);
       session.user = token as any;
       return session;
     },
