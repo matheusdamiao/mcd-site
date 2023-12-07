@@ -1,12 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { Button, Card, Carousel, CustomFlowbiteTheme } from 'flowbite-react';
+import { Card, Carousel, CustomFlowbiteTheme } from 'flowbite-react';
 import Head from 'next/head';
 import * as React from 'react';
 
 import CustomFooter from '@/components/Footer/CustomFooter';
 import NavBar from '@/components/navbar/Navbar';
+import ContactSection from '@/components/sections/contactSection';
+import SolutionsSection from '@/components/sections/solutionsSections';
 
 // const nibo = './images/nibo.webp';
 
@@ -110,7 +112,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className='m-0 flex flex-col '>
+    <main className='m-0 flex flex-col bg-[#F2F2F2] '>
       <Head>
         <title>MCD Contabilidade Consultiva</title>
       </Head>
@@ -131,24 +133,24 @@ export default function HomePage() {
         />
         <NavBar />
         <div className='absolute top-[20px] z-[80] flex h-full flex-col justify-center gap-4 px-6 pt-14 lg:left-16 lg:items-start lg:gap-9 lg:pl-5 xl:max-w-7xl'>
-          <h1 className='font-primary leading- w-full text-3xl font-semibold text-[#40494C] lg:w-[60%] lg:text-left lg:text-5xl lg:text-white'>
-            <span className='text-[#1D81A2]'>Contabilidade digital</span> e{' '}
-            <br className='hidden lg:block' />
-            <span className='text-[#1D81A2]'> assessoria empresarial</span> para
-            sua empresa crescer de verdade
+          <h1 className='font-primary leading- w-full text-3xl font-semibold text-[#40494C] lg:w-[90%] lg:text-left lg:text-5xl lg:text-[#40494C]'>
+            <span className='text-[#1D81A2]'>Contabilidade digital</span> para
+            você
+            <br />
+            gerir melhor seu negócio
           </h1>
-          <h3 className='font-primary lg:font w-full pt-2 text-left text-base font-normal leading-snug text-[#40494C] lg:max-w-[50%] lg:text-left lg:text-2xl lg:text-white'>
+          <h3 className='font-primary lg:font w-full pt-2 text-left text-base font-normal leading-snug text-[#40494C] lg:max-w-[70%] lg:text-left lg:text-2xl lg:text-[#40494C]'>
             Cuidamos da sua empresa para você se concentrar no que mais importa:{' '}
             <br className='block lg:hidden' />
             <span className='font-bold text-[#1D81A2]'>seu negócio</span>
           </h3>
-          <Button
+          <a
             color='light'
-            href='/#action'
-            className='font-primary m-auto my-0 mt-4 w-[90%] max-w-[350px] whitespace-nowrap text-base font-medium lg:m-0 lg:mt-0 lg:w-full lg:text-xl'
+            href='/#solucoes'
+            className='font-primary m-auto my-0 mt-4 flex h-12 w-[90%] max-w-[350px] items-center justify-center whitespace-nowrap rounded-[15px] bg-white text-base font-medium  text-[#40494C] lg:m-0 lg:mt-0 lg:h-[70px] lg:w-full lg:text-[20px]'
           >
             Saiba como podemos te ajudar
-          </Button>
+          </a>
         </div>
       </section>
 
@@ -158,7 +160,7 @@ export default function HomePage() {
         <div className='flex flex-col gap-6 lg:gap-8'>
           {' '}
           <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-left lg:text-5xl'>
-            Simplificamos o dia a dia da sua empresa
+            Contabilidade descomplicada para a sua empresa
           </h2>
           <h3 className='font-primary text-center text-lg font-normal text-[#647073] lg:text-left lg:text-3xl'>
             Otimizamos as suas rotinas contábeis e fiscais com uma equipe
@@ -238,10 +240,10 @@ export default function HomePage() {
             </p>
           </li>
 
-          <li className='flex items-center gap-[30px]'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* <li className='flex items-center gap-[30px]'> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
 
-            <img
+          {/* <img
               src='/icons/team-management.svg'
               alt=''
               className='hidden lg:block'
@@ -254,8 +256,8 @@ export default function HomePage() {
             <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-2xl'>
               <span className='font-semibold'>Treinamento personalizado </span>{' '}
               para atender a sua equipe{' '}
-            </p>
-          </li>
+            </p> */}
+          {/* </li> */}
         </ul>
       </section>
 
@@ -263,15 +265,15 @@ export default function HomePage() {
 
       <section
         id='action'
-        className='m-auto flex w-full max-w-7xl flex-col px-6 pt-[100px] lg:gap-10'
+        className='m-auto flex w-full max-w-7xl flex-col px-6 pt-[100px] lg:gap-14'
       >
         <div className='flex items-center justify-center gap-14 scroll-smooth lg:gap-24'>
-          <h2 className='pointer  text-[#757575] lg:text-base'>
+          <h2 className='pointer  w-full text-[#757575] lg:text-base'>
             <a
               onClick={() => moveBack()}
               className={`${
                 !isIntersecting ? null : 'font-normal text-[#40494C]'
-              } hidden text-xs font-medium lg:block`}
+              } hidden cursor-pointer text-xl  font-medium lg:block lg:text-right `}
             >
               {' '}
               Quero abrir minha empresa
@@ -280,23 +282,23 @@ export default function HomePage() {
               onClick={() => moveBack()}
               className={`${
                 !isIntersecting ? null : 'font-normal text-[#40494C]'
-              } block text-xs font-medium  lg:hidden`}
+              } block cursor-pointer whitespace-nowrap text-right text-base font-medium lg:hidden`}
             >
               {' '}
               Abrir empresa
             </a>
             <span
-              className={`mt-2 h-1 ${
+              className={`mt-2 h-[3px] ${
                 isIntersecting ? 'block w-0' : 'block w-full'
               } bg-[#F7C027] transition-all`}
             ></span>
           </h2>
-          <h2 className='pointer text-[#757575] lg:text-base'>
+          <h2 className='pointer w-full text-[#757575] lg:text-base'>
             <a
               onClick={() => moveTo()}
               className={`${
                 isIntersecting ? 'font-medium text-[#40494C]' : null
-              } hidden text-xs font-normal lg:block`}
+              } hidden cursor-pointer text-xl font-normal lg:block`}
             >
               {' '}
               Quero trocar de contador
@@ -305,13 +307,13 @@ export default function HomePage() {
               onClick={() => moveTo()}
               className={`${
                 isIntersecting ? 'font-medium text-[#40494C]' : null
-              } block text-xs font-normal lg:hidden`}
+              } block cursor-pointer whitespace-nowrap text-base font-normal lg:hidden`}
             >
               {' '}
               Trocar de contador
             </a>
             <span
-              className={`mt-2 h-1 ${
+              className={`mt-2 h-[3px] ${
                 !isIntersecting ? 'block w-0' : 'block w-full'
               } bg-[#1D81A2] transition-all`}
             ></span>
@@ -413,9 +415,12 @@ export default function HomePage() {
                   </div>
                 </li>
               </ol>
-              <button className='w-full max-w-sm rounded-2xl bg-[#1D81A2] px-6 py-4 text-xl font-medium text-white'>
+              <a
+                href='abrir-empresa'
+                className='w-full max-w-sm rounded-2xl bg-[#F7C027] px-6 py-4 text-center text-xl font-medium text-[#493602]'
+              >
                 Abrir empresa
-              </button>
+              </a>
             </div>
           </div>
 
@@ -456,8 +461,8 @@ export default function HomePage() {
                         Faça seu cadastro
                       </h4>
                       <p className=' font-primary m-auto w-[90%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Em menos de 2 minutos você terá se cadastrado para
-                        iniciar o processo.
+                        Preencha nosso formulário para conhecermos melhor o
+                        perfil da sua empresa.
                       </p>
                     </div>
                   </div>
@@ -478,7 +483,8 @@ export default function HomePage() {
                         Fale com nossos especialistas
                       </h4>
                       <p className='font-primary m-auto  w-[90%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Vamos juntos planejar as melhores decisões para sua
+                        Nossa equipe vai conversar com você e vamos fazer uma
+                        revisão do atual cenário contábil e fiscal da sua
                         empresa.
                       </p>
                     </div>
@@ -511,52 +517,68 @@ export default function HomePage() {
                   </div>
                 </li>
               </ol>
-              <button className='w-full max-w-sm rounded-2xl bg-[#1D81A2] px-6 py-4 text-xl font-medium text-white'>
+              <a
+                href='contador'
+                className=' w-full max-w-sm rounded-2xl bg-[#1D81A2] px-6 py-4 text-center text-xl font-medium text-white'
+              >
                 Trocar de contador
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section className='font-primary relative mt-28 h-full rounded-l-[80px] rounded-r-[80px] bg-[#FFFFFF]'>
+      <SolutionsSection color='' />
+
+      {/* ///////////////////  About Section /////////// */}
+      <section className='font-primary relative mt-28 h-full rounded-l-[30px] rounded-r-[30px] bg-[#FFFFFF] lg:rounded-l-[80px] lg:rounded-r-[80px]'>
         <img
           src='/svg/patterns_MCD-02.svg'
           alt=''
-          className='absolute bottom-0 right-0'
+          className='absolute bottom-0 right-0 h-44 lg:h-[500px] '
         />
-        <div className='m-auto my-28 w-full max-w-7xl px-6 lg:px-0'>
-          <h2 className='font-primary text-3xl  font-medium text-[#40494C]  lg:text-4xl'>
+        <div className='m-auto my-28 mt-16 w-full max-w-7xl px-6 lg:px-0'>
+          <h2 className='font-primary text-center text-[29px] font-medium leading-10 text-[#40494C] lg:text-left  lg:text-4xl'>
             Há mais de 10 anos ajudando empresários
           </h2>
-          <h3 className='font-primary pt-3 text-lg font-normal text-[#647073] lg:text-xl'>
+          <h3 className='font-primary pt-10 text-center text-lg font-normal text-[#647073] lg:text-left lg:text-xl'>
             Somos um escritório de contabilidade digital especializado em
             assessoria empresarial completa <br />a empresários e
             empreendedores.{' '}
           </h3>
 
-          <ul className='flex flex-col gap-14 py-10'>
+          <ul className='flex flex-col gap-14 py-10 pt-20 lg:pt-20'>
             <li className='flex flex-col gap-2 '>
-              <div>
+              <div className='flex items-center gap-4'>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src='/svg/customer-rev.svg' alt='' className=' ' />
+                <img
+                  src='/svg/customer-rev.svg'
+                  alt=''
+                  className=' flex-0 w-[40px] flex-shrink-0 flex-grow-0 lg:w-[80px]'
+                />
+                <h3 className=' text-lg font-medium text-[#40494C] lg:text-3xl'>
+                  Time especialista para te atender
+                </h3>
               </div>
-              <h3 className=' text-lg font-medium text-[#40494C] lg:text-xl'>
-                Time especialista para te atender
-              </h3>
-              <p className=' max-w-xl text-base text-[#647073] lg:text-base '>
+
+              <p className=' max-w-2xl text-base text-[#647073] lg:text-xl '>
                 A MCD está comprometida a acompanhar a jornada do seu negócio e
                 garantir o seu sucesso.
               </p>
             </li>
             <li className='flex flex-col gap-2'>
-              <div>
-                <img src='/svg/cooperation.svg' alt='' />
+              <div className='flex items-center gap-4'>
+                <img
+                  src='/svg/cooperation.svg'
+                  alt=''
+                  className=' flex-0 w-[40px] flex-shrink-0  flex-grow-0 lg:w-[80px] '
+                />
+                <h3 className='text-lg font-medium text-[#40494C] lg:text-3xl'>
+                  Um caminho de sucesso
+                </h3>
               </div>
-              <h3 className='text-lg font-medium text-[#40494C] lg:text-xl'>
-                Um caminho de sucesso
-              </h3>
-              <p className='max-w-xl text-base text-[#647073] lg:text-base'>
+
+              <p className='max-w-2xl text-base text-[#647073] lg:text-xl'>
                 Nossos clientes são nossos parceiros. Juntos elaboramos um
                 projeto único pra você economizar seu dinheiro e chegar mais
                 longe.
@@ -566,87 +588,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className='h-full bg-[#BBD9E3] py-10 lg:h-[560px]'>
-        <div className='relative m-auto flex h-full w-full max-w-7xl flex-col gap-5 px-6 lg:block lg:px-0'>
-          {/* <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'> */}
-          {/* <div className='flex '> */}
-          <div className='flex h-full flex-col justify-center gap-4 '>
-            <h2 className='font-primary text-left text-3xl font-normal text-[#40494C] lg:w-3/4 lg:text-5xl'>
-              {' '}
-              Solicite uma proposta{' '}
-            </h2>
-            <h4 className='text-xl font-semibold text-white lg:text-3xl'>
-              É rápido e prático!
-            </h4>
-            <h3 className='font-primary pt-0 text-lg font-normal text-[#647073] lg:w-1/3 lg:pt-3 lg:text-xl'>
-              {' '}
-              Fale com a gente e saiba como podemos te ajudar com a sua empresa
-            </h3>
-          </div>
-          <div className='right-[5%] top-[20%] flex w-full max-w-lg flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute'>
-            <div>
-              <h2 className='text-base font-normal text-black lg:text-2xl'>
-                Entre em contato conosco
-              </h2>
-              <h3 className='pt-4 text-sm font-normal lg:text-lg'>
-                Preencha com suas informações abaixo
-              </h3>
-            </div>
-            <div className='relative'>
-              <input
-                type='text'
-                id='nome'
-                className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
-                placeholder=' '
-              />
-              <label
-                htmlFor='nome'
-                className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400'
-              >
-                Nome
-              </label>
-            </div>
-            <div className=' flex w-full flex-wrap justify-between gap-3 lg:flex-nowrap'>
-              <div className='relative w-full'>
-                <input
-                  type='text'
-                  id='email'
-                  className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:max-w-xs'
-                  placeholder=' '
-                />
-                <label
-                  htmlFor='email'
-                  className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 '
-                >
-                  E-mail
-                </label>
-              </div>
-              <div className='relative w-full'>
-                <input
-                  type='text'
-                  id='telefone'
-                  className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-black focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
-                  placeholder=' '
-                />
-                <label
-                  htmlFor='telefone'
-                  className='dark:text-gray-40 absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900'
-                >
-                  Telefone
-                </label>
-              </div>
-            </div>
+      {/* /////////////// Contact Section //////////////////// */}
+      <ContactSection />
 
-            <div>
-              <button className='w-full rounded-2xl bg-[#1D81A2] px-6 py-4 text-xl font-medium text-white'>
-                Entrar em contato
-              </button>
-            </div>
-          </div>
-          {/* </div> */}
-        </div>
-      </section>
-
+      {/* ///////////// Blog Section  //////////// */}
       <section>
         <div className='m-auto my-28 w-full max-w-7xl px-6 lg:px-0'>
           <div>
@@ -665,10 +610,6 @@ export default function HomePage() {
               theme={customCard}
               className='max-w-[320px] rounded-3xl'
               imgSrc='/images/blog-foto-1.svg'
-
-              // renderImage={() => (
-              //   <Image width={330} height={270} src={blog1.src} alt='image 1' />
-              // )}
             >
               <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
                 Confira aqui algumas estratégias que vão te ajudar a gerir
@@ -688,10 +629,6 @@ export default function HomePage() {
               theme={customCard}
               className=' max-w-[320px] rounded-3xl'
               imgSrc='/images/blog-foto-2.svg'
-
-              // renderImage={() => (
-              //   <Image width={330} height={270} src={blog2.src} alt='image 1' />
-              // )}
             >
               <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
                 Quero abrir uma empresa. O que fazer?
@@ -710,10 +647,6 @@ export default function HomePage() {
               theme={customCard}
               className='rounded-3xls max-w-[320px] '
               imgSrc='/images/blog-foto-3.svg'
-
-              // renderImage={() => (
-              //   <Image width={330} height={270} src={blog3.src} alt='image 1' />
-              // )}
             >
               <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
                 Saúde financeira: como fazer minha empresa crescer? Confira aqui
@@ -737,14 +670,6 @@ export default function HomePage() {
                 theme={customCard}
                 className='max-w-[320px] rounded-3xl'
                 imgSrc='/images/blog-foto-1.svg'
-                // renderImage={() => (
-                //   <Image
-                //     width={330}
-                //     height={270}
-                //     src={blog1.src}
-                //     alt='image 1'
-                //   />
-                // )}
               >
                 <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
                   Confira aqui algumas estratégias que vão te ajudar a gerir
@@ -764,14 +689,6 @@ export default function HomePage() {
                 theme={customCard}
                 className=' max-w-[320px] rounded-3xl'
                 imgSrc='/images/blog-foto-2.svg'
-                // renderImage={() => (
-                //   <Image
-                //     width={330}
-                //     height={270}
-                //     src={blog2.src}
-                //     alt='image 1'
-                //   />
-                // )}
               >
                 <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
                   Quero abrir uma empresa. O que fazer?
@@ -790,14 +707,6 @@ export default function HomePage() {
                 theme={customCard}
                 className='rounded-3xls max-w-[320px] '
                 imgSrc='/images/blog-foto-3.svg'
-                // renderImage={() => (
-                //   <Image
-                //     width={330}
-                //     height={270}
-                //     src={blog3.src}
-                //     alt='image 1'
-                //   />
-                // )}
               >
                 <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
                   Saúde financeira: como fazer minha empresa crescer? Confira

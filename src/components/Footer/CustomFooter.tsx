@@ -23,7 +23,7 @@ const CustomFooter = () => {
             <Footer.Brand
               className='w-full justify-center lg:justify-start [&>img]:h-full'
               href='https://mcdcontabilidade.com.br'
-              src='./images/mcd-logo-branco.webp'
+              src='/icons/MCD_logo_branco.svg'
               alt='MCD logo'
             />
 

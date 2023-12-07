@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html>
       <Script id='chat'>
-        {` window.chatwootSettings = {"position":"right","type":"expanded_bubble","launcherTitle":"Falar com contador ?"};
+        {` window.chatwootSettings = {"position":"right","type":"standard", "launcherTitle":""};
       (function(d,t) {
         var BASE_URL="https://app.chatwoot.com";
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

@@ -26,12 +26,13 @@ export const authOptions: AuthOptions = {
           });
 
           const user = await res.json();
-          if (user) {
+
+          // console.log('user?',user);
+          if (user.jwt) {
             // Any object returned will be saved in `user` property of the JWT
             return user;
           }
         } catch (error) {
-          // console.error(error);
           return null;
         }
       },
@@ -39,10 +40,18 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
+      // console.log('tem token', token)
+      if (!user) {
+        // console.log('nao tem user', user);
+      }
+      if (user) {
+        // console.log('tem user?', user)
+      }
       return { ...token, ...user };
     },
 
     async session({ session, token }) {
+      // console.log('token',token);
       session.user = token as any;
       return session;
     },
