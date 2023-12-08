@@ -147,28 +147,33 @@ export default function OpenCompany() {
       <Head>
         <title>MCD Contabilidade Consultiva</title>
       </Head>
-      <section className='relative flex h-full w-full rounded-b-[30px] lg:h-[100vh] lg:rounded-b-[80px] lg:bg-[#F2F2F2]'>
+      <section className='relative flex h-full w-full rounded-b-[30px] lg:h-full lg:rounded-b-[80px] lg:bg-[#F2F2F2]'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src='/images/bg-yellow-new.png'
           alt=''
-          className='absolute left-0 top-[-50px] block h-[450px] w-full  lg:top-[-50px] lg:h-full '
+          className='absolute left-0 top-[-20px] hidden h-[450px] w-full lg:top-[-50px]  lg:block lg:h-full '
+        />
+        <img
+          src='/images/bg-mobile-yellow-hero.webp'
+          alt=''
+          className='absolute left-0 top-[-20px] block h-[450px] w-full lg:top-[-50px]  lg:hidden lg:h-full '
         />
         <NavBar />
-        <div className='m-auto flex w-full max-w-[1440px] flex-col flex-wrap  items-center justify-center lg:flex-row lg:flex-nowrap 2xl:gap-52'>
-          <div className='flex h-[70vh] max-w-3xl flex-col justify-center gap-7 px-6 lg:h-full lg:items-center lg:gap-12'>
-            <h1 className=' font-primary z-[99] w-full text-3xl font-normal text-[#647073] lg:mt-0 lg:w-[90%] lg:text-left lg:text-[50px] lg:font-normal lg:leading-[60.51px] '>
+        <div className='m-auto flex w-full max-w-[1440px] flex-col flex-wrap items-center justify-center  gap-8  lg:flex-row lg:flex-nowrap lg:px-14 2xl:gap-52'>
+          <div className='mt-10 flex h-[250px] max-w-3xl flex-col justify-end gap-7 px-6  sm:mt-0 sm:h-[200px] lg:h-full lg:items-center lg:gap-12'>
+            <h1 className=' font-primary z-[99] w-full  text-3xl font-normal text-[#647073] lg:mt-0 lg:w-[100%] lg:text-left lg:text-[50px] lg:font-normal lg:leading-[60.51px] '>
               Abra sua empresa com{' '}
-              <span className='font-s emibold text-[#40494C]'>
-                praticidade <br className='hidden lg:block' /> e economia
+              <span className='font-semibold text-[#40494C]'>
+                praticidade e economia
               </span>{' '}
             </h1>
-            <h4 className='font-primary w-[80%] text-left text-lg font-normal text-[#647073] lg:w-[90%] lg:text-2xl  '>
+            <h4 className='font-primary w-[80%] text-left text-lg font-normal text-[#647073] lg:w-[100%] lg:text-2xl  '>
               Dê o primeiro passo para formalizar seu negócio
             </h4>
           </div>
 
-          <div className='z-[98] mt-[-100px] flex h-full w-[90%] max-w-lg flex-col justify-center gap-4 rounded-[30px] border-2 bg-white px-8 py-8 lg:mt-52'>
+          <div className='z-[98] mt-0 flex h-full w-[90%] max-w-lg flex-col justify-center gap-4 rounded-[30px] border-2 bg-white px-8 py-8 lg:mt-52'>
             <div>
               <h2 className='text-base font-normal text-[#40494C] lg:text-2xl'>
                 Vamos começar os preparativos para{' '}
@@ -422,10 +427,10 @@ export default function OpenCompany() {
         </div>
       </section>
 
-      <section className='flex h-[50vh] w-full items-center justify-center px-6'>
+      <section className='flex h-[400px] w-full items-center justify-center px-6'>
         <div className='relative h-[210px] w-full lg:h-[220px]   '>
-          <div className=' z-50 flex h-full flex-wrap items-center justify-center gap-5 rounded-[38.64px] bg-[#F6CC6B]/[.60] px-7 py-9 lg:flex-nowrap lg:justify-between lg:gap-0 lg:rounded-[80px] lg:px-24 lg:py-8'>
-            <h2 className='font-primary z-[60] w-full text-left text-lg font-normal text-black lg:w-[75%] lg:text-4xl'>
+          <div className='relative z-50 flex h-full flex-wrap items-center justify-center gap-5 rounded-[38.64px] bg-[#F6CC6B]/[.60] px-7 py-9 lg:flex-nowrap lg:justify-between lg:gap-0 lg:rounded-[80px] lg:px-24 lg:py-8'>
+            <h2 className='font-primary z-[60] w-full text-center text-lg font-normal text-black lg:w-[75%] lg:text-left lg:text-4xl'>
               Te ajudamos na elaboração do{' '}
               <span className='font-primary font-semibold'>
                 planejamento tributário, administrativo e financeiro{' '}

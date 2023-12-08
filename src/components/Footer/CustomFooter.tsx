@@ -17,7 +17,7 @@ const CustomFooter = () => {
 
   return (
     <Footer theme={customFooter}>
-      <section className='m-auto mb-14 mt-20 w-full max-w-7xl px-6 lg:mb-14 lg:mt-28 lg:px-0'>
+      <section className='m-auto mb-14 mt-20 w-full max-w-7xl px-6 lg:mb-14 lg:mt-28 lg:px-6'>
         <div className='w-full'>
           <div className='grid w-full justify-between gap-7 sm:flex sm:justify-between md:flex md:grid-cols-1'>
             <Footer.Brand

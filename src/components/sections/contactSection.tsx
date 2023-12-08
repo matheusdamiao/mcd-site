@@ -2,8 +2,8 @@ import React from 'react';
 
 const ContactSection = () => {
   return (
-    <section className='h-full bg-[#BBD9E3] py-10 lg:h-[560px]'>
-      <div className='relative m-auto flex h-full w-full max-w-7xl flex-col gap-5 px-6 lg:block lg:px-0'>
+    <section className='h-full bg-[#BBD9E3] px-6 py-10 lg:h-[560px] lg:px-14'>
+      <div className='relative m-auto flex h-full w-full max-w-7xl flex-col items-center gap-5 lg:block lg:px-0'>
         <div className='flex h-full flex-col justify-center gap-4 '>
           <h2 className='font-primary text-left text-3xl font-normal text-[#40494C] lg:w-3/4 lg:text-5xl'>
             {' '}
@@ -17,7 +17,7 @@ const ContactSection = () => {
             Fale com a gente e saiba como podemos te ajudar com a sua empresa
           </h3>
         </div>
-        <div className='right-[5%] top-[20%] flex w-full max-w-lg flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute'>
+        <div className='right-[5%] top-[20%] flex w-full max-w-md flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute lg:max-w-[400px] xl:max-w-lg'>
           <div>
             <h2 className='text-base font-normal text-black lg:text-2xl'>
               Entre em contato conosco

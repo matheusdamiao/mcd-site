@@ -17,7 +17,8 @@ const BlogSection = () => {
         on: 'bg-[#1C81A2] dark:bg-gray-800',
       },
       base: 'h-3 w-3 rounded-full',
-      wrapper: 'absolute bottom-5 left-1/2 flex -translate-x-1/2 space-x-3',
+      wrapper:
+        'absolute bottom-[-20px] left-1/2 flex -translate-x-1/2 space-x-3',
     },
     item: {
       base: 'absolute top-1/2 left-1/2 block w-full -translate-x-1/2 -translate-y-1/2',
@@ -46,14 +47,14 @@ const BlogSection = () => {
     img: {
       base: '',
       horizontal: {
-        off: 'rounded-t-lg',
-        on: 'h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg',
+        off: 'rounded-t-lg  max-h-[300px] object-cover w-full',
+        on: 'h-90 w-full rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg',
       },
     },
   };
   return (
-    <section>
-      <div className='m-auto my-28 w-full max-w-7xl px-6 lg:px-0'>
+    <section className='px-6 lg:px-14'>
+      <div className='m-auto my-28 w-full max-w-7xl lg:px-0'>
         <div>
           <h2 className='font-primary text-3xl  font-medium text-[#40494C]  lg:text-4xl'>
             Conheça nosso blog
@@ -64,11 +65,11 @@ const BlogSection = () => {
           </h3>
         </div>
 
-        <div className='mt-10 hidden w-full items-center justify-center gap-16 lg:flex'>
+        <div className='mt-10 hidden w-full flex-wrap items-center justify-center gap-16 lg:flex lg:flex-nowrap'>
           {' '}
           <Card
             theme={customCard}
-            className='max-w-[320px] rounded-3xl'
+            className='w-full  max-w-[320px] rounded-3xl lg:max-w-[400px]'
             imgSrc='/images/blog-foto-1.svg'
           >
             <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
@@ -87,7 +88,7 @@ const BlogSection = () => {
           </Card>
           <Card
             theme={customCard}
-            className=' max-w-[320px] rounded-3xl'
+            className=' w-full  max-w-[320px] rounded-3xl lg:max-w-[400px]'
             imgSrc='/images/blog-foto-2.svg'
           >
             <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
@@ -105,7 +106,7 @@ const BlogSection = () => {
           </Card>
           <Card
             theme={customCard}
-            className='rounded-3xls max-w-[320px] '
+            className='rounded-3xls w-full max-w-[320px] lg:max-w-[400px]'
             imgSrc='/images/blog-foto-3.svg'
           >
             <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
@@ -125,10 +126,10 @@ const BlogSection = () => {
         </div>
 
         <div className='h-[600px] w-full lg:hidden'>
-          <Carousel theme={customTheme}>
+          <Carousel pauseOnHover slide={false} theme={customTheme}>
             <Card
               theme={customCard}
-              className='max-w-[320px] rounded-3xl'
+              className='w-full rounded-3xl'
               imgSrc='/images/blog-foto-1.svg'
             >
               <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
@@ -147,7 +148,7 @@ const BlogSection = () => {
             </Card>
             <Card
               theme={customCard}
-              className=' max-w-[320px] rounded-3xl'
+              className='w-full rounded-3xl'
               imgSrc='/images/blog-foto-2.svg'
             >
               <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
@@ -165,7 +166,7 @@ const BlogSection = () => {
             </Card>
             <Card
               theme={customCard}
-              className='rounded-3xls max-w-[320px] '
+              className='rounded-3xls w-full'
               imgSrc='/images/blog-foto-3.svg'
             >
               <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>

@@ -120,7 +120,7 @@ const SolutionsSection = (props: SolutionsProps) => {
   return (
     <section
       id='solucoes'
-      className='m-auto h-full w-full max-w-7xl px-6 py-20 lg:h-[90vh] lg:py-32  '
+      className='m-auto h-full w-full max-w-7xl px-6 py-12 sm:py-20 lg:h-full lg:px-14 lg:py-32  '
     >
       <div className='h-full w-full'>
         <div>
