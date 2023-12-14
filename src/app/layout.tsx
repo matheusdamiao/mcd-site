@@ -73,6 +73,7 @@ export default function RootLayout({
       })(document,"script");
      `}
       </Script>
+
       <body>{children}</body>
     </html>
   );

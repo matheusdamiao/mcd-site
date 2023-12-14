@@ -24,16 +24,6 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // const users = await fetch('http://localhost:1337/api/users');
-      // const data = await users.json();
-      // const EmailAlreadyExists = data
-      //   .map((user: UserStrapi) => user.email)
-      //   .includes(email);
-
-      // if (EmailAlreadyExists === true) {
-      //   console.log(EmailAlreadyExists);
-      //   toast.success('Login bem sucedido!');
-
       const res = await signIn('credentials', {
         redirect: false,
         email: email,

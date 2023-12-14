@@ -1,77 +1,16 @@
-'use client';
-export const dynamic = 'force-dynamic';
-import { Button, Spinner } from 'flowbite-react';
-import { useSession } from 'next-auth/react';
-import React, { useState } from 'react';
+import { UserStrapi } from 'index';
+import { getServerSession } from 'next-auth';
+import React, { Suspense } from 'react';
 
-const Page = () => {
-  const { data: session, status } = useSession();
-  const [company, setCompany] = useState<Company>();
+import EditData from '@/components/editData/editData';
 
-  interface Data {
-    id: number;
-    attributes: Attributes;
-  }
+import Loading from '@/app/dashboard/user/loading';
+import { authOptions } from '@/constant/authOptions';
+import { isProd } from '@/constant/env';
 
-  interface Attributes {
-    Nome: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    documentos: Documentos;
-    dono: Dono;
-  }
-  interface Dono {
-    data: Data2;
-  }
-
-  interface Data2 {
-    id: number;
-    attributes: Attributes3;
-  }
-
-  interface Attributes3 {
-    username: string;
-    email: string;
-    provider: string;
-    confirmed: boolean;
-    blocked: boolean;
-    createdAt: string;
-    updatedAt: string;
-  }
-  interface Documentos {
-    data: Daum[];
-  }
-
-  interface Daum {
-    id: number;
-    attributes: Attributes2;
-  }
-
-  interface Attributes2 {
-    name: string;
-    alternativeText: any;
-    caption: any;
-    width: any;
-    height: any;
-    formats: any;
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
-    previewUrl: any;
-    provider: string;
-    provider_metadata: any;
-    createdAt: string;
-    updatedAt: string;
-  }
-
-  interface Company {
-    data: Data;
-    meta: object;
-  }
-
+export default async function User() {
+  // const { data: session, status } = useSession();
+  const session = await getServerSession(authOptions);
   async function api<T>(url: string): Promise<T> {
     const res = await fetch(url, {
       headers: {
@@ -79,6 +18,7 @@ const Page = () => {
       },
     });
     if (!res.ok) {
+      // console.log(res);
       throw new Error(res.statusText);
     }
     const data = (await res.json()) as Promise<T>;
@@ -86,42 +26,22 @@ const Page = () => {
     return realData;
   }
 
-  const getCompanyDetails = async () => {
-    if (session && session.user) {
-      const data = await api<Company>(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/empresas/1?populate=*`
-      );
-      setCompany(data);
-    }
-  };
-
-  React.useEffect(() => {
-    getCompanyDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
-
-  if (status === 'loading')
-    return (
-      <div>
-        <Spinner />
-      </div>
+  if (session) {
+    const res = await api<UserStrapi>(
+      `${
+        isProd
+          ? `${process.env.NEXT_PUBLIC_API_URL}/api/users/me?populate=*`
+          : 'http://127.0.0.1:1337/api/users/me?populate=*'
+      }`
     );
 
-  return (
-    <div className='flex h-screen items-center justify-center'>
-      <Button>
-        <a
-          download='Example-PDF-document'
-          target='_blank'
-          rel='noreferrer'
-          href={`${process.env.NEXT_PUBLIC_API_URL}${company?.data.attributes.documentos.data[0].attributes.url} `}
-        >
-          {' '}
-          Baixar meu contrato
-        </a>
-      </Button>
-    </div>
-  );
-};
-
-export default Page;
+    return (
+      <section>
+        <p>hello! {res.nome}</p>
+        <Suspense fallback={<Loading />}>
+          <EditData userData={res} />
+        </Suspense>
+      </section>
+    );
+  }
+}

@@ -3,6 +3,7 @@
 export const dynamic = 'force-dynamic';
 import { Button, Spinner } from 'flowbite-react';
 import { UserStrapi } from 'index';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import React, { useState } from 'react';
@@ -196,13 +197,13 @@ export default function Profile() {
 
         <section className='m-auto w-full max-w-4xl'>
           <div className='relative flex h-[20vh] flex-col items-center justify-center'>
-            <a
+            <Link
               href='/dashboard'
               className='absolute left-0 top-6 flex flex-row-reverse gap-2'
             >
               <small>voltar</small>
               <img src='/svg/return.svg' alt='voltar icone' />
-            </a>
+            </Link>
             <img
               src='/icons/person.svg'
               className='lg:w-14'

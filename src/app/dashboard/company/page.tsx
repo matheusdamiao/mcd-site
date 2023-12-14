@@ -55,8 +55,7 @@ export default function Company() {
   }, [session]);
 
   const saveCompanyData = async () => {
-    if (session && session.user) {
-      // console.log(user?.empresa.id);
+    if (session && session.user && user) {
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/empresas/${user?.empresa.id}?populate=*`,
@@ -77,6 +76,7 @@ export default function Company() {
           // return console.log(res);
         }
       } catch (error) {
+        // console.log(error);
         toast.error('Ops! Ocorreu um erro. Tente novamente');
       }
     }

@@ -4,10 +4,12 @@ export const dynamic = 'force-dynamic';
 
 import { Spinner } from 'flowbite-react';
 import { UserStrapi } from 'index';
+import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
 import Login from '@/components/Login/login';
+import NavDashboard from '@/components/NavDashboard/NavDashboard';
 
 import { isProd } from '@/constant/env';
 
@@ -41,7 +43,6 @@ export default function IndexPage() {
 
   React.useEffect(() => {
     saveUserData();
-    // console.log(status);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
@@ -53,6 +54,7 @@ export default function IndexPage() {
     return (
       <>
         <main className='m-auto max-w-7xl px-6 py-6'>
+          <NavDashboard user={session.user} />
           <div className='flex w-full justify-between'>
             <div className='flex-0 flex-shrink-0 flex-grow-0'>
               <img
@@ -65,9 +67,9 @@ export default function IndexPage() {
               <div>
                 <img
                   src={
-                    isProd
+                    isProd && user?.avatar
                       ? user?.avatar?.url
-                      : user?.avatar?.url
+                      : user?.avatar
                       ? `${process.env.NEXT_PUBLIC_API_URL}${user?.avatar.url}`
                       : '/svg/profile-place.svg'
                   }
@@ -101,7 +103,7 @@ export default function IndexPage() {
             </h3>
           </div>
           <section className=' flex flex-col flex-wrap gap-4 pb-16 lg:flex-row lg:items-start lg:justify-evenly'>
-            <a
+            <Link
               href='/dashboard/profile'
               className='flex h-[100px] w-full max-w-lg cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px] bg-[#E7E7E7] transition-all hover:scale-[1.1] lg:h-[250px]'
             >
@@ -116,8 +118,8 @@ export default function IndexPage() {
                 {' '}
                 Seus dados pessoais
               </h4>
-            </a>
-            <a
+            </Link>
+            <Link
               href='/dashboard/company'
               className='flex h-[100px] w-full max-w-lg cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px] bg-[#E7E7E7] transition-all hover:scale-[1.1] lg:h-[250px]'
             >
@@ -132,8 +134,8 @@ export default function IndexPage() {
                 {' '}
                 Sua empresa
               </h4>
-            </a>
-            <a
+            </Link>
+            <Link
               href='/dashboard/documents'
               className='flex h-[100px] w-full max-w-lg  cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px]  bg-[#E7E7E7] transition-all hover:scale-[1.1] lg:h-[250px]'
             >
@@ -148,8 +150,8 @@ export default function IndexPage() {
                 {' '}
                 Seus documentos
               </h4>
-            </a>
-            <a
+            </Link>
+            <Link
               href='/dashboard/payments'
               className='flex h-[100px] w-full max-w-lg  cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px]  bg-[#E7E7E7] transition-all hover:scale-[1.1] lg:h-[250px]'
             >
@@ -164,7 +166,7 @@ export default function IndexPage() {
                 {' '}
                 Seus pagamentos
               </h4>
-            </a>
+            </Link>
           </section>
         </main>
         <a className='font-primary fixed bottom-0 flex h-16 w-full items-center justify-center gap-2 bg-[#84FE89] text-xs font-bold text-[#202020]'>
