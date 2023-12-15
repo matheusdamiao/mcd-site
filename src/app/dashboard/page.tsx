@@ -1,107 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
-export const dynamic = 'force-dynamic';
-
-import { Spinner } from 'flowbite-react';
-import { UserStrapi } from 'index';
 import Link from 'next/link';
-import { signOut, useSession } from 'next-auth/react';
-import React, { useState } from 'react';
+import { getServerSession } from 'next-auth';
+import React from 'react';
 
-import Login from '@/components/Login/login';
-import NavDashboard from '@/components/NavDashboard/NavDashboard';
+import { authOptions } from '@/constant/authOptions';
 
-import { isProd } from '@/constant/env';
-
-export default function IndexPage() {
-  const { data: session, status } = useSession();
-  const [user, setUser] = useState<UserStrapi>();
-
-  async function api<T>(url: string): Promise<T> {
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${session?.user.jwt}`,
-      },
-    });
-    // console.log(res);
-    if (!res.ok) {
-      // console.log(res);
-    }
-    const data = (await res.json()) as Promise<T>;
-    const realData = await data;
-    return realData;
-  }
-
-  const saveUserData = async () => {
-    if (session && session.user && status === 'authenticated') {
-      // console.log(status);
-      const data = await api<UserStrapi>(`
-        ${process.env.NEXT_PUBLIC_API_URL}/api/users/me?populate=*`);
-      setUser(data);
-    }
-  };
-
-  React.useEffect(() => {
-    saveUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
-
-  if (session?.user?.error || !session) {
-    return <Login />;
-  }
+export default async function IndexPage() {
+  const session = await getServerSession(authOptions);
 
   if (session && session.user) {
     return (
       <>
-        <main className='m-auto max-w-7xl px-6 py-6'>
-          <NavDashboard user={session.user} />
-          <div className='flex w-full justify-between'>
-            <div className='flex-0 flex-shrink-0 flex-grow-0'>
-              <img
-                src='/svg/logo-mob.svg'
-                alt=''
-                className='w-full max-w-[150px] lg:max-w-[400px]'
-              />
-            </div>
-            <aside className='flex gap-2'>
-              <div>
-                <img
-                  src={
-                    isProd && user?.avatar
-                      ? user?.avatar?.url
-                      : user?.avatar
-                      ? `${process.env.NEXT_PUBLIC_API_URL}${user?.avatar.url}`
-                      : '/svg/profile-place.svg'
-                  }
-                  alt='avatar'
-                  className='max-w-[30px] lg:max-w-[50px]'
-                />
-              </div>
-              <div className='flex flex-col justify-center'>
-                {user && (
-                  <p className='font-primary text-xs font-normal text-[#646464] lg:text-base'>
-                    {user.username}
-                  </p>
-                )}
-                <a
-                  className='cursor-pointer rounded-none text-xs font-normal text-[#A9A9A9] hover:underline lg:text-base'
-                  onClick={() => signOut()}
-                >
-                  Sair
-                </a>
-              </div>
-            </aside>
-          </div>
-          <div className='flex h-[20vh] flex-col justify-center'>
-            <h2 className='font-primary flex-shrink-0 text-2xl font-normal text-[#5E5E5E] lg:text-5xl'>
-              {' '}
-              <span className='text-[#A9A9A9]'>Olá,</span>{' '}
-              {(user && user.nome) || user?.username}
-            </h2>
-            <h3 className='font-primary text-xs font-normal text-[#646464] lg:text-lg'>
-              Seja bem-vindo a MCD Assessoria Contábil
-            </h3>
-          </div>
+        <main>
           <section className=' flex flex-col flex-wrap gap-4 pb-16 lg:flex-row lg:items-start lg:justify-evenly'>
             <Link
               href='/dashboard/profile'
@@ -168,24 +78,16 @@ export default function IndexPage() {
               </h4>
             </Link>
           </section>
+          <a
+            href='https://api.whatsapp.com/send?phone=5521990050072'
+            className='font-primary fixed bottom-0 left-0 flex h-16 w-full cursor-pointer items-center justify-center gap-2 bg-[#84FE89] text-xs font-bold text-[#202020]'
+          >
+            {' '}
+            <img src='/icons/zap.svg' alt='' />
+            <p>CONVERSE COM A GENTE </p>
+          </a>
         </main>
-        <a className='font-primary fixed bottom-0 flex h-16 w-full items-center justify-center gap-2 bg-[#84FE89] text-xs font-bold text-[#202020]'>
-          {' '}
-          <img src='/icons/zap.svg' alt='' />
-          <p>CONVERSE COM A GENTE </p>
-        </a>
       </>
     );
   }
-
-  if (status !== 'authenticated') {
-    return <Login />;
-  }
-
-  return (
-    <div className='flex h-screen flex-col items-center justify-center gap-4'>
-      {' '}
-      <Spinner />
-    </div>
-  );
 }

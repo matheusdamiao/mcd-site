@@ -3,11 +3,10 @@
 export const dynamic = 'force-dynamic';
 import { Spinner } from 'flowbite-react';
 import { UserStrapi } from 'index';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
-
-import { isProd } from '@/constant/env';
 
 export default function Documents() {
   const { data: session, status } = useSession();
@@ -78,53 +77,15 @@ export default function Documents() {
   if (session && session.user?.user) {
     return (
       <main className='m-auto max-w-7xl px-6 py-6'>
-        <div className='flex w-full justify-between'>
-          <div className='flex-0 flex-shrink-0 flex-grow-0'>
-            <img
-              src='/svg/logo-mob.svg'
-              alt=''
-              className='w-full max-w-[150px] lg:max-w-[400px]'
-            />
-          </div>
-          <aside className='flex gap-2'>
-            <div>
-              <img
-                src={
-                  isProd
-                    ? user?.avatar?.url
-                    : user?.avatar?.url
-                    ? `${process.env.NEXT_PUBLIC_API_URL}${user?.avatar.url}`
-                    : '/svg/profile-place.svg'
-                }
-                alt='avatar'
-                className='max-w-[30px] lg:max-w-[50px]'
-              />
-            </div>
-            <div className='flex flex-col justify-center'>
-              {user && (
-                <p className='font-primary text-xs font-normal text-[#646464] lg:text-base'>
-                  {user.username}
-                </p>
-              )}
-              <a
-                className='cursor-pointer rounded-none text-xs font-normal text-[#A9A9A9] hover:underline lg:text-base'
-                onClick={() => signOut()}
-              >
-                Sair
-              </a>
-            </div>
-          </aside>
-        </div>
-
         <section className='m-auto w-full max-w-4xl'>
           <div className='relative flex h-[20vh] flex-col items-center justify-center'>
-            <a
+            <Link
               href='/dashboard'
               className='absolute left-0 top-6 flex flex-row-reverse gap-2'
             >
               <small>voltar</small>
               <img src='/svg/return.svg' alt='voltar icone' />
-            </a>
+            </Link>
             <img
               src='/icons/payment.svg'
               className='lg:w-14'

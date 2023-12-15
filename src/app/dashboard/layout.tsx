@@ -2,6 +2,9 @@ import { UserStrapi } from 'index';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 // export const dynamic = 'force-dynamic';
 import NavDashboard from '@/components/NavDashboard/NavDashboard';
@@ -44,10 +47,11 @@ export default async function DashboardLayout({
       }`
     );
     return (
-      <>
+      <main className='m-auto max-w-7xl px-6 py-6'>
+        <ToastContainer />
         <NavDashboard user={res} />
         <Provider session={session}>{children}</Provider>
-      </>
+      </main>
     );
   }
 }

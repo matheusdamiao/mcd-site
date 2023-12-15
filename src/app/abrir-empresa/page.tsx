@@ -92,6 +92,8 @@ export default function OpenCompany() {
             email: email,
             username: user,
             password: password,
+            nome: name,
+            telefone: phone,
           }),
         }
       );

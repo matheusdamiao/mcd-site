@@ -3,8 +3,9 @@
 export const dynamic = 'force-dynamic';
 import { Button, Spinner } from 'flowbite-react';
 import { UserStrapi } from 'index';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -150,6 +151,7 @@ export default function Documents() {
           autoClose: 1000,
           isLoading: false,
         });
+        saveUserData();
       } catch (error) {
         toast.error('Erro ao carregar o documento. Tente novamente');
       }
@@ -178,6 +180,7 @@ export default function Documents() {
       // console.log(data);
       setIsDelete(false);
       saveUserData();
+      setFile(null);
     } catch (error) {
       toast.error('Erro ao apagar o documento. Tente novamente');
     }
@@ -189,53 +192,15 @@ export default function Documents() {
   if (session && session.user?.user) {
     return (
       <main className='m-auto max-w-7xl px-6 py-6'>
-        <div className='flex w-full justify-between'>
-          <div className='flex-0 flex-shrink-0 flex-grow-0'>
-            <img
-              src='/svg/logo-mob.svg'
-              alt=''
-              className='w-full max-w-[150px] lg:max-w-[400px]'
-            />
-          </div>
-          <aside className='flex gap-2'>
-            <div>
-              <img
-                src={
-                  isProd
-                    ? user?.avatar?.url
-                    : user?.avatar?.url
-                    ? `${process.env.NEXT_PUBLIC_API_URL}${user?.avatar.url}`
-                    : '/svg/profile-place.svg'
-                }
-                alt='avatar'
-                className='max-w-[30px] lg:max-w-[50px]'
-              />
-            </div>
-            <div className='flex flex-col justify-center'>
-              {user && (
-                <p className='font-primary text-xs font-normal text-[#646464] lg:text-base'>
-                  {user.username}
-                </p>
-              )}
-              <a
-                className='cursor-pointer rounded-none text-xs font-normal text-[#A9A9A9] hover:underline lg:text-base'
-                onClick={() => signOut()}
-              >
-                Sair
-              </a>
-            </div>
-          </aside>
-        </div>
-
         <section className='m-auto w-full max-w-4xl'>
           <div className='relative flex h-[20vh] flex-col items-center justify-center'>
-            <a
+            <Link
               href='/dashboard'
               className='absolute left-0 top-6 flex flex-row-reverse gap-2'
             >
               <small>voltar</small>
               <img src='/svg/return.svg' alt='voltar icone' />
-            </a>
+            </Link>
             <img
               src='/icons/documents.svg'
               className='lg:w-14'
@@ -298,6 +263,12 @@ export default function Documents() {
                   </div>
                 </>
               )}
+              {!user && (
+                <div className='flex items-center justify-center'>
+                  {' '}
+                  <Spinner />
+                </div>
+              )}
             </div>
 
             {user && isEditable && (
@@ -325,7 +296,6 @@ export default function Documents() {
                                   {' '}
                                   {doc.name}
                                 </a>
-                                <span>olha o id:{doc.id} </span>
                                 <button
                                   type='button'
                                   onClick={() =>
@@ -340,9 +310,18 @@ export default function Documents() {
                                 </button>
                               </div>
                               {isDelete && (
-                                <div className='fixed left-0 top-0 z-[9922] flex h-screen w-full items-center justify-center bg-[#1b5b70]'>
-                                  <div className='flex h-96 w-60 flex-col items-center justify-center gap-5 bg-white'>
-                                    <p className='text-center'>
+                                <div className='z- fixed left-0 top-0 z-[9922] flex h-screen w-full items-center justify-center bg-[#a8abac] bg-opacity-60'>
+                                  <div className='z-50 flex h-96 w-60 flex-col items-center justify-center gap-5 rounded-lg bg-white shadow-xl lg:w-96'>
+                                    <svg
+                                      className='fill-current text-red-600'
+                                      width='24'
+                                      height='25'
+                                      viewBox='0 0 24 24'
+                                    >
+                                      <path d='M6.53125 6.53125C6.68872 6.53125 6.83974 6.59381 6.95109 6.70516C7.06244 6.81651 7.125 6.96753 7.125 7.125V14.25C7.125 14.4075 7.06244 14.5585 6.95109 14.6698C6.83974 14.7812 6.68872 14.8438 6.53125 14.8438C6.37378 14.8438 6.22276 14.7812 6.11141 14.6698C6.00006 14.5585 5.9375 14.4075 5.9375 14.25V7.125C5.9375 6.96753 6.00006 6.81651 6.11141 6.70516C6.22276 6.59381 6.37378 6.53125 6.53125 6.53125ZM9.5 6.53125C9.65747 6.53125 9.8085 6.59381 9.91985 6.70516C10.0312 6.81651 10.0938 6.96753 10.0938 7.125V14.25C10.0938 14.4075 10.0312 14.5585 9.91985 14.6698C9.8085 14.7812 9.65747 14.8438 9.5 14.8438C9.34253 14.8438 9.19151 14.7812 9.08016 14.6698C8.96881 14.5585 8.90625 14.4075 8.90625 14.25V7.125C8.90625 6.96753 8.96881 6.81651 9.08016 6.70516C9.19151 6.59381 9.34253 6.53125 9.5 6.53125ZM13.0625 7.125C13.0625 6.96753 12.9999 6.81651 12.8886 6.70516C12.7772 6.59381 12.6262 6.53125 12.4688 6.53125C12.3113 6.53125 12.1603 6.59381 12.0489 6.70516C11.9376 6.81651 11.875 6.96753 11.875 7.125V14.25C11.875 14.4075 11.9376 14.5585 12.0489 14.6698C12.1603 14.7812 12.3113 14.8438 12.4688 14.8438C12.6262 14.8438 12.7772 14.7812 12.8886 14.6698C12.9999 14.5585 13.0625 14.4075 13.0625 14.25V7.125Z' />
+                                      <path d='M17.2188 3.5625C17.2188 3.87744 17.0936 4.17949 16.8709 4.40219C16.6482 4.62489 16.3462 4.75 16.0312 4.75H15.4375V15.4375C15.4375 16.0674 15.1873 16.6715 14.7419 17.1169C14.2965 17.5623 13.6924 17.8125 13.0625 17.8125H5.9375C5.30761 17.8125 4.70352 17.5623 4.25812 17.1169C3.81272 16.6715 3.5625 16.0674 3.5625 15.4375V4.75H2.96875C2.65381 4.75 2.35176 4.62489 2.12906 4.40219C1.90636 4.17949 1.78125 3.87744 1.78125 3.5625V2.375C1.78125 2.06006 1.90636 1.75801 2.12906 1.53531C2.35176 1.31261 2.65381 1.1875 2.96875 1.1875H7.125C7.125 0.872555 7.25011 0.57051 7.47281 0.347811C7.69551 0.125111 7.99756 0 8.3125 0L10.6875 0C11.0024 0 11.3045 0.125111 11.5272 0.347811C11.7499 0.57051 11.875 0.872555 11.875 1.1875H16.0312C16.3462 1.1875 16.6482 1.31261 16.8709 1.53531C17.0936 1.75801 17.2188 2.06006 17.2188 2.375V3.5625ZM4.89013 4.75L4.75 4.82006V15.4375C4.75 15.7524 4.87511 16.0545 5.09781 16.2772C5.32051 16.4999 5.62256 16.625 5.9375 16.625H13.0625C13.3774 16.625 13.6795 16.4999 13.9022 16.2772C14.1249 16.0545 14.25 15.7524 14.25 15.4375V4.82006L14.1099 4.75H4.89013ZM2.96875 3.5625H16.0312V2.375H2.96875V3.5625Z' />
+                                    </svg>
+                                    <p className='font-primary text-center'>
                                       Deseja apagar o arquivo <br />
                                       <span className='font-bold'>
                                         {fileToDelete.name}
@@ -355,16 +334,16 @@ export default function Documents() {
                                         onClick={() =>
                                           deleteFile(fileToDelete.id)
                                         }
-                                        className='hover:underline'
+                                        className='bg rounded-xl bg-red-600 px-3 py-1 text-white hover:underline'
                                       >
-                                        Sim
+                                        Deletar
                                       </button>
                                       <button
                                         type='button'
                                         onClick={() => setIsDelete(false)}
-                                        className='hover:underline'
+                                        className='rounded-xl border-2 bg-transparent px-3 py-1 hover:underline'
                                       >
-                                        Não
+                                        Cancelar
                                       </button>
                                     </div>
                                   </div>
@@ -373,7 +352,7 @@ export default function Documents() {
                             </div>
                           );
                         })}
-                      {!user.documentos && (
+                      {!user.documentos && !file && (
                         <p> Você ainda não possui documentos. </p>
                       )}
                     </div>
