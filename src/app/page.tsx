@@ -2,6 +2,7 @@
 'use client';
 
 import Head from 'next/head';
+import Image from 'next/image';
 import * as React from 'react';
 
 import CustomFooter from '@/components/Footer/CustomFooter';
@@ -69,28 +70,22 @@ export default function HomePage() {
       </Head>
 
       {/*/////////////// hero section ///////////////////*/}
+      <NavBar />
 
-      <section className='relative flex h-[500px] rounded-b-[30px] lg:h-[600px] lg:rounded-b-[80px] lg:bg-[#F2F2F2] lg:px-8'>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src='/images/bg-hero-desktop-new.png'
-          alt=''
-          className='absolute left-0 hidden h-full w-full rounded-b-[80px] object-cover lg:block'
+      <section className='relative flex h-[650px] flex-col items-center justify-center lg:h-[900px] lg:bg-[#F2F2F2] lg:px-8'>
+        <Image
+          src='/images/bg-hero-home.webp'
+          alt='Empresário usando o computador'
+          className='absolute left-0 top-0 h-full w-full object-cover object-top'
+          priority={true}
+          fill={true}
+          // placeholder='blur'
         />
-        <img
-          src='/images/bg-hero-mobile.png'
-          alt=''
-          className='block w-full lg:hidden'
-        />
-        <NavBar />
-        <div className='absolute top-[20px] z-[80] flex h-full flex-col justify-center gap-4 px-6 pt-14 lg:left-16 lg:items-start lg:gap-9 lg:pl-5 xl:max-w-7xl'>
-          <h1 className='font-primary leading- w-full text-3xl font-semibold text-[#40494C] lg:w-[90%] lg:text-left lg:text-5xl lg:text-[#40494C]'>
-            <span className='text-[#1D81A2]'>Contabilidade digital</span> para
-            você
-            <br />
-            gerir melhor seu negócio
+        <div className='z-[80] flex h-full flex-col items-center justify-center gap-4 px-6 pt-14 lg:left-16 lg:gap-9 lg:pl-5 xl:max-w-7xl'>
+          <h1 className='font-primary leading- w-full text-center text-3xl font-semibold text-white  lg:max-w-3xl lg:text-5xl'>
+            Contabilidade digital para você gerir melhor o seu negócio
           </h1>
-          <h3 className='font-primary lg:font w-full pt-2 text-left text-base font-normal leading-snug text-[#40494C] lg:max-w-[70%] lg:text-left lg:text-2xl lg:text-[#40494C]'>
+          <h3 className='font-primary lg:font t w-full pt-2  text-center text-base font-normal leading-snug text-[#FFFF] lg:max-w-[70%] lg:text-2xl'>
             Cuidamos da sua empresa para você se concentrar no que mais importa:{' '}
             <br className='block lg:hidden' />
             <span className='font-bold text-[#1D81A2]'>seu negócio</span>
@@ -216,7 +211,7 @@ export default function HomePage() {
 
       <section
         id='action'
-        className='m-auto flex w-full max-w-7xl flex-col px-6 pt-[100px] lg:gap-14'
+        className='m-auto flex w-full max-w-7xl flex-col px-6 py-20 pt-[100px] lg:gap-14'
       >
         <div className='flex items-center justify-center gap-14 scroll-smooth lg:gap-24'>
           <h2 className='pointer  w-full text-[#757575] lg:text-base'>

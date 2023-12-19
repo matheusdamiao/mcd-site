@@ -2,6 +2,7 @@
 'use client';
 import { UserStrapi } from 'index';
 import Head from 'next/head';
+import Image from 'next/image';
 import { signIn } from 'next-auth/react';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -138,7 +139,7 @@ export default function OpenCompany() {
           password: password,
           callbackUrl: '/dashboard',
         });
-      }, 3000);
+      }, 2000);
     } catch (error) {
       toast.error('Erro no cadastro!');
     }
@@ -151,26 +152,23 @@ export default function OpenCompany() {
       </Head>
       <section className='relative flex h-full w-full rounded-b-[30px] lg:h-full lg:rounded-b-[80px] lg:bg-[#F2F2F2]'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src='/images/bg-yellow-new.png'
+        <Image
+          src='/images/bg-hero-abrir.webp'
           alt=''
-          className='absolute left-0 top-[-20px] hidden h-[450px] w-full lg:top-[-50px]  lg:block lg:h-full '
+          className='absolute left-0 top-[-20px] h-[450px] w-full object-cover lg:top-[-50px] lg:block lg:h-full '
+          width={1440}
+          height={781}
+          priority={true}
+          quality={100}
         />
-        <img
-          src='/images/bg-mobile-yellow-hero.webp'
-          alt=''
-          className='absolute left-0 top-[-20px] block h-[450px] w-full lg:top-[-50px]  lg:hidden lg:h-full '
-        />
+
         <NavBar />
         <div className='m-auto flex w-full max-w-[1440px] flex-col flex-wrap items-center justify-center  gap-8  lg:flex-row lg:flex-nowrap lg:px-14 2xl:gap-52'>
-          <div className='mt-10 flex h-[250px] max-w-3xl flex-col justify-end gap-7 px-6  sm:mt-0 sm:h-[200px] lg:h-full lg:items-center lg:gap-12'>
-            <h1 className=' font-primary z-[99] w-full  text-3xl font-normal text-[#647073] lg:mt-0 lg:w-[100%] lg:text-left lg:text-[50px] lg:font-normal lg:leading-[60.51px] '>
-              Abra sua empresa com{' '}
-              <span className='font-semibold text-[#40494C]'>
-                praticidade e economia
-              </span>{' '}
+          <div className='mt-10 flex h-[300px] max-w-3xl flex-col justify-end gap-7 px-6  sm:mt-0 sm:h-[200px] lg:h-full lg:items-center lg:gap-12'>
+            <h1 className=' font-primary z-[99] w-full  text-center text-3xl font-normal text-white lg:mt-0 lg:w-[100%] lg:text-left lg:text-[50px] lg:font-normal lg:leading-[60.51px] '>
+              Abra sua empresa com praticidade e economia
             </h1>
-            <h4 className='font-primary w-[80%] text-left text-lg font-normal text-[#647073] lg:w-[100%] lg:text-2xl  '>
+            <h4 className='font-primary z-[80] w-full text-center text-lg font-normal  text-white lg:text-left lg:text-2xl  '>
               Dê o primeiro passo para formalizar seu negócio
             </h4>
           </div>

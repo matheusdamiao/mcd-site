@@ -2,6 +2,7 @@
 'use client';
 import { UserStrapi } from 'index';
 import Head from 'next/head';
+import Image from 'next/image';
 import { signIn } from 'next-auth/react';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -105,7 +106,7 @@ export default function ChangeAccountant() {
           password: password,
           callbackUrl: '/dashboard',
         });
-      }, 3000);
+      }, 2000);
     } catch (error) {
       toast.error('Erro no cadastro!');
     }
@@ -117,28 +118,26 @@ export default function ChangeAccountant() {
       </Head>
 
       <section className='relative flex h-full w-full rounded-b-[30px] lg:h-full lg:rounded-b-[80px] lg:bg-[#F2F2F2]'>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src='/images/bg-blue-new.png'
+        <Image
+          src='/images/bg-hero-contador.webp'
           alt=''
-          className='absolute left-0 top-[-50px] hidden h-[450px] w-full lg:top-[-80px]  lg:block lg:h-full '
+          className='absolute left-0 top-[-50px] h-[450px] w-full object-cover lg:top-[-80px]  lg:block lg:h-full '
+          width={1440}
+          height={960.12}
+          priority={true}
         />
-        <img
-          src='/images/bg-hero-mobile.png'
-          alt=''
-          className='absolute left-0 top-[-50px] block h-[550px] w-full lg:top-[-50px]  lg:hidden lg:h-full '
-        />
+
         <NavBar />
         <div className='m-auto flex w-full max-w-[1440px] flex-col flex-wrap  items-center justify-center gap-8 lg:flex-row lg:flex-nowrap lg:px-14 2xl:gap-52'>
-          <div className='mt-14  flex h-[250px] max-w-3xl flex-col justify-end gap-7 px-6 sm:h-[200px] lg:mt-0 lg:h-full lg:items-center lg:gap-12'>
-            <h1 className=' font-primary z-[99] w-full text-3xl font-normal text-[#647073] lg:mt-0 lg:w-[100%] lg:text-left lg:text-[50px] lg:font-normal lg:leading-[60px] '>
+          <div className='mt-14  flex h-[300px] max-w-3xl flex-col justify-end gap-7 px-6 sm:h-[200px] lg:mt-0 lg:h-full lg:items-center lg:gap-12'>
+            <h1 className=' font-primary z-[99] w-full text-center text-3xl font-normal text-white lg:mt-0 lg:w-[100%] lg:text-left lg:text-[50px] lg:font-normal lg:leading-[60px] '>
               Contabilidade{' '}
-              <span className='font-semibold text-[#40494C]'>
+              <span className='font-semibold text-white'>
                 segura <br className='hidden lg:block' /> e prática
               </span>{' '}
               nas suas mãos
             </h1>
-            <h4 className=' font-primary z-40 w-[80%] text-left text-lg font-normal text-[#647073] lg:w-[100%] lg:text-2xl  '>
+            <h4 className=' font-primary z-40 w-full text-center text-lg font-normal text-white lg:text-left lg:text-2xl  '>
               Nós cuidamos da saúde da sua empresa para que ela possa continuar
               prosperando
             </h4>

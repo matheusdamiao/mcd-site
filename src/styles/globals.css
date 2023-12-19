@@ -129,4 +129,14 @@ body {
   .animated-underline:focus-visible {
     background-size: 0 2px, 100% 2px;
   }
+
+  .remove-scroll {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+  .remove-scroll::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
 }
