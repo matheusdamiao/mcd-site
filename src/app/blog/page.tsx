@@ -1,8 +1,7 @@
 'use client';
 import { Carousel, CustomFlowbiteTheme, Spinner } from 'flowbite-react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-import CustomFooter from '@/components/Footer/CustomFooter';
 
 import { isProd } from '@/constant/env';
 
@@ -206,6 +205,7 @@ export default function Blog() {
     <div>
       {' '}
       <div className='flex h-full w-full flex-col items-center justify-center pt-20 text-black lg:h-[700px] lg:pt-40'>
+        <span className='absolute top-0 block h-[70px] w-full bg-[#1C81A2] sm:h-[100px] lg:hidden' />
         <div className='m-auto h-full max-w-7xl py-10 lg:h-[100px] '>
           <h1 className='font-primary text-center text-3xl  font-semibold text-[#647073]  lg:text-[40px]'>
             Últimos artigos
@@ -217,21 +217,21 @@ export default function Blog() {
               return (
                 <div
                   key={att.id}
-                  className='relative flex h-full max-w-[1200px] flex-shrink-0 flex-col flex-wrap items-center gap-9 rounded-[30px] bg-white px-11 lg:h-[400px]  lg:flex-row lg:flex-nowrap'
+                  className='relative mx-2 flex h-full max-w-[1200px] flex-shrink-0 flex-col flex-wrap items-center gap-9 rounded-[30px] border-[1px] bg-white px-11 lg:h-[400px] lg:flex-row lg:flex-nowrap'
                 >
-                  <div className='flex max-h-[250px] w-full items-center justify-center object-cover'>
+                  <div className='flex max-h-[250px] w-full items-center justify-center object-cover pt-6'>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={`${
                         isProd
                           ? att.attributes.image.data.attributes.url
-                          : `http://localhost:1337${att.attributes.image.data.attributes.url}`
+                          : `http://localhost:1337${att.attributes.image.data.attributes.url} `
                       }`}
                       alt=''
                       className='h-full  w-full object-cover lg:max-h-[350px]'
                     />
                   </div>
-                  <div className='flex flex-col gap-4 px-4 lg:gap-7'>
+                  <div className='flex flex-col gap-4 px-4 pb-6 lg:gap-7'>
                     <h2 className='font-body text-2xl font-normal text-[#40494C] lg:text-4xl'>
                       {att.attributes.titulo}
                     </h2>
@@ -240,14 +240,17 @@ export default function Blog() {
                     </h4>
                     <small>{att.attributes.data}</small>
                   </div>
-                  <a
-                    href={encodeURI(`/blog/${att.id}/${att.attributes.titulo}`)}
-                    className='animated-underline absolute bottom-7 right-7 flex h-16 w-16 items-center justify-center rounded-full bg-[#1D81A2] font-bold text-white'
+                  <Link
+                    href={encodeURI(
+                      `/blog/${att.id}/${att.attributes.titulo.replace(
+                        /\s+/g,
+                        '-'
+                      )}`
+                    )}
+                    className='animated-underline absolute bottom-7 right-7 z-[865] flex h-16 w-16 items-center justify-center rounded-full bg-[#1D81A2] font-bold text-white'
                   >
                     <span className='block h-[4px] w-5 translate-x-1 translate-y-[-4px] rotate-45 bg-white after:block after:h-[4px] after:w-5 after:translate-x-[8px] after:translate-y-[10px] after:rotate-90 after:bg-white'></span>
-                  </a>
-
-                  {/* <Markdown skipHtml={false}>{att.attributes.texto}</Markdown> */}
+                  </Link>
                 </div>
               );
             })}
@@ -291,9 +294,16 @@ export default function Blog() {
                       <small className='text-xs text-[#647073]'>
                         {post.attributes.data}
                       </small>
-                      <a href={`/blog/${post.id}/${post.attributes.titulo}`}>
+                      <Link
+                        href={encodeURI(
+                          `/blog/${post.id}/${post.attributes.titulo.replace(
+                            /\s+/g,
+                            '-'
+                          )}`
+                        )}
+                      >
                         <span className='relative block h-[3px] w-[16px] rounded-md bg-[#1C81A2] before:absolute before:right-0 before:top-[3px] before:h-[3px] before:w-[9px] before:rotate-[-45deg] before:rounded-md before:bg-[#1C81A2] after:absolute after:bottom-[3px] after:right-0 after:h-[3px] after:w-[9px] after:rotate-45 after:rounded-md after:bg-[#1C81A2] '></span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -306,7 +316,6 @@ export default function Blog() {
           )}
         </section>
       </div>
-      <CustomFooter />
     </div>
   );
 }

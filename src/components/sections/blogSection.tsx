@@ -1,6 +1,11 @@
+'use client';
 /* eslint-disable @next/next/no-img-element */
 import { Card, Carousel, CustomFlowbiteTheme } from 'flowbite-react';
-import React from 'react';
+import Link from 'next/link';
+import React, { useState } from 'react';
+
+import { Daum, Root } from '@/app/blog/page';
+import { isProd } from '@/constant/env';
 
 const BlogSection = () => {
   const customTheme: CustomFlowbiteTheme['carousel'] = {
@@ -52,6 +57,33 @@ const BlogSection = () => {
       },
     },
   };
+
+  const [lastOnes, setLastOnes] = useState<Daum[]>();
+
+  const fetchData = async () => {
+    const res = await fetch(
+      `${
+        isProd
+          ? `${process.env.NEXT_PUBLIC_API_URL}/api/artigos?populate=*&sort=createdAt:desc`
+          : 'http://127.0.0.1:1337/api/artigos?populate=*&sort=createdAt:desc'
+      }`,
+      {
+        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    const data: Root = await res.json();
+    // console.log(data.data);
+    const lastPosts = data.data.slice(0, 3);
+    setLastOnes(lastPosts);
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section className='px-6 lg:px-14'>
       <div className='m-auto my-28 w-full max-w-7xl lg:px-0'>
@@ -65,7 +97,83 @@ const BlogSection = () => {
           </h3>
         </div>
 
-        <div className='mt-10 hidden w-full flex-wrap items-center justify-center gap-16 lg:flex lg:flex-nowrap'>
+        <div className='hidden lg:flex '>
+          {lastOnes &&
+            lastOnes.map((post: any) => {
+              return (
+                <div
+                  key={post.id}
+                  className='mt-10 hidden w-full flex-wrap items-center justify-center gap-16 lg:flex lg:flex-nowrap'
+                >
+                  {' '}
+                  <Card
+                    theme={customCard}
+                    className='w-full  max-w-[320px] rounded-3xl lg:max-w-[400px]'
+                    imgSrc={`${
+                      isProd
+                        ? post.attributes.image.data.attributes.url
+                        : `http://localhost:1337${post.attributes.image.data.attributes.url} `
+                    }`}
+                  >
+                    <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
+                      {post.attributes.titulo}
+                    </h5>
+                    <div>
+                      <Link
+                        href={encodeURI(
+                          `/blog/${post.id}/${post.attributes.titulo.replace(
+                            /\s+/g,
+                            '-'
+                          )}`
+                        )}
+                        className='flex items-center justify-between text-[#1C81A2]'
+                      >
+                        {' '}
+                        Saiba mais <img src='/icons/arrow-right.svg' alt='' />
+                      </Link>{' '}
+                    </div>
+                  </Card>
+                </div>
+              );
+            })}
+        </div>
+
+        <div className='h-[600px] w-full lg:hidden'>
+          <Carousel pauseOnHover slide={false} theme={customTheme}>
+            {lastOnes &&
+              lastOnes.map((post: any) => {
+                return (
+                  <Card
+                    key={post.id}
+                    theme={customCard}
+                    className='w-full rounded-3xl'
+                    imgSrc={`${
+                      isProd
+                        ? post.attributes.image.data.attributes.url
+                        : `http://localhost:1337${post.attributes.image.data.attributes.url} `
+                    }`}
+                  >
+                    <h5 className='text-2xl font-normal tracking-tight text-[#40494C] dark:text-white'>
+                      {post.attributes.titulo}
+                    </h5>
+                    <Link
+                      href={encodeURI(
+                        `/blog/${post.id}/${post.attributes.titulo.replace(
+                          /\s+/g,
+                          '-'
+                        )}`
+                      )}
+                      className='flex items-center justify-between text-[#1C81A2]'
+                    >
+                      {' '}
+                      Saiba mais <img src='/icons/arrow-right.svg' alt='' />
+                    </Link>{' '}
+                  </Card>
+                );
+              })}
+          </Carousel>
+        </div>
+        {/* <div className='mt-10 hidden w-full flex-wrap items-center justify-center gap-16 lg:flex lg:flex-nowrap'>
           {' '}
           <Card
             theme={customCard}
@@ -123,9 +231,9 @@ const BlogSection = () => {
               </a>{' '}
             </div>
           </Card>
-        </div>
+        </div> */}
 
-        <div className='h-[600px] w-full lg:hidden'>
+        {/* <div className='h-[600px] w-full lg:hidden'>
           <Carousel pauseOnHover slide={false} theme={customTheme}>
             <Card
               theme={customCard}
@@ -184,7 +292,7 @@ const BlogSection = () => {
               </div>
             </Card>
           </Carousel>
-        </div>
+        </div> */}
       </div>
     </section>
   );

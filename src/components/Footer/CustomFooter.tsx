@@ -1,3 +1,4 @@
+'use client';
 import { CustomFlowbiteTheme, Footer } from 'flowbite-react';
 import React from 'react';
 
