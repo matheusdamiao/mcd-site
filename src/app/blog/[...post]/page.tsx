@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 
@@ -102,7 +103,7 @@ export default async function Page({
         </header>
 
         <section className='bg-[#E0E0E0] '>
-          {/* <Image
+          <Image
             className='m-auto mt-12 lg:mt-0'
             alt='algo'
             width={616}
@@ -112,7 +113,7 @@ export default async function Page({
                 ? data.data.attributes.image.data.attributes.url
                 : `http://127.0.0.1:1337${data.data.attributes.image.data.attributes.url}`
             } `}
-          /> */}
+          />
         </section>
 
         <Markdown
