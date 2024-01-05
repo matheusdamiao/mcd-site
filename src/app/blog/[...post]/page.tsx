@@ -1,46 +1,8 @@
-import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 
 import { isProd } from '@/constant/env';
-
-type Props = {
-  params: { post: [id: string, title: string] };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  const id = params.post[0];
-
-  // fetch data
-  const response = await fetch(
-    `${
-      isProd
-        ? `${process.env.NEXT_PUBLIC_API_URL}/api/artigos/${id}?populate=*`
-        : `http://127.0.0.1:1337/api/artigos/${id}?populate=*`
-    }`
-  );
-
-  const data = await response.json();
-  const postTitle = data.data.attributes.titulo;
-
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
-  return {
-    title: `Blog | ${postTitle}`,
-    openGraph: {
-      images: [
-        `${data.data.attributes.image.data.attributes.url}`,
-        ...previousImages,
-      ],
-    },
-  };
-}
 
 export default async function Page({
   params,
