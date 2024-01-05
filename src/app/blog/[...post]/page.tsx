@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 
@@ -103,7 +102,8 @@ export default async function Page({
         </header>
 
         <section className='bg-[#E0E0E0] '>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             className='m-auto mt-12 lg:mt-0'
             alt='algo'
             width={616}
