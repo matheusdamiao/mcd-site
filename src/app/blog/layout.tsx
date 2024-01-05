@@ -1,17 +1,14 @@
-import { Metadata } from 'next';
 import React from 'react';
 
 import CustomFooter from '@/components/Footer/CustomFooter';
 import NavBar from '@/components/navbar/Navbar';
 
-import { siteConfig } from '@/constant/config';
-
-export const metadata: Metadata = {
-  title: {
-    default: 'Blog',
-    template: `%s | ${siteConfig.title}`,
-  },
-};
+// export const metadata: Metadata = {
+//   title: {
+//     default: 'Blog',
+//     template: `%s | ${siteConfig.title}`,
+//   },
+// };
 
 export default async function BlogLayout({
   children,

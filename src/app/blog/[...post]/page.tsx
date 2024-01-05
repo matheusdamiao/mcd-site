@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 
@@ -24,22 +23,22 @@ export default async function Page({
   );
   const data = await res.json();
 
-  const autor = data.data.attributes.autors.data[0].id;
-  // fetch the author
-  const author = await fetch(
-    `${
-      isProd
-        ? `${process.env.NEXT_PUBLIC_API_URL}/api/autors/${autor}?populate=*`
-        : `http://127.0.0.1:1337/api/autors/${autor}?populate=*`
-    }`,
-    {
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  const authorData = await author.json();
+  // const autor = data.data.attributes.autors.data[0].id;
+  // // fetch the author
+  // const author = await fetch(
+  //   `${
+  //     isProd
+  //       ? `${process.env.NEXT_PUBLIC_API_URL}/api/autors/${autor}?populate=*`
+  //       : `http://127.0.0.1:1337/api/autors/${autor}?populate=*`
+  //   }`,
+  //   {
+  //     cache: 'no-store',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   }
+  // );
+  // const authorData = await author.json();
 
   return (
     <>
@@ -67,14 +66,14 @@ export default async function Page({
             <div className='flex gap-2'>
               <div className='flex flex-col'>
                 <h4 className='m-0 text-sm text-[#647073]'>
-                  {authorData.data.attributes.nome}
+                  {/* {authorData.data.attributes.nome} */}
                 </h4>
                 <small className='text-[#647073]'>
-                  {authorData.data.attributes.cargo}
+                  {/* {authorData.data.attributes.cargo} */}
                 </small>
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              {/* <img
                 alt='avatar'
                 width={50}
                 height={50}
@@ -89,7 +88,7 @@ export default async function Page({
                     ? `http://localhost:1337${authorData.data.attributes.avatar.data.attributes.url}`
                     : null
                 }`}
-              />
+              /> */}
             </div>
 
             <p className='text-[#647073]'>
@@ -103,7 +102,7 @@ export default async function Page({
         </header>
 
         <section className='bg-[#E0E0E0] '>
-          <Image
+          {/* <Image
             className='m-auto mt-12 lg:mt-0'
             alt='algo'
             width={616}
@@ -113,7 +112,7 @@ export default async function Page({
                 ? data.data.attributes.image.data.attributes.url
                 : `http://127.0.0.1:1337${data.data.attributes.image.data.attributes.url}`
             } `}
-          />
+          /> */}
         </section>
 
         <Markdown
