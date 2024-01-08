@@ -1,6 +1,56 @@
-import React from 'react';
+'use client';
+import { Spinner } from 'flowbite-react';
+import React, { useState } from 'react';
 
-const ContactSection = () => {
+import { isProd } from '@/constant/env';
+
+export const ContactSection = () => {
+  const [inputs, setInputs] = useState({ nome: '', email: '', telefone: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
+  const handleSendEmail = async (event: any) => {
+    setIsLoading(true);
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('nome', inputs.nome);
+    formData.append('email', inputs.email);
+    formData.append('telefone', inputs.telefone);
+
+    try {
+      await fetch(
+        `${
+          isProd
+            ? 'http://www.mcdcontabil.com/api/send'
+            : 'http://localhost:3000/api/send'
+        }`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      // console.log(res);
+
+      setInputs({ nome: '', email: '', telefone: '' });
+      setIsSent(true);
+      setIsLoading(false);
+      setTimeout(() => {
+        setIsSent(false);
+      }, 2000);
+
+      return;
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+  const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputs({ ...inputs, [name]: value });
+  };
+
   return (
     <section className='h-full bg-[#BBD9E3] px-6 py-10 lg:h-[560px] lg:px-14'>
       <div className='relative m-auto flex h-full w-full max-w-7xl flex-col items-center gap-5 lg:block lg:px-0'>
@@ -17,7 +67,10 @@ const ContactSection = () => {
             Fale com a gente e saiba como podemos te ajudar com a sua empresa
           </h3>
         </div>
-        <div className='right-[5%] top-[20%] flex w-full max-w-md flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute lg:max-w-[400px] xl:max-w-lg'>
+        <form
+          onSubmit={handleSendEmail}
+          className='right-[5%] top-[20%] flex w-full max-w-md flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute lg:max-w-[400px] xl:max-w-lg'
+        >
           <div>
             <h2 className='text-base font-normal text-black lg:text-2xl'>
               Entre em contato conosco
@@ -30,6 +83,9 @@ const ContactSection = () => {
             <input
               type='text'
               id='nome'
+              name='nome'
+              onChange={(e) => handleInputs(e)}
+              value={inputs.nome}
               className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
               placeholder=' '
             />
@@ -45,6 +101,9 @@ const ContactSection = () => {
               <input
                 type='text'
                 id='email'
+                name='email'
+                onChange={(e) => handleInputs(e)}
+                value={inputs.email}
                 className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:max-w-xs'
                 placeholder=' '
               />
@@ -59,6 +118,9 @@ const ContactSection = () => {
               <input
                 type='text'
                 id='telefone'
+                name='telefone'
+                onChange={(e) => handleInputs(e)}
+                value={inputs.telefone}
                 className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-black focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                 placeholder=' '
               />
@@ -72,11 +134,20 @@ const ContactSection = () => {
           </div>
 
           <div>
-            <button className='w-full rounded-2xl bg-[#1D81A2] px-6 py-4 text-xl font-medium text-white'>
-              Entrar em contato
+            <button
+              type='submit'
+              className='w-full rounded-2xl bg-[#1D81A2] px-6 py-4 text-xl font-medium text-white'
+            >
+              {isSent ? (
+                'Mensagem enviada!'
+              ) : isLoading ? (
+                <Spinner />
+              ) : (
+                'Entrar em contato'
+              )}
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );

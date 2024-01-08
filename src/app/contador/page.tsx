@@ -45,6 +45,13 @@ export default function ChangeAccountant() {
       toast.error('Ops! Ocorreu um erro. Tente novamente');
     }
 
+    ///check the password
+    const isValidPassword = (password: string): boolean =>
+      /^.{6,}$/.test(password);
+    if (!isValidPassword(password)) {
+      return toast.error('A senha precisa ter ao menos 6 digitos');
+    }
+
     //////// create a new user
     try {
       const response = await fetch(
@@ -97,7 +104,10 @@ export default function ChangeAccountant() {
         // console.log();
       }
 
-      toast.success('Empresa e usuário cadastrados!');
+      toast.success('Empresa e usuário criados!', {
+        autoClose: 1000,
+      });
+      toast.success('Efetuando seu login...');
 
       return setTimeout(() => {
         signIn('credentials', {
@@ -226,7 +236,7 @@ export default function ChangeAccountant() {
                   htmlFor='user'
                   className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 '
                 >
-                  E-mail
+                  Usuário
                 </label>
               </div>
               <div className='relative w-full'>

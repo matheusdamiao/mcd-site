@@ -80,6 +80,12 @@ export default function OpenCompany() {
       toast.error('Ops! Ocorreu um erro. Tente novamente');
     }
 
+    ///check the password
+    const isValidPassword = (password: string): boolean =>
+      /^.{6,}$/.test(password);
+    if (!isValidPassword(password)) {
+      return toast.error('A senha precisa ter ao menos 6 digitos');
+    }
     //////// create a new user
     try {
       const response = await fetch(
@@ -98,11 +104,12 @@ export default function OpenCompany() {
           }),
         }
       );
+      // console.log('erro aqui', await response.json());
       const data: any = await response.json();
       // console.log(data);
       if (data.data === null) {
         // const erros = data?.error.details.errors.map((err: any) => err.message);
-        // console.log(erros);
+        // console.log(data.error);
         return toast.error('Erro no cadastro!');
       }
 
@@ -125,12 +132,15 @@ export default function OpenCompany() {
           }),
         });
 
-        // console.log(await res.json());
+        // const respo = await res.json();
       } catch (error) {
         // console.log();
       }
 
-      toast.success('Empresa e usuário criados!');
+      toast.success('Empresa e usuário criados!', {
+        autoClose: 1000,
+      });
+      toast.success('Efetuando seu login...');
 
       return setTimeout(() => {
         signIn('credentials', {
@@ -141,7 +151,8 @@ export default function OpenCompany() {
         });
       }, 2000);
     } catch (error) {
-      toast.error('Erro no cadastro!');
+      // console.log(error);
+      toast.error('Esse erro no cadastro?');
     }
   };
 
