@@ -19,11 +19,7 @@ export const ContactSection = () => {
 
     try {
       await fetch(
-        `${
-          isProd
-            ? 'https://www.mcdcontabil.com/api/send'
-            : 'http://localhost:3000/api/send'
-        }`,
+        `${isProd ? '/api/send' : 'http://localhost:3000/api/send'}`,
         {
           method: 'POST',
           body: formData,
