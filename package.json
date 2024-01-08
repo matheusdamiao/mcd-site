@@ -17,6 +17,9 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "prepare": "husky install"
   },
+  "resolutions": {
+    "strip-ansi": "6.0.1"
+  },
   "dependencies": {
     "clsx": "^1.2.1",
     "flowbite": "^2.0.0",
