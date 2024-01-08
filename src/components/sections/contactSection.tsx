@@ -21,7 +21,7 @@ export const ContactSection = () => {
       await fetch(
         `${
           isProd
-            ? 'http://www.mcdcontabil.com/api/send'
+            ? 'https://www.mcdcontabil.com/api/send'
             : 'http://localhost:3000/api/send'
         }`,
         {
