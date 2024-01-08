@@ -104,7 +104,7 @@ export const ContactSection = () => {
                 name='email'
                 onChange={(e) => handleInputs(e)}
                 value={inputs.email}
-                className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:max-w-xs'
+                className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:max-w-xs dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                 placeholder=' '
               />
               <label

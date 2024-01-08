@@ -354,12 +354,12 @@ export default function Company() {
                     id='nome'
                     value={name || ''}
                     onChange={(e) => setName(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:text-xl dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                     placeholder=' '
                   />
                   <label
                     htmlFor='nome'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black lg:text-xs dark:bg-gray-900 dark:text-gray-400'
                   >
                     Nome
                   </label>
@@ -371,12 +371,12 @@ export default function Company() {
                     id='CNPJ'
                     value={CNPJ || ''}
                     onChange={(e) => setCNPJ(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:text-xl dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                     placeholder=' '
                   />
                   <label
                     htmlFor='CNPJ'
-                    className=' absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                    className=' absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black lg:text-xs dark:bg-gray-900 dark:text-gray-400'
                   >
                     CNPJ
                   </label>
@@ -387,12 +387,12 @@ export default function Company() {
                     id='description'
                     value={description || ''}
                     onChange={(e) => setDescription(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:text-xl dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                     placeholder=' '
                   />
                   <label
                     htmlFor='description'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black lg:text-xs dark:bg-gray-900 dark:text-gray-400'
                   >
                     Descrição
                   </label>
@@ -404,12 +404,12 @@ export default function Company() {
                     id='endereço'
                     value={address || ''}
                     onChange={(e) => setAddress(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:text-xl dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                     placeholder=' '
                   />
                   <label
                     htmlFor='endereço'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black lg:text-xs dark:bg-gray-900 dark:text-gray-400'
                   >
                     Endereço
                   </label>
@@ -420,12 +420,12 @@ export default function Company() {
                     id='cidade'
                     value={city || ''}
                     onChange={(e) => setCity(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:text-xl dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                     placeholder=' '
                   />
                   <label
                     htmlFor='cidade'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black lg:text-xs dark:bg-gray-900 dark:text-gray-400'
                   >
                     Cidade
                   </label>
@@ -437,12 +437,12 @@ export default function Company() {
                     id='telefone'
                     value={phone || ''}
                     onChange={(e) => setPhone(e.target.value)}
-                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 lg:text-xl'
+                    className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 text-sm text-gray-900 focus:border-white focus:outline-none focus:ring-0 lg:text-xl dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
                     placeholder=' '
                   />
                   <label
                     htmlFor='telefone'
-                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900 dark:text-gray-400 lg:text-xs'
+                    className='absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-[10px] text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black lg:text-xs dark:bg-gray-900 dark:text-gray-400'
                   >
                     Telefone
                   </label>

@@ -45,16 +45,16 @@ const Login = () => {
 
   return (
     <div>
-      <div className='pt:mt-0 mx-auto flex flex-col items-center justify-center px-6 pt-8 dark:bg-gray-900 md:h-screen'>
+      <div className='pt:mt-0 mx-auto flex flex-col items-center justify-center px-6 pt-8 md:h-screen dark:bg-gray-900'>
         <a
           href=''
-          className='mb-8 flex items-center justify-center text-2xl font-semibold dark:text-white lg:mb-10'
+          className='mb-8 flex items-center justify-center text-2xl font-semibold lg:mb-10 dark:text-white'
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src='/svg/mcd-logo-desktop.svg' className='' alt='MCD Logo' />
         </a>
 
-        <div className='w-full max-w-xl space-y-8 rounded-lg bg-white p-6 shadow dark:bg-gray-800 sm:p-8'>
+        <div className='w-full max-w-xl space-y-8 rounded-lg bg-white p-6 shadow sm:p-8 dark:bg-gray-800'>
           <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
             Bem-vindo a MCD Consultoria Contábil
           </h2>
@@ -72,7 +72,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => handleFormChange(e)}
                 id='email'
-                className='focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm'
+                className='focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
                 placeholder='matheus@empresa.com'
                 required
               />
@@ -91,7 +91,7 @@ const Login = () => {
                 onChange={(e) => handleFormChange(e)}
                 id='password'
                 placeholder='••••••••'
-                className='focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm'
+                className='focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
                 required
               />
             </div>

@@ -49,7 +49,7 @@ const FAQ = () => {
             Quanto custa pra abrir uma empresa?
           </Accordion.Title>
           <Accordion.Content>
-            <p className='mb-2 text-gray-500 dark:text-gray-400 lg:pl-6'>
+            <p className='mb-2 text-gray-500 lg:pl-6 dark:text-gray-400'>
               As pessoas frequentemente querem entender os custos associados à
               abertura e manutenção da empresa, incluindo taxas, licenças e
               despesas operacionais.
@@ -61,7 +61,7 @@ const FAQ = () => {
             Como elaborar um plano de negócios eficaz?
           </Accordion.Title>
           <Accordion.Content>
-            <p className='mb-2 text-gray-500 dark:text-gray-400 lg:pl-6'>
+            <p className='mb-2 text-gray-500 lg:pl-6 dark:text-gray-400'>
               As pessoas frequentemente querem entender os custos associados à
               abertura e manutenção da empresa, incluindo taxas, licenças e
               despesas operacionais.
@@ -73,7 +73,7 @@ const FAQ = () => {
             Quais são os passos legais e burocráticos para abrir uma empresa?
           </Accordion.Title>
           <Accordion.Content>
-            <p className='mb-2 text-gray-500 dark:text-gray-400 lg:pl-6'>
+            <p className='mb-2 text-gray-500 lg:pl-6 dark:text-gray-400'>
               As pessoas frequentemente querem entender os custos associados à
               abertura e manutenção da empresa, incluindo taxas, licenças e
               despesas operacionais.
