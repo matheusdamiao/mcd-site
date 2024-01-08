@@ -35,7 +35,7 @@ const CustomFooter = () => {
                   <Footer.Link className='text-white' href='#'>
                     Quem somos
                   </Footer.Link>
-                  <Footer.Link className='text-white' href='#'>
+                  <Footer.Link className='text-white' href='/blog'>
                     Blog
                   </Footer.Link>
                 </Footer.LinkGroup>

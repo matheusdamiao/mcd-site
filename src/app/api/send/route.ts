@@ -16,17 +16,17 @@ export async function POST(request: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: 'MCD Contábil - MSG Automática para Cliente <ti@mcdcontabil.com.br>',
+      from: 'MCD Contábil - MSG Automática <ti@mcdcontabil.com.br>',
       to: [`${email}`],
-      cc: ['matheus.damiaoliveira@gmail.com'],
+      bcc: ['matheus.damiaoliveira@gmail.com', 'eduardo@mcdcontabil.com.br'],
       subject: 'Bem-vindo a MCD Contábil',
       react: WelcomeTemplate({ nome: `${name}` }) as React.ReactElement,
     });
 
     await resend.emails.send({
       from: 'MCD Contábil - Novo Lead <ti@mcdcontabil.com.br>',
-      to: ['matheus.damiaoliveira@gmail.com', `${email}`],
-      cc: ['matheus.damiaoliveira@gmail.com'],
+      to: ['eduardo@mcdcontabil.com.br', 'ti@mcdcontabil.com.br'],
+      bcc: ['matheus.damiaoliveira@gmail.com'],
       subject: 'Novo lead no site',
       react: NewLeadTemplate({
         nome: `${name}`,
