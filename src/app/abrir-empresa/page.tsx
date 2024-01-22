@@ -13,6 +13,8 @@ import NavBar from '@/components/navbar/Navbar';
 import BlogSection from '@/components/sections/blogSection';
 import SolutionsSection from '@/components/sections/solutionsSections';
 
+import { isProd } from '@/constant/env';
+
 // TYPES
 export interface UserSuccess {
   jwt: string;
@@ -137,6 +139,23 @@ export default function OpenCompany() {
         // console.log();
       }
 
+      await fetch(
+        `${
+          isProd
+            ? '/api/newCompanyCreated'
+            : 'http://localhost:3000/api/newCompanyCreated'
+        }`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            id: data.user.id,
+          }),
+        }
+      );
+
       toast.success('Empresa e usuário criados!', {
         autoClose: 1000,
       });
@@ -152,7 +171,7 @@ export default function OpenCompany() {
       }, 2000);
     } catch (error) {
       // console.log(error);
-      toast.error('Esse erro no cadastro?');
+      toast.error('Erro no cadastro');
     }
   };
 
