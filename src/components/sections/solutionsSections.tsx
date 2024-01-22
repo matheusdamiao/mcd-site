@@ -124,10 +124,10 @@ const SolutionsSection = (props: SolutionsProps) => {
     >
       <div className='h-full w-full'>
         <div>
-          <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-left lg:text-5xl  '>
+          <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-left lg:text-4xl  '>
             Soluções para o seu negócio
           </h2>
-          <p className='font-primary m-auto w-[90%] pt-7 text-center text-lg font-normal text-[#647073]  lg:w-full lg:text-left lg:text-2xl'>
+          <p className='font-primary m-auto w-[90%] pt-7 text-center text-lg font-normal text-[#647073]  lg:w-full lg:text-left lg:text-xl'>
             Ajudamos você a economizar tempo e dinheiro tomando as decisões
             certas.
           </p>

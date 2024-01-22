@@ -34,7 +34,10 @@ const FAQ = () => {
     },
   };
   return (
-    <section className='w-full rounded-t-[59.28px] bg-white px-6 py-14 lg:rounded-none'>
+    <section
+      className='w-full rounded-t-[59.28px] bg-white px-6 py-14 lg:rounded-none'
+      id='faq'
+    >
       <div className='m-auto w-[80%] max-w-7xl py-6'>
         <h2 className='font-primary  text-center text-3xl font-normal text-[#40494C] lg:text-left lg:text-5xl '>
           Dúvidas mais frequentes

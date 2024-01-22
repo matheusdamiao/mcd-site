@@ -105,10 +105,10 @@ export default function HomePage() {
       <section className='m-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-20 lg:gap-32'>
         <div className='flex flex-col gap-6 lg:gap-8'>
           {' '}
-          <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-left lg:text-5xl'>
+          <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-4xl '>
             Contabilidade descomplicada para a sua empresa
           </h2>
-          <h3 className='font-primary text-center text-lg font-normal text-[#647073] lg:text-left lg:text-3xl'>
+          <h3 className='font-primary text-center text-lg font-normal text-[#647073] lg:text-xl'>
             Otimizamos as suas rotinas contábeis e fiscais com uma equipe
             especialista.
           </h3>
@@ -127,7 +127,7 @@ export default function HomePage() {
               alt=''
             />
 
-            <p className='font-primary w-full text-base font-normal text-[#647073] lg:max-w-sm lg:text-2xl'>
+            <p className='font-primary w-full text-base font-normal text-[#647073] lg:max-w-sm lg:text-xl'>
               Cuidamos da sua contabilidade com{' '}
               <span className='font-semibold'>segurança e agilidade</span>
             </p>
@@ -145,7 +145,7 @@ export default function HomePage() {
               className='flex-0 block lg:hidden'
               alt=''
             />
-            <p className='font-primary w-full whitespace-normal text-base font-normal text-[#647073] lg:max-w-sm lg:text-2xl'>
+            <p className='font-primary w-full whitespace-normal text-base font-normal text-[#647073] lg:max-w-sm lg:text-xl'>
               Receba um{' '}
               <span className='w-full font-semibold'>
                 plano de negócio estratégico{' '}
@@ -167,7 +167,7 @@ export default function HomePage() {
               className='flex-0 block lg:hidden'
               alt=''
             />
-            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-2xl'>
+            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-xl'>
               <span className='font-semibold'>Lembretes automatizados</span>{' '}
               para suas contas, impostos e rotinas{' '}
             </p>
@@ -180,7 +180,7 @@ export default function HomePage() {
               className='flex-0 block lg:hidden'
               alt=''
             />
-            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-2xl'>
+            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-xl'>
               Acompanhe e gerencie suas finanças com{' '}
               <span className='font-semibold'> menos burocracias</span>
             </p>
@@ -477,7 +477,10 @@ export default function HomePage() {
       <SolutionsSection color='' />
 
       {/* ///////////////////  About Section /////////// */}
-      <section className='font-primary relative mt-28 h-full rounded-l-[30px] rounded-r-[30px] bg-[#FFFFFF] lg:rounded-l-[80px] lg:rounded-r-[80px]'>
+      <section
+        id='quem-somos'
+        className='font-primary relative mt-28 h-full rounded-l-[30px] rounded-r-[30px] bg-[#FFFFFF] lg:rounded-l-[80px] lg:rounded-r-[80px]'
+      >
         <img
           src='/svg/patterns_MCD-02.svg'
           alt=''

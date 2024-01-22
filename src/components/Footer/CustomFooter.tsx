@@ -20,10 +20,10 @@ const CustomFooter = () => {
     <Footer theme={customFooter}>
       <section className='m-auto mb-14 mt-20 w-full max-w-7xl px-6 lg:mb-14 lg:mt-28 lg:px-6'>
         <div className='w-full'>
-          <div className='grid w-full justify-between gap-7 sm:flex sm:justify-between md:flex md:grid-cols-1'>
+          <div className='md:flsex grid w-full justify-between gap-7 sm:flex sm:justify-between md:grid-cols-1'>
             <Footer.Brand
               className='w-full justify-center lg:justify-start [&>img]:h-full'
-              href='https://mcdcontabilidade.com.br'
+              href='https://mcdcontabil.com.br'
               src='/icons/MCD_logo_branco.svg'
               alt='MCD logo'
             />
@@ -32,7 +32,7 @@ const CustomFooter = () => {
               <div>
                 <Footer.Title title='Institucional' className='text-white' />
                 <Footer.LinkGroup col>
-                  <Footer.Link className='text-white' href='#'>
+                  <Footer.Link className='text-white' href='/#quem-somos'>
                     Quem somos
                   </Footer.Link>
                   <Footer.Link className='text-white' href='/blog'>
@@ -43,10 +43,10 @@ const CustomFooter = () => {
               <div>
                 <Footer.Title title='Serviços' className='text-white' />
                 <Footer.LinkGroup col>
-                  <Footer.Link className='text-white' href='#'>
+                  <Footer.Link className='text-white' href='/abrir-empresa'>
                     Abrir uma empresa
                   </Footer.Link>
-                  <Footer.Link className='text-white' href='#'>
+                  <Footer.Link className='text-white' href='/contador'>
                     Trocar de contador
                   </Footer.Link>
                 </Footer.LinkGroup>
@@ -54,7 +54,7 @@ const CustomFooter = () => {
               <div>
                 <Footer.Title title='Portal de Ajuda' className='text-white' />
                 <Footer.LinkGroup col>
-                  <Footer.Link className='text-white' href='#'>
+                  <Footer.Link className='text-white' href='/abrir-empresa#faq'>
                     Perguntas Frequentes (FAQ)
                   </Footer.Link>
                   <Footer.Link className='text-white' href='#'>
@@ -76,8 +76,10 @@ const CustomFooter = () => {
               year={2023}
             />
             <div className='mt-4 flex space-x-6 sm:mt-0 sm:justify-center'>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src='/svg/insta-icon.svg' alt='' />
+              <a href='https://www.instagram.com/mcdcontabil/' target='_blank'>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src='/svg/insta-icon.svg' alt='' />
+              </a>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src='/svg/msg-icon.svg' alt='' />
             </div>
