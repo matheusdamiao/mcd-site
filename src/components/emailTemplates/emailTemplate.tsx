@@ -23,12 +23,16 @@ interface EmailTemplateProps {
   nome: string;
   email: string;
   telefone: string;
+  serviço: string;
+  mensagem: string;
 }
 
 export const NewLeadTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   nome,
   email,
   telefone,
+  serviço,
+  mensagem,
 }) => (
   <div className='text-white'>
     <h3>Novo Lead no site</h3>
@@ -36,5 +40,7 @@ export const NewLeadTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
     <p>Nome: {nome || ''}</p>
     <p>Email: {email || ''}</p>
     <p>Telefone: {telefone || ''}</p>
+    <p>Serviço: {serviço || ''}</p>
+    <p>Mensagem: {mensagem || ''}</p>
   </div>
 );

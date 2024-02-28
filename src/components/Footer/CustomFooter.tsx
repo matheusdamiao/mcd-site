@@ -32,11 +32,17 @@ const CustomFooter = () => {
               <div>
                 <Footer.Title title='Institucional' className='text-white' />
                 <Footer.LinkGroup col>
-                  <Footer.Link className='text-white' href='/#quem-somos'>
+                  <Footer.Link className='text-white' href='/#about'>
                     Quem somos
                   </Footer.Link>
                   <Footer.Link className='text-white' href='/blog'>
                     Blog
+                  </Footer.Link>
+                  <Footer.Link className='text-white' href='/services'>
+                    Serviços
+                  </Footer.Link>
+                  <Footer.Link className='text-white' href='/solucoes'>
+                    Soluções
                   </Footer.Link>
                 </Footer.LinkGroup>
               </div>
@@ -48,6 +54,12 @@ const CustomFooter = () => {
                   </Footer.Link>
                   <Footer.Link className='text-white' href='/contador'>
                     Trocar de contador
+                  </Footer.Link>
+                  <Footer.Link
+                    className='text-white'
+                    href='/solucoes#assessoria'
+                  >
+                    Assessoria Empresarial
                   </Footer.Link>
                 </Footer.LinkGroup>
               </div>

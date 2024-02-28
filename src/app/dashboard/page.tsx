@@ -79,7 +79,7 @@ export default async function IndexPage() {
             </Link>
           </section>
           <a
-            href='https://api.whatsapp.com/send?phone=5521990050072'
+            href='https://api.whatsapp.com/send?phone=5521965806068'
             className='font-primary fixed bottom-0 left-0 flex h-16 w-full cursor-pointer items-center justify-center gap-2 bg-[#84FE89] text-xs font-bold text-[#202020]'
           >
             {' '}
