@@ -2,107 +2,124 @@
 'use client';
 
 import Head from 'next/head';
-import Image from 'next/image';
 import * as React from 'react';
 
 import CustomFooter from '@/components/Footer/CustomFooter';
 import NavBar from '@/components/navbar/Navbar';
+import AboutSection from '@/components/sections/aboutSection';
+import BenefitsSection from '@/components/sections/benefitsSection';
 import BlogSection from '@/components/sections/blogSection';
+import CallToActionSection from '@/components/sections/callToActionSection';
 import ContactSection from '@/components/sections/contactSection';
-import SolutionsSection from '@/components/sections/solutionsSections';
+import IdentificationSection from '@/components/sections/identificationSection';
+import NewSolutionsSection from '@/components/sections/newSolutionsSection';
+import PlanningSection from '@/components/sections/planningSection';
+import StepsSection from '@/components/sections/stepsSection';
 
 // const nibo = './images/nibo.webp';
 
 export default function HomePage() {
-  React.useEffect(() => {
-    if (window && window.document) {
-      const options = {
-        root: document.querySelector('#scroll-area'),
-        rootMargin: '200px',
-        threshold: 1.0,
-      };
-
-      const callback = () => {
-        // console.log('to na tela!');
-      };
-
-      const observer = new IntersectionObserver(callback, options);
-      const openCompany = document.querySelector('#contabilidade-1');
-      if (openCompany) {
-        observer.observe(openCompany);
-      }
-    }
-  }, []);
-
-  const [isIntersecting, setIsIntersecting] = React.useState(false);
-
-  const ref = React.useRef(null);
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
-    });
-    if (ref.current) {
-      // console.log(isIntersecting);
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isIntersecting]);
-
-  const moveTo = () => {
-    if (window && window.document) {
-      const openCompany = document.querySelector('#scroll-area');
-      openCompany?.scrollTo(1000, 0);
-    }
-  };
-
-  const moveBack = () => {
-    if (window && window.document) {
-      const openCompany = document.querySelector('#scroll-area');
-      openCompany?.scrollTo(0, 0);
-    }
-  };
-
   return (
     <main className='m-0 flex flex-col bg-[#F2F2F2] '>
       <Head>
         <title>MCD Contabilidade Consultiva</title>
       </Head>
 
+      <a
+        className='font-primary fixed bottom-2 right-2 z-[99999999999999999999999999999999] flex w-[200px] items-center justify-center gap-2 rounded-3xl  bg-[#5ECC66] px-2 py-2 font-semibold text-white lg:bottom-10 lg:right-10 lg:w-[250px] lg:gap-4 lg:px-4 lg:py-3'
+        href='https://api.whatsapp.com/send?phone=5521965806068'
+        target='_blank'
+      >
+        {/* <Image src='icons/zap.svg' alt='' width={30} height={30} /> */}
+        <svg
+          width='25'
+          height='25'
+          viewBox='0 0 20 20'
+          fill='white'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M17 2.91006C16.0832 1.98399 14.9912 1.24973 13.7876 0.750111C12.5841 0.250494 11.2931 -0.00448012 9.99 5.95696e-05C4.53 5.95696e-05 0.0800002 4.45006 0.0800002 9.91006C0.0800002 11.6601 0.54 13.3601 1.4 14.8601L0 20.0001L5.25 18.6201C6.7 19.4101 8.33 19.8301 9.99 19.8301C15.45 19.8301 19.9 15.3801 19.9 9.92006C19.9 7.27006 18.87 4.78006 17 2.91006ZM9.99 18.1501C8.51 18.1501 7.06 17.7501 5.79 17.0001L5.49 16.8201L2.37 17.6401L3.2 14.6001L3 14.2901C2.17775 12.977 1.74114 11.4593 1.74 9.91006C1.74 5.37006 5.44 1.67006 9.98 1.67006C12.18 1.67006 14.25 2.53006 15.8 4.09006C16.5675 4.85402 17.1757 5.76272 17.5894 6.76348C18.0031 7.76425 18.214 8.83717 18.21 9.92006C18.23 14.4601 14.53 18.1501 9.99 18.1501ZM14.51 11.9901C14.26 11.8701 13.04 11.2701 12.82 11.1801C12.59 11.1001 12.43 11.0601 12.26 11.3001C12.09 11.5501 11.62 12.1101 11.48 12.2701C11.34 12.4401 11.19 12.4601 10.94 12.3301C10.69 12.2101 9.89 11.9401 8.95 11.1001C8.21 10.4401 7.72 9.63006 7.57 9.38006C7.43 9.13006 7.55 9.00006 7.68 8.87006C7.79 8.76006 7.93 8.58006 8.05 8.44006C8.17 8.30006 8.22 8.19006 8.3 8.03006C8.38 7.86006 8.34 7.72006 8.28 7.60006C8.22 7.48006 7.72 6.26006 7.52 5.76006C7.32 5.28006 7.11 5.34006 6.96 5.33006H6.48C6.31 5.33006 6.05 5.39006 5.82 5.64006C5.6 5.89006 4.96 6.49006 4.96 7.71006C4.96 8.93006 5.85 10.1101 5.97 10.2701C6.09 10.4401 7.72 12.9401 10.2 14.0101C10.79 14.2701 11.25 14.4201 11.61 14.5301C12.2 14.7201 12.74 14.6901 13.17 14.6301C13.65 14.5601 14.64 14.0301 14.84 13.4501C15.05 12.8701 15.05 12.3801 14.98 12.2701C14.91 12.1601 14.76 12.1101 14.51 11.9901Z'
+            fill='#FFFFF'
+          />
+        </svg>
+        ENTRE EM CONTATO
+      </a>
       {/*/////////////// hero section ///////////////////*/}
       <NavBar />
 
-      <section className='relative flex h-[650px] flex-col items-center justify-center lg:h-[900px] lg:bg-[#F2F2F2] lg:px-8'>
-        <Image
-          src='/images/bg-hero-home.webp'
+      <section className='relative flex h-[650px] flex-col items-center justify-center bg-black lg:h-[720px] lg:px-8'>
+        {/* <Image
+          src='/images/bg-hero-bigger.webp'
           alt='Empresário usando o computador'
-          className='absolute left-0 top-0 h-full w-full object-cover object-top'
+          className='absolute left-0 top-0 h-full w-full object-cover object-left  lg:object-top'
           priority={true}
-          fill={true}
+          // fill={true}
+          width={1440}
+          height={719.07}
           // placeholder='blur'
+        /> */}
+        <video
+          className='absolute left-0 top-0 h-full w-full object-cover object-center opacity-50 lg:object-top'
+          src='https://res.cloudinary.com/dg5yog3gf/video/upload/v1709137986/videos/video-mcd_clreh1.mp4'
+          autoPlay
+          muted
+          loop
         />
-        <div className='z-[80] flex h-full flex-col items-center justify-center gap-4 px-6 pt-14 lg:left-16 lg:gap-9 lg:pl-5 xl:max-w-7xl'>
-          <h1 className='font-primary leading- w-full text-center text-3xl font-semibold text-white  lg:max-w-3xl lg:text-5xl'>
-            Contabilidade digital para você gerir melhor o seu negócio
+        <div className='relative z-[80] flex h-full flex-col items-center justify-center gap-4  px-6 pt-14  lg:gap-9 lg:pl-5 xl:max-w-7xl'>
+          <h1 className='font-primary leading- w-full text-center text-3xl font-semibold text-white lg:max-w-3xl lg:text-6xl'>
+            Contabilidade digital + assessoria personalizada
           </h1>
-          <h3 className='font-primary lg:font t w-full pt-2  text-center text-base font-normal leading-snug text-[#FFFF] lg:max-w-[70%] lg:text-2xl'>
-            Cuidamos da sua empresa para você se concentrar no que mais importa:{' '}
+          <h3 className='font-primary w-full pt-2  text-center text-base font-normal leading-snug text-white lg:max-w-[70%] lg:text-2xl'>
+            Sua contabilidade{' '}
+            <span className='font-bold text-[#F7C027]'>descomplicada </span>{' '}
+            aliada a um{' '}
+            <span className='font-bold text-[#F7C027]'>
+              planejamento empresarial{' '}
+            </span>{' '}
+            é a receita do sucesso do seu{' '}
+            <span className='font-bold text-[#F7C027]'> negócio </span>
             <br className='block lg:hidden' />
-            <span className='font-bold text-[#1D81A2]'>seu negócio</span>
           </h3>
-          <a
-            color='light'
-            href='/#solucoes'
-            className='font-primary my-0 mt-4 flex h-12 w-[100%] max-w-[350px] items-center justify-center whitespace-nowrap rounded-[15px] bg-white text-base font-medium  text-[#40494C] lg:m-0 lg:mt-0 lg:h-[70px] lg:w-full lg:text-[20px]'
-          >
-            Saiba como podemos te ajudar
-          </a>
+          <div className='absolute bottom-0 left-0 right-0 mx-auto my-0 flex flex-col items-center lg:mb-8'>
+            <a
+              className='font-primary rounded-xl bg-transparent pb-3 text-center text-sm tracking-widest text-white transition-all hover:scale-105 lg:py-3'
+              href='#beneficios'
+            >
+              COMECE DE GRAÇA
+            </a>
+            <a href='#beneficios' className='pointer'>
+              <svg
+                className='animate-bounce'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  d='M20.9994 5.00002L2.99943 5.00002C2.81718 5.00059 2.63855 5.05085 2.48275 5.1454C2.32695 5.23994 2.19988 5.37518 2.11523 5.53657C2.03058 5.69796 1.99154 5.87938 2.00232 6.0613C2.01311 6.24322 2.0733 6.41876 2.17643 6.56902L11.1764 19.569C11.5494 20.108 12.4474 20.108 12.8214 19.569L21.8214 6.56902C21.9256 6.41907 21.9867 6.24345 21.9981 6.06122C22.0094 5.879 21.9706 5.69714 21.8859 5.53541C21.8012 5.37368 21.6738 5.23826 21.5175 5.14387C21.3612 5.04948 21.182 4.99973 20.9994 5.00002Z'
+                  fill='white'
+                ></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
+      <BenefitsSection />
+
+      <IdentificationSection />
+
+      <NewSolutionsSection />
+
+      <CallToActionSection />
+
+      <PlanningSection />
+
+      <AboutSection />
+
       {/*/////////////// Seção dos serviços ///////////////////*/}
 
-      <section className='m-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-20 lg:gap-32'>
+      {/* <section className='m-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-20 lg:gap-32'>
         <div className='flex flex-col gap-6 lg:gap-8'>
           {' '}
           <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-4xl '>
@@ -115,7 +132,6 @@ export default function HomePage() {
         </div>
         <ul className='grid grid-cols-1 flex-wrap gap-6 lg:grid-cols-2 lg:gap-10'>
           <li className='flex items-center gap-[30px]'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src='icons/management.svg'
               className='flex-0 hidden lg:block'
@@ -133,8 +149,6 @@ export default function HomePage() {
             </p>
           </li>
           <li className='flex items-center gap-[30px]'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-
             <img
               src='/icons/data-report.svg'
               alt=''
@@ -155,8 +169,6 @@ export default function HomePage() {
           </li>
 
           <li className='flex items-center gap-[30px]'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-
             <img
               src='/icons/risk-management.svg'
               alt=''
@@ -173,7 +185,6 @@ export default function HomePage() {
             </p>
           </li>
           <li className='flex items-center gap-[30px]'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src='/icons/focus.svg' alt='' className='hidden lg:block' />
             <img
               src='icons/focus-2.svg'
@@ -185,362 +196,11 @@ export default function HomePage() {
               <span className='font-semibold'> menos burocracias</span>
             </p>
           </li>
-
-          {/* <li className='flex items-center gap-[30px]'> */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-
-          {/* <img
-              src='/icons/team-management.svg'
-              alt=''
-              className='hidden lg:block'
-            />
-            <img
-              src='icons/team-management-2.svg'
-              className='flex-0 block lg:hidden'
-              alt=''
-            />
-            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-2xl'>
-              <span className='font-semibold'>Treinamento personalizado </span>{' '}
-              para atender a sua equipe{' '}
-            </p> */}
-          {/* </li> */}
         </ul>
-      </section>
+      </section> */}
 
-      {/*/////////////// call to action section  ///////////////////*/}
-
-      <section
-        id='action'
-        className='m-auto flex w-full max-w-7xl flex-col px-6 py-20 pt-[100px] lg:gap-14'
-      >
-        <div className='flex items-center justify-center gap-14 scroll-smooth lg:gap-24'>
-          <h2 className='pointer  w-full text-[#757575] lg:text-base'>
-            <a
-              onClick={() => moveBack()}
-              className={`${
-                !isIntersecting ? null : 'font-normal text-[#40494C]'
-              } hidden cursor-pointer text-xl  font-medium lg:block lg:text-right `}
-            >
-              {' '}
-              Quero abrir minha empresa
-            </a>
-            <a
-              onClick={() => moveBack()}
-              className={`${
-                !isIntersecting ? null : 'font-normal text-[#40494C]'
-              } block cursor-pointer whitespace-nowrap text-right text-base font-medium lg:hidden`}
-            >
-              {' '}
-              Abrir empresa
-            </a>
-            <span
-              className={`mt-2 h-[3px] ${
-                isIntersecting ? 'block w-0' : 'block w-full'
-              } bg-[#F7C027] transition-all`}
-            ></span>
-          </h2>
-          <h2 className='pointer w-full text-[#757575] lg:text-base'>
-            <a
-              onClick={() => moveTo()}
-              className={`${
-                isIntersecting ? 'font-medium text-[#40494C]' : null
-              } hidden cursor-pointer text-xl font-normal lg:block`}
-            >
-              {' '}
-              Quero trocar de contador
-            </a>
-            <a
-              onClick={() => moveTo()}
-              className={`${
-                isIntersecting ? 'font-medium text-[#40494C]' : null
-              } block cursor-pointer whitespace-nowrap text-base font-normal lg:hidden`}
-            >
-              {' '}
-              Trocar de contador
-            </a>
-            <span
-              className={`mt-2 h-[3px] ${
-                !isIntersecting ? 'block w-0' : 'block w-full'
-              } bg-[#1D81A2] transition-all`}
-            ></span>
-          </h2>
-        </div>
-
-        {/* slider */}
-
-        <div
-          id='scroll-area'
-          className='flex snap-x snap-mandatory gap-32 overflow-x-auto overflow-y-hidden scroll-smooth'
-        >
-          <div
-            className={`flex-0 mt-11 w-full flex-shrink-0 snap-center  lg:mt-0 `}
-            id='abrir-empresa'
-          >
-            <h2 className='font-primary  text-center text-3xl font-normal  text-[#F7C027] lg:text-4xl'>
-              {' '}
-              Abrir sua empresa{' '}
-              <span className='text-[#40494C]'>
-                {' '}
-                é fácil, rápido e de graça!{' '}
-              </span>
-            </h2>
-            <h3 className='font-primary pt-5 text-center text-lg font-normal text-[#647073] lg:text-xl'>
-              {' '}
-              Planejamento empresarial personalizado para você com zero
-              burocracia.{' '}
-            </h3>
-            <div className='mt-11 flex flex-col items-center gap-10'>
-              <ol className='flex flex-col items-center gap-10 lg:flex-row lg:gap-12'>
-                <li className='flex max-w-xs flex-col items-center gap-2 lg:gap-5'>
-                  <img
-                    src='/images/empresa-illustration-1.png'
-                    alt=''
-                    className='hidden lg:block'
-                  />
-                  <div className='flex flex-col items-center gap-4 lg:flex-row lg:items-start'>
-                    <div className='flex-grow-0'>
-                      <img src='/icons/square-1.svg' alt='' />
-                    </div>
-                    <div className='w-full lg:w-2/3'>
-                      <h4 className='font-primary text-center text-base font-semibold text-[#40494C] lg:text-left'>
-                        Faça seu cadastro
-                      </h4>
-                      <p className='font-primary m-auto w-[90%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Em menos de 2 minutos você terá se cadastrado para
-                        iniciar o processo.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className='flex max-w-sm flex-col items-start gap-2 lg:gap-5'>
-                  <img
-                    src='/images/empresa-illustration-2.png'
-                    alt=''
-                    className='hidden lg:block'
-                  />
-                  <div className='flex flex-col items-center gap-2 lg:flex-row lg:items-start lg:gap-5'>
-                    <div className='flex-grow-0'>
-                      <img src='/icons/square-2.svg' alt='' />
-                    </div>
-                    <div className='w-full lg:w-2/3'>
-                      <h4 className='font-primary whitespace-nowrap text-center text-base font-semibold text-[#40494C] lg:text-left'>
-                        Fale com nossos especialistas
-                      </h4>
-                      <p className='font-primary m-auto w-[90%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Vamos juntos planejar as melhores decisões para sua
-                        empresa.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className='flex max-w-sm flex-col items-start gap-2 lg:gap-5'>
-                  <div className='pl-16'>
-                    {' '}
-                    <img
-                      src='/images/empresa-illustration-3.png'
-                      alt=''
-                      className='hidden flex-grow-0 lg:block '
-                    />
-                  </div>
-
-                  <div className='flex flex-1 flex-col items-center gap-2 lg:flex-row lg:items-start lg:gap-5'>
-                    <div className=''>
-                      <img src='/icons/square-3.svg' alt='' />
-                    </div>
-                    <div className='w-full lg:w-2/3'>
-                      <h4 className='font-primary text-center text-base font-semibold text-[#40494C] lg:text-left'>
-                        Fazemos tudo para você
-                      </h4>
-                      <p className=' font-primary m-auto w-[80%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Envie suas informações e documentos, e nossa equipe
-                        cuidará de todo o processo para você.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ol>
-              <a
-                href='abrir-empresa'
-                className='w-full max-w-sm rounded-2xl bg-[#F7C027] px-6 py-4 text-center text-xl font-medium text-[#493602]'
-              >
-                Abrir empresa
-              </a>
-            </div>
-          </div>
-
-          <div
-            className={`flex-0 mt-8 w-full flex-shrink-0 snap-center `}
-            ref={ref}
-          >
-            <h2 className='font-primary  text-center text-3xl font-normal  text-[#1D81A2] lg:text-4xl'>
-              {' '}
-              Sua contabilidade{' '}
-              <span className='text-[#40494C]'>
-                {' '}
-                na MCD de forma econômica e segura
-              </span>
-            </h2>
-            <h3
-              className='font-primary pt-5 text-center text-lg font-normal text-[#647073] lg:text-xl'
-              id='contabilidade-1'
-            >
-              {' '}
-              Ajudamos empresas a simplificar suas contabilidades e economizar
-              tempo.
-            </h3>
-            <div className='mt-11 flex flex-col items-center gap-10'>
-              <ol className=' flex flex-col items-center gap-10 lg:flex-row lg:gap-12'>
-                <li className='flex max-w-xs flex-col items-center gap-5'>
-                  <img
-                    src='/images/contador-illustration-1.png'
-                    alt=''
-                    className='hidden lg:block'
-                  />
-                  <div className='flex flex-col items-center gap-4 lg:flex-row lg:items-start lg:gap-5'>
-                    <div className='flex-grow-0'>
-                      <img src='/icons/square-1-blue.svg' alt='' />
-                    </div>
-                    <div className='w-full lg:w-2/3'>
-                      <h4 className='font-primary text-center text-base font-semibold text-[#40494C]  lg:text-left'>
-                        Faça seu cadastro
-                      </h4>
-                      <p className=' font-primary m-auto w-[90%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Preencha nosso formulário para conhecermos melhor o
-                        perfil da sua empresa.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className='flex max-w-sm flex-col items-start gap-5'>
-                  <img
-                    src='/images/contador-illustration-2.png'
-                    alt=''
-                    className='hidden lg:block'
-                  />
-                  <div className='flex flex-col items-center gap-2 lg:flex-row lg:items-start lg:gap-5'>
-                    <div className='flex-grow-0'>
-                      <img src='/icons/square-2-blue.svg' alt='' />
-                    </div>
-                    <div className='w-full lg:w-2/3'>
-                      <h4 className='font-primary whitespace-nowrap text-center text-base font-semibold  text-[#40494C] lg:text-left'>
-                        Fale com nossos especialistas
-                      </h4>
-                      <p className='font-primary m-auto  w-[90%] pt-2 text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Nossa equipe vai conversar com você e vamos fazer uma
-                        revisão do atual cenário contábil e fiscal da sua
-                        empresa.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className='flex max-w-sm flex-col items-start gap-5'>
-                  <div className='pl-16'>
-                    {' '}
-                    <img
-                      src='/images/contador-illustration-3.png'
-                      alt=''
-                      className='hidden flex-grow-0 lg:block'
-                    />
-                  </div>
-
-                  <div className='flex flex-1 flex-col items-center gap-2 lg:flex-row lg:items-start lg:gap-5'>
-                    <div className=''>
-                      <img src='/icons/square-3-blue.svg' alt='' />
-                    </div>
-                    <div className='w-full lg:w-2/3'>
-                      <h4 className='font-primary text-center text-base  font-semibold text-[#40494C] lg:text-left'>
-                        Fazemos tudo para você
-                      </h4>
-                      <p className=' font-primary m-auto w-[90%] pt-2  text-center text-sm text-[#303030] lg:w-full lg:pt-4 lg:text-left'>
-                        Envie suas informações e documentos, e nossa equipe
-                        cuidará de todo o processo para você.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ol>
-              <a
-                href='contador'
-                className=' w-full max-w-sm rounded-2xl bg-[#1D81A2] px-6 py-4 text-center text-xl font-medium text-white'
-              >
-                Trocar de contador
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <SolutionsSection color='' />
-
-      {/* ///////////////////  About Section /////////// */}
-      <section
-        id='quem-somos'
-        className='font-primary relative mt-28 h-full rounded-l-[30px] rounded-r-[30px] bg-[#FFFFFF] lg:rounded-l-[80px] lg:rounded-r-[80px]'
-      >
-        <img
-          src='/svg/patterns_MCD-02.svg'
-          alt=''
-          className='absolute bottom-0 right-0 h-44 lg:h-[500px] '
-        />
-        <div className='m-auto my-28 mt-16 w-full max-w-7xl px-6 lg:px-0'>
-          <h2 className='font-primary text-center text-[29px] font-medium leading-10 text-[#40494C] lg:text-left  lg:text-4xl'>
-            Há mais de 10 anos ajudando empresários
-          </h2>
-          <h3 className='font-primary pt-10 text-center text-lg font-normal text-[#647073] lg:text-left lg:text-xl'>
-            Somos um escritório de contabilidade digital especializado em
-            assessoria empresarial completa <br />a empresários e
-            empreendedores.{' '}
-          </h3>
-
-          <ul className='flex flex-col gap-14 py-10 pt-20 lg:pt-20'>
-            <li className='flex flex-col gap-2 '>
-              <div className='flex items-center gap-4'>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src='/svg/customer-rev.svg'
-                  alt=''
-                  className=' flex-0 w-[40px] flex-shrink-0 flex-grow-0 lg:w-[80px]'
-                />
-                <h3 className=' text-lg font-medium text-[#40494C] lg:text-3xl'>
-                  Time especialista para te atender
-                </h3>
-              </div>
-
-              <p className=' max-w-2xl text-base text-[#647073] lg:text-xl '>
-                A MCD está comprometida a acompanhar a jornada do seu negócio e
-                garantir o seu sucesso.
-              </p>
-            </li>
-            <li className='flex flex-col gap-2'>
-              <div className='flex items-center gap-4'>
-                <img
-                  src='/svg/cooperation.svg'
-                  alt=''
-                  className=' flex-0 w-[40px] flex-shrink-0  flex-grow-0 lg:w-[80px] '
-                />
-                <h3 className='text-lg font-medium text-[#40494C] lg:text-3xl'>
-                  Um caminho de sucesso
-                </h3>
-              </div>
-
-              <p className='max-w-2xl text-base text-[#647073] lg:text-xl'>
-                Nossos clientes são nossos parceiros. Juntos elaboramos um
-                projeto único pra você economizar seu dinheiro e chegar mais
-                longe.
-              </p>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* /////////////// Contact Section //////////////////// */}
+      <StepsSection />
       <ContactSection />
-
-      {/* ///////////// Blog Section  //////////// */}
 
       <BlogSection />
       <CustomFooter />

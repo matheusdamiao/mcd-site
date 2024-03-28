@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Script from 'next/script';
 import * as React from 'react';
 
 import '@/styles/globals.css';
@@ -55,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <Script id='chat'>
+      {/* <Script id='chat'>
         {` window.chatwootSettings = {"position":"right","type":"standard", "launcherTitle":""};
       (function(d,t) {
         var BASE_URL="https://app.chatwoot.com";
@@ -72,7 +71,7 @@ export default function RootLayout({
         }
       })(document,"script");
      `}
-      </Script>
+      </Script> */}
 
       <body>{children}</body>
     </html>

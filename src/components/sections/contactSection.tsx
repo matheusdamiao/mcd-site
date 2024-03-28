@@ -5,7 +5,13 @@ import React, { useState } from 'react';
 import { isProd } from '@/constant/env';
 
 export const ContactSection = () => {
-  const [inputs, setInputs] = useState({ nome: '', email: '', telefone: '' });
+  const [inputs, setInputs] = useState({
+    nome: '',
+    email: '',
+    telefone: '',
+    serviço: '',
+    mensagem: '',
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
@@ -16,6 +22,8 @@ export const ContactSection = () => {
     formData.append('nome', inputs.nome);
     formData.append('email', inputs.email);
     formData.append('telefone', inputs.telefone);
+    formData.append('serviço', inputs.serviço);
+    formData.append('mensagem', inputs.mensagem);
 
     try {
       await fetch(
@@ -28,7 +36,13 @@ export const ContactSection = () => {
 
       // console.log(res);
 
-      setInputs({ nome: '', email: '', telefone: '' });
+      setInputs({
+        nome: '',
+        email: '',
+        telefone: '',
+        serviço: '',
+        mensagem: '',
+      });
       setIsSent(true);
       setIsLoading(false);
       setTimeout(() => {
@@ -41,14 +55,22 @@ export const ContactSection = () => {
     }
   };
 
-  const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputs = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs({ ...inputs, [name]: value });
   };
 
   return (
-    <section className='h-full bg-[#BBD9E3] px-6 py-10 lg:h-[560px] lg:px-14'>
+    <section
+      id='form'
+      className='h-full bg-[#BBD9E3] px-6 py-20 lg:h-[700px] lg:px-14'
+    >
       <div className='relative m-auto flex h-full w-full max-w-7xl flex-col items-center gap-5 lg:block lg:px-0'>
         <div className='flex h-full flex-col justify-center gap-4 '>
           <h2 className='font-primary text-left text-3xl font-normal text-[#40494C] lg:w-3/4 lg:text-5xl'>
@@ -65,7 +87,7 @@ export const ContactSection = () => {
         </div>
         <form
           onSubmit={handleSendEmail}
-          className='right-[5%] top-[20%] flex w-full max-w-md flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute lg:max-w-[400px] xl:max-w-lg'
+          className='right-[5%] top-0 flex w-full max-w-md flex-col justify-center gap-4 rounded-[30px] bg-white px-8 py-8 lg:absolute lg:max-w-[400px] xl:max-w-lg'
         >
           <div>
             <h2 className='text-base font-normal text-black lg:text-2xl'>
@@ -77,6 +99,7 @@ export const ContactSection = () => {
           </div>
           <div className='relative'>
             <input
+              required
               type='text'
               id='nome'
               name='nome'
@@ -95,6 +118,7 @@ export const ContactSection = () => {
           <div className=' flex w-full flex-wrap justify-between gap-3 lg:flex-nowrap'>
             <div className='relative w-full'>
               <input
+                required
                 type='text'
                 id='email'
                 name='email'
@@ -112,6 +136,7 @@ export const ContactSection = () => {
             </div>
             <div className='relative w-full'>
               <input
+                required
                 type='text'
                 id='telefone'
                 name='telefone'
@@ -127,6 +152,49 @@ export const ContactSection = () => {
                 Telefone
               </label>
             </div>
+          </div>
+
+          <div className='relative flex w-full flex-col  gap-4'>
+            <label htmlFor='service'>Como podemos te ajudar? </label>
+            <select
+              id='service'
+              name='serviço'
+              onChange={(e) => handleInputs(e)}
+              className='rounded-lg border-gray-300 bg-transparent'
+            >
+              <option className='text-xs' value='Abrir empresa'>
+                Abrir empresa{' '}
+              </option>
+              <option className='text-xs' value='Trocar de contador'>
+                Trocar de contador
+              </option>
+              <option className='text-xs' value='Assessoria empresarial'>
+                Assessoria empresarial
+              </option>
+              <option className='text-xs' value='Orçamento'>
+                Orçamento
+              </option>
+              <option className='text-xs' value='Outro serviço'>
+                Outro serviço
+              </option>
+            </select>
+          </div>
+
+          <div className='relative w-full'>
+            <textarea
+              id='mensagem'
+              name='mensagem'
+              onChange={(e) => handleInputs(e)}
+              value={inputs.mensagem}
+              className='border-1 peer block h-[100px] w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-black focus:border-white focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
+              placeholder=''
+            />
+            <label
+              htmlFor='text'
+              className='dark:text-gray-40 absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-transparent px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-6 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-black dark:bg-gray-900'
+            >
+              Mensagem
+            </label>
           </div>
 
           <div>

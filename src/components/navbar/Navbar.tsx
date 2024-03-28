@@ -1,6 +1,7 @@
 'use client';
 import { Button, Navbar } from 'flowbite-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import * as React from 'react';
 
 import useWindowDimensions from '@/lib/utils';
@@ -10,22 +11,29 @@ export default function NavBar() {
   const [menuHeight, setMenuHeight] = React.useState(0);
   // const [isBottom, setIsBottom] = React.useState(false);
 
+  const [offTheHero, setIsOfftheHero] = React.useState(false);
+
   React.useEffect(() => {
     if (size !== undefined) {
       setMenuHeight(size.scrollY);
-      if (size?.scrollY >= 3000) {
+      if (size?.scrollY >= 500) {
+        setIsOfftheHero(true);
         // TODO: add botao de voltar para o topo
         // setIsBottom(true);
       }
-      if (size?.scrollY <= 3000) {
+      if (size?.scrollY <= 500) {
         // setIsBottom(false);
+        setIsOfftheHero(false);
       }
     }
 
     // console.log(size?.scrollY);
   }, [size?.scrollY, size?.width, size?.height, size]);
+
+  const pathname = usePathname();
+
   return (
-    <div className='fixed left-0 z-[9999] m-auto w-full lg:m-auto lg:mt-3 lg:px-14'>
+    <div className='text-re fixed left-0 z-[9999] m-auto w-full lg:m-auto lg:mt-3 lg:px-14'>
       <Navbar
         className={`${
           menuHeight > 400 ? 'bg-white' : 'border-none bg-transparent'
@@ -63,19 +71,62 @@ export default function NavBar() {
           <Navbar.Link
             as={Link}
             href='/abrir-empresa'
-            className='text-sm font-normal md:text-white lg:text-[#40494C] '
+            className={`text-sm font-normal md:text-black ${
+              offTheHero ? 'md:text-black' : 'md:text-white'
+            } lg:text-[#40494C]
+            
+            
+            ${
+              pathname === '/abrir-empresa'
+                ? 'rounded-xl !bg-[#1D81A2] !px-4 !py-2 !text-white hover:!bg-[#3b7a91]'
+                : ''
+            }`}
           >
             Abrir empresa
           </Navbar.Link>
           <Navbar.Link
             href='/contador'
-            className='text-sm font-normal md:text-white lg:text-[#40494C]'
+            className={`text-sm font-normal ${
+              offTheHero ? 'md:text-black' : 'md:text-white'
+            } lg:text-[#40494C]
+            
+            ${
+              pathname === '/contador'
+                ? 'rounded-xl bg-[#1D81A2] !px-4 !py-2 !text-white hover:!bg-[#3b7a91]'
+                : ''
+            }
+            `}
           >
             Trocar de contador
           </Navbar.Link>
           <Navbar.Link
+            href='/services'
+            className={`text-sm font-normal ${
+              offTheHero ? 'md:text-black' : 'md:text-white'
+            } lg:text-[#40494C]
+            
+            ${
+              pathname === '/services'
+                ? 'rounded-xl bg-[#1D81A2] !px-4 !py-2 !text-white hover:!bg-[#3b7a91]'
+                : ''
+            }
+            
+            `}
+          >
+            Serviços
+          </Navbar.Link>
+          <Navbar.Link
             href='/solucoes'
-            className='text-sm font-normal md:text-white lg:text-[#40494C]'
+            className={`text-sm font-normal ${
+              offTheHero ? 'md:text-black' : 'md:text-white'
+            } lg:text-[#40494C]
+            
+            ${
+              pathname === '/solucoes'
+                ? 'rounded-xl !bg-[#1D81A2] !px-4 !py-2 !text-white hover:!bg-[#3b7a91]'
+                : ''
+            }
+            `}
           >
             Soluções
           </Navbar.Link>
@@ -83,7 +134,9 @@ export default function NavBar() {
             <a className='flex py-2 pl-2 md:order-2' href='dashboard'>
               <Button
                 pill
-                className='rounded-[15px] border-2 border-[#AFAFAF]  bg-transparent px-4 text-sm font-normal text-[#40494C] hover:!bg-[#1D81A2] hover:text-white md:text-white lg:text-[#40494C]'
+                className={`rounded-[15px] border-2 border-[#AFAFAF]  bg-transparent px-4 text-sm font-normal text-[#40494C] hover:!bg-[#1D81A2] hover:text-white ${
+                  offTheHero ? 'md:text-black' : 'md:text-white'
+                } lg:text-[#40494C]`}
               >
                 Minha conta
               </Button>

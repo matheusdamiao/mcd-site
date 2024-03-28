@@ -13,25 +13,29 @@ export async function POST(request: NextRequest) {
   const name = data.get('nome');
   const email = data.get('email');
   const telefone = data.get('telefone');
+  const serviço = data.get('serviço');
+  const mensagem = data.get('mensagem');
 
   try {
     await resend.emails.send({
       from: 'MCD Contábil - MSG Automática <ti@mcdcontabil.com.br>',
       to: [`${email}`],
-      bcc: ['matheus.damiaoliveira@gmail.com', 'eduardo@mcdcontabil.com.br'],
+      bcc: ['matheus.damiaoliveira@gmail.com'],
       subject: 'Bem-vindo a MCD Contábil',
       react: WelcomeTemplate({ nome: `${name}` }) as React.ReactElement,
     });
 
     await resend.emails.send({
       from: 'MCD Contábil - Novo Lead <ti@mcdcontabil.com.br>',
-      to: ['eduardo@mcdcontabil.com.br', 'ti@mcdcontabil.com.br'],
+      to: ['ti@mcdcontabil.com.br'],
       bcc: ['matheus.damiaoliveira@gmail.com'],
       subject: 'Novo lead no site',
       react: NewLeadTemplate({
         nome: `${name}`,
         email: `${email}`,
         telefone: `${telefone}`,
+        serviço: `${serviço}`,
+        mensagem: `${mensagem}`,
       }) as React.ReactElement,
     });
 
