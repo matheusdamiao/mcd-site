@@ -73,7 +73,7 @@ const Login = () => {
                 onChange={(e) => handleFormChange(e)}
                 id='email'
                 className='focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
-                placeholder='matheus@empresa.com'
+                placeholder='seuemail@empresa.com'
                 required
               />
             </div>

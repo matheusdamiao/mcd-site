@@ -1,28 +1,26 @@
 import { Metadata } from 'next';
 import * as React from 'react';
-import { ToastContainer } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
+import '@/styles/globals.css';
 
 import { siteConfig } from '@/constant/config';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Abra sua empresa com a gente',
+    default: 'Políticas de Cookies',
     template: ``,
   },
   description: siteConfig.description,
 };
 
-export default function OpenCompanyLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): React.ReactElement {
+}) {
   return (
-    <>
-      <main>{children}</main>
-      <ToastContainer />
-    </>
+    <html>
+      <body>{children}</body>
+    </html>
   );
 }

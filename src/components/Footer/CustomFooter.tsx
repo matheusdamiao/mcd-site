@@ -23,7 +23,7 @@ const CustomFooter = () => {
           <div className='md:flsex grid w-full justify-between gap-7 sm:flex sm:justify-between md:grid-cols-1'>
             <Footer.Brand
               className='w-full justify-center lg:justify-start [&>img]:h-full'
-              href='https://mcdcontabil.com.br'
+              href='/'
               src='/icons/MCD_logo_branco.svg'
               alt='MCD logo'
             />
@@ -69,11 +69,17 @@ const CustomFooter = () => {
                   <Footer.Link className='text-white' href='/abrir-empresa#faq'>
                     Perguntas Frequentes (FAQ)
                   </Footer.Link>
-                  <Footer.Link className='text-white' href='#'>
+                  <Footer.Link
+                    className='text-white'
+                    href='/politicas-privacidade'
+                  >
                     Política de Privacidade
                   </Footer.Link>
-                  <Footer.Link className='text-white' href='#'>
-                    Termos &amp; Condições
+                  <Footer.Link className='text-white' href='/termos-de-uso'>
+                    Termos de Uso
+                  </Footer.Link>
+                  <Footer.Link className='text-white' href='/politicas-cookies'>
+                    Política de Cookies
                   </Footer.Link>
                 </Footer.LinkGroup>
               </div>
@@ -85,7 +91,7 @@ const CustomFooter = () => {
               className='text-white'
               href='#'
               by='MCD Contábil LTDA'
-              year={2023}
+              year={2024}
             />
             <div className='mt-4 flex space-x-6 sm:mt-0 sm:justify-center'>
               <a href='https://www.instagram.com/mcdcontabil/' target='_blank'>

@@ -117,6 +117,9 @@ export default function HomePage() {
 
       <AboutSection />
 
+      <StepsSection />
+      <ContactSection />
+
       {/*/////////////// Seção dos serviços ///////////////////*/}
 
       {/* <section className='m-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-20 lg:gap-32'>

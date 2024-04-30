@@ -124,9 +124,8 @@ export default function ChangeAccountant() {
   };
   return (
     <main className='m-0 flex w-full flex-col bg-[#F2F2F2]'>
-      s
       <Head>
-        <title>MCD Contabilidade Consultiva</title>
+        <title>MCD Contabilidade Consultiva - Trocar de Contador</title>
       </Head>
       <a
         className='font-primary fixed bottom-2 right-2 z-[888888888] flex w-[200px] items-center justify-center gap-2 rounded-3xl  bg-[#5ECC66] px-2 py-2 font-semibold text-white lg:bottom-10 lg:right-10 lg:w-[250px] lg:gap-4 lg:px-4 lg:py-3'
