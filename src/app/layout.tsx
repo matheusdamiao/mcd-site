@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Script from 'next/script';
 import * as React from 'react';
 
 import '@/styles/globals.css';
@@ -74,6 +73,7 @@ export default function RootLayout({
      `}
       </Script> */}
 
+
       {/* <!-- Google Tag Manager --> */}
 
       <Script id='2222'>
@@ -84,6 +84,7 @@ export default function RootLayout({
         })(window,document,'script','dataLayer','GTM-TL29CFGN');
         `}
       </Script>
+
 
       {/* <!-- End Google Tag Manager --> */}
 

@@ -102,7 +102,10 @@ export default function SolutionsPage() {
             </h3>
           </div>
 
-          <div className=' flex flex-wrap justify-evenly gap-10 pt-16 '>
+         
+
+          <div className=' flex flex-wrap justify-evenly gap-10 py-16 '>
+
             <div className=' flex max-w-[350px] flex-col gap-6 bg-[#EAEAEA] px-10 py-10'>
               <Image
                 src='/icons/give-money.webp'
@@ -113,7 +116,7 @@ export default function SolutionsPage() {
               />
               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Abertura de Empresa com honorários gratuitos*
-              </h4>
+               </h4>
               <p className='text-base text-[#647073]'>
                 Simplificamos o processo de abertura de empresas ao oferecer
                 honorários gratuitos, permitindo que empreendedores iniciem seus
@@ -159,11 +162,13 @@ export default function SolutionsPage() {
             </div>
           </div>
         </div>
+
         <small className='flex items-center justify-center py-8 text-gray-500'>
           *Todas as gratuidades oferecidas no site são para empresas do Simples
           Nacional com contrato de prestação de serviços com a MCD de no mínimo
           12 meses.
         </small>
+
       </section>
 
       {/* /////////////////////// */}

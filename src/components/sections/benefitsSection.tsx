@@ -6,7 +6,9 @@ import CtaButton from '@/components/button/CtaButton';
 
 const BenefitsSection = () => {
   return (
+
     <div id='beneficios' className='h-full w-full pt-20 lg:pt-36'>
+
       <div className='m-auto flex w-full max-w-7xl flex-col px-6 lg:px-0'>
         <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
           {' '}

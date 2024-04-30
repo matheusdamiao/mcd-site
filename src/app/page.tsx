@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
+
+import Head from 'next/head';
+
 import * as React from 'react';
 
 import CustomFooter from '@/components/Footer/CustomFooter';
@@ -20,6 +23,12 @@ import StepsSection from '@/components/sections/stepsSection';
 export default function HomePage() {
   return (
     <main className='m-0 flex flex-col bg-[#F2F2F2] '>
+
+      <Head>
+        <title>MCD Contabilidade Consultiva</title>
+      </Head>
+
+
       <a
         className='font-primary fixed bottom-2 right-2 z-[99999999999999999999999999999999] flex w-[200px] items-center justify-center gap-2 rounded-3xl  bg-[#5ECC66] px-2 py-2 font-semibold text-white lg:bottom-10 lg:right-10 lg:w-[250px] lg:gap-4 lg:px-4 lg:py-3'
         href='https://api.whatsapp.com/send?phone=5521965806068'
@@ -111,6 +120,94 @@ export default function HomePage() {
       <PlanningSection />
 
       <AboutSection />
+
+
+      <StepsSection />
+      <ContactSection />
+
+
+
+      {/*/////////////// Seção dos serviços ///////////////////*/}
+
+      {/* <section className='m-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-20 lg:gap-32'>
+        <div className='flex flex-col gap-6 lg:gap-8'>
+          {' '}
+          <h2 className='font-primary text-center text-3xl font-normal text-[#40494C] lg:text-4xl '>
+            Contabilidade descomplicada para a sua empresa
+          </h2>
+          <h3 className='font-primary text-center text-lg font-normal text-[#647073] lg:text-xl'>
+            Otimizamos as suas rotinas contábeis e fiscais com uma equipe
+            especialista.
+          </h3>
+        </div>
+        <ul className='grid grid-cols-1 flex-wrap gap-6 lg:grid-cols-2 lg:gap-10'>
+          <li className='flex items-center gap-[30px]'>
+            <img
+              src='icons/management.svg'
+              className='flex-0 hidden lg:block'
+              alt=''
+            />
+            <img
+              src='icons/management-2.svg'
+              className='flex-0 block lg:hidden'
+              alt=''
+            />
+
+            <p className='font-primary w-full text-base font-normal text-[#647073] lg:max-w-sm lg:text-xl'>
+              Cuidamos da sua contabilidade com{' '}
+              <span className='font-semibold'>segurança e agilidade</span>
+            </p>
+          </li>
+          <li className='flex items-center gap-[30px]'>
+            <img
+              src='/icons/data-report.svg'
+              alt=''
+              className='hidden lg:block'
+            />
+            <img
+              src='icons/data-report-2.svg'
+              className='flex-0 block lg:hidden'
+              alt=''
+            />
+            <p className='font-primary w-full whitespace-normal text-base font-normal text-[#647073] lg:max-w-sm lg:text-xl'>
+              Receba um{' '}
+              <span className='w-full font-semibold'>
+                plano de negócio estratégico{' '}
+              </span>{' '}
+              e personalizado{' '}
+            </p>
+          </li>
+
+          <li className='flex items-center gap-[30px]'>
+            <img
+              src='/icons/risk-management.svg'
+              alt=''
+              className='hidden lg:block'
+            />
+            <img
+              src='icons/risk-management-2.svg'
+              className='flex-0 block lg:hidden'
+              alt=''
+            />
+            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-xl'>
+              <span className='font-semibold'>Lembretes automatizados</span>{' '}
+              para suas contas, impostos e rotinas{' '}
+            </p>
+          </li>
+          <li className='flex items-center gap-[30px]'>
+            <img src='/icons/focus.svg' alt='' className='hidden lg:block' />
+            <img
+              src='icons/focus-2.svg'
+              className='flex-0 block lg:hidden'
+              alt=''
+            />
+            <p className='font-primary max-w-sm text-base font-normal text-[#647073] lg:text-xl'>
+              Acompanhe e gerencie suas finanças com{' '}
+              <span className='font-semibold'> menos burocracias</span>
+            </p>
+          </li>
+        </ul>
+      </section> */}
 
       <StepsSection />
       <ContactSection />
