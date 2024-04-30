@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     await resend.emails.send({
       from: 'MCD Contábil - Novo Lead <ti@mcdcontabil.com.br>',
-      to: ['ti@mcdcontabil.com.br'],
+      to: ['ti@mcdcontabil.com.br', 'eduardo@mcdcontabil.com.br'],
       bcc: ['matheus.damiaoliveira@gmail.com'],
       subject: 'Novo lead no site',
       react: NewLeadTemplate({

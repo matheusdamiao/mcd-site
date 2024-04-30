@@ -6,7 +6,7 @@ import CtaButton from '@/components/button/CtaButton';
 
 const BenefitsSection = () => {
   return (
-    <div id='beneficios' className='h-full w-full pt-20'>
+    <div id='beneficios' className='h-full w-full pt-20 lg:pt-36'>
       <div className='m-auto flex w-full max-w-7xl flex-col px-6 lg:px-0'>
         <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
           {' '}
@@ -33,10 +33,10 @@ const BenefitsSection = () => {
                 {' '}
                 Fique em dia e legalizado com toda contabilidade da sua empresa.{' '}
                 <Link
-                  href='/solucoes'
+                  href='/solucoes#solutions'
                   className='underline hover:font-semibold hover:text-[#1D81A2]'
                 >
-                  Saiba mais
+                  Conheça melhor
                 </Link>{' '}
               </h4>
             </div>
@@ -60,8 +60,8 @@ const BenefitsSection = () => {
                 {' '}
                 Esse é o primeiro passo para o empresário formalizar o seu
                 negócio.{' '}
-                <Link href='/solucoes' className='underline'>
-                  Saiba mais
+                <Link href='/solucoes#solutions' className='underline'>
+                  Conheça melhor
                 </Link>{' '}
               </h4>
             </div>
@@ -84,10 +84,10 @@ const BenefitsSection = () => {
                 Ao abrir sua empresa com a gente, formulamos um planejamento
                 personalizado para o seu negócio.{' '}
                 <Link
-                  href='/solucoes'
+                  href='/solucoes#solutions'
                   className='underline hover:font-semibold hover:text-[#1D81A2]'
                 >
-                  Saiba mais
+                  Conheça melhor
                 </Link>
               </h4>
             </div>
@@ -104,7 +104,7 @@ const BenefitsSection = () => {
               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
                 {' '}
                 Um mês
-                <span className='text-[#1D81A2]'> gratuito</span> de assessoria
+                <span className='text-[#1D81A2]'> gratuito*</span> de assessoria
                 administrativa e financeira
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
@@ -112,11 +112,17 @@ const BenefitsSection = () => {
                 Assessoramos no planejamento financeiro, administrativo e
                 tributário para sua empresa crescer saudável.{' '}
                 <Link
-                  href='/solucoes'
+                  href='/solucoes#solutions'
                   className='underline hover:font-semibold hover:text-[#1D81A2]'
                 >
-                  Saiba mais
+                  Conheça melhor
                 </Link>{' '}
+                <br />
+                <small className='text-gray-400'>
+                  *Exclusivo para empresas do Simples Nacional e com contrato
+                  mínimo de 12 meses.
+                </small>
+                <br />
               </h4>
             </div>
           </li>
@@ -132,18 +138,24 @@ const BenefitsSection = () => {
               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
                 {' '}
                 Diagnóstico preliminar
-                <span className='text-[#1D81A2]'> grátis</span> para consultoria
+                <span className='text-[#1D81A2]'> grátis*</span> para
+                consultoria
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
                 Elaboramos um estudo para encontrar oportunidades de crescimento
-                e melhorias{' '}
+                e melhorias <br />
                 <Link
-                  href='/solucoes'
+                  href='/solucoes#solutions'
                   className='underline hover:font-semibold hover:text-[#1D81A2]'
                 >
-                  Saiba mais
+                  Conheça melhor
                 </Link>{' '}
+                <br />
+                <small className='mt-4 text-gray-400'>
+                  *Exclusivo para clientes que contratarem o serviço de
+                  consultoria
+                </small>
               </h4>
             </div>
           </li>

@@ -98,11 +98,11 @@ export default function SolutionsPage() {
               </span>
               refletem nosso compromisso em apoiar empreendedores desde o
               início, fortalecendo parcerias duradouras baseadas em confiança e
-              transparência
+              transparência. Ao contratar a MCD, você ganha muitas vantagens
             </h3>
           </div>
 
-          <div className=' flex flex-wrap justify-evenly gap-10 py-16 '>
+          <div className=' flex flex-wrap justify-evenly gap-10 pt-16 '>
             <div className=' flex max-w-[350px] flex-col gap-6 bg-[#EAEAEA] px-10 py-10'>
               <Image
                 src='/icons/give-money.webp'
@@ -112,7 +112,7 @@ export default function SolutionsPage() {
                 className='flex-0 flex-shrink-0 flex-grow-0'
               />
               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
-                Abertura de Empresa com honorários gratuitos
+                Abertura de Empresa com honorários gratuitos*
               </h4>
               <p className='text-base text-[#647073]'>
                 Simplificamos o processo de abertura de empresas ao oferecer
@@ -130,7 +130,7 @@ export default function SolutionsPage() {
                 className='flex-0 flex-shrink-0 flex-grow-0'
               />
               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
-                Primeira Mensalidade de Serviços Contábeis Gratuita
+                Primeira Mensalidade de Serviços Contábeis Gratuita*
               </h4>
               <p className='text-base text-[#647073]'>
                 Incentivamos uma transição suave para nossos serviços contábeis
@@ -148,7 +148,7 @@ export default function SolutionsPage() {
                 className='flex-0 flex-shrink-0 flex-grow-0'
               />
               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
-                Diagnóstico Preliminar Gratuito para Consultorias
+                Diagnóstico Preliminar Gratuito* para Consultorias
               </h4>
               <p className='text-base text-[#647073]'>
                 Nosso processo de consultoria começa com um diagnóstico
@@ -159,6 +159,11 @@ export default function SolutionsPage() {
             </div>
           </div>
         </div>
+        <small className='flex items-center justify-center py-8 text-gray-500'>
+          *Todas as gratuidades oferecidas no site são para empresas do Simples
+          Nacional com contrato de prestação de serviços com a MCD de no mínimo
+          12 meses.
+        </small>
       </section>
 
       {/* /////////////////////// */}
