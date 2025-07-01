@@ -15,6 +15,7 @@ import IdentificationSection from '@/components/sections/identificationSection';
 import NewSolutionsSection from '@/components/sections/newSolutionsSection';
 import PlanningSection from '@/components/sections/planningSection';
 import StepsSection from '@/components/sections/stepsSection';
+import TechSolutionsSection from '@/components/sections/techSolutionsSection';
 
 // const nibo = './images/nibo.webp';
 
@@ -106,6 +107,8 @@ export default function HomePage() {
       </section>
 
       <BenefitsSection />
+
+      <TechSolutionsSection />
 
       <IdentificationSection />
 
