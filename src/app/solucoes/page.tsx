@@ -85,18 +85,28 @@ export default function SolutionsPage() {
       >
         <div className='m-auto flex w-full max-w-7xl flex-col justify-center px-0 lg:px-6'>
           <div className='flex flex-col gap-6'>
-            <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
+            {/* <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
               {' '}
               Comece <span className='text-[#1C81A2]'>de graça</span> e evolua
               com a MCD
+            </h2> */}
+             <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
+              {' '}
+             Evolua
+              com a <span className='text-[#1C81A2]'>MCD</span> 
             </h2>
-            <h3 className='m-auto text-center text-xl font-normal text-[#647073] lg:w-[50%] '>
+            {/* <h3 className='m-auto text-center text-xl font-normal text-[#647073] lg:w-[50%] '>
               {' '}
               Nossos honorários{' '}
               <span className='hover:font-semibold hover:text-[#1C81A2]'>
                 gratuitos{' '}
               </span>
               refletem nosso compromisso em apoiar empreendedores desde o
+              início, fortalecendo parcerias duradouras baseadas em confiança e
+              transparência. Ao contratar a MCD, você ganha muitas vantagens
+            </h3> */}
+             <h3 className='m-auto text-center text-xl font-normal text-[#647073] lg:w-[50%] '>
+              Nosso compromisso é apoiar empreendedores desde o
               início, fortalecendo parcerias duradouras baseadas em confiança e
               transparência. Ao contratar a MCD, você ganha muitas vantagens
             </h3>
@@ -111,12 +121,19 @@ export default function SolutionsPage() {
                 alt='icon'
                 className='flex-0 flex-shrink-0 flex-grow-0'
               />
-              <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+              {/* <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Abertura de Empresa com honorários gratuitos*
+              </h4> */}
+              <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+                Abertura de Empresa
               </h4>
-              <p className='text-base text-[#647073]'>
+              {/* <p className='text-base text-[#647073]'>
                 Simplificamos o processo de abertura de empresas ao oferecer
                 honorários gratuitos, permitindo que empreendedores iniciem seus
+                negócios sem preocupações financeiras adicionais.
+              </p> */}
+                <p className='text-base text-[#647073]'>
+                Simplificamos o processo de abertura de empresass, permitindo que empreendedores iniciem seus
                 negócios sem preocupações financeiras adicionais.
               </p>
             </div>
@@ -129,12 +146,19 @@ export default function SolutionsPage() {
                 alt='icon'
                 className='flex-0 flex-shrink-0 flex-grow-0'
               />
-              <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+              {/* <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Primeira Mensalidade de Serviços Contábeis Gratuita*
+              </h4> */}
+               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+               Serviços Contábeis 
               </h4>
-              <p className='text-base text-[#647073]'>
+              {/* <p className='text-base text-[#647073]'>
                 Incentivamos uma transição suave para nossos serviços contábeis
                 ao oferecer a primeira mensalidade gratuitamente, garantindo
+                qualidade e economia desde o primeiro dia de colaboração.
+              </p> */}
+                 <p className='text-base text-[#647073]'>
+                Incentivamos uma transição suave para nossos serviços contábeis, garantindo
                 qualidade e economia desde o primeiro dia de colaboração.
               </p>
             </div>
@@ -147,23 +171,32 @@ export default function SolutionsPage() {
                 alt='icon'
                 className='flex-0 flex-shrink-0 flex-grow-0'
               />
-              <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+              {/* <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Diagnóstico Preliminar Gratuito* para Consultorias
+              </h4> */}
+               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+                Diagnóstico Preliminar para ação
               </h4>
-              <p className='text-base text-[#647073]'>
+              {/* <p className='text-base text-[#647073]'>
                 Nosso processo de consultoria começa com um diagnóstico
                 preliminar gratuito, fornecendo uma avaliação inicial detalhada
+                dos desafios e oportunidades específicos enfrentados por cada
+                cliente.
+              </p> */}
+                <p className='text-base text-[#647073]'>
+                Nosso processo de consultoria começa com um diagnóstico
+                preliminar, fornecendo uma avaliação inicial detalhada
                 dos desafios e oportunidades específicos enfrentados por cada
                 cliente.
               </p>
             </div>
           </div>
         </div>
-        <small className='flex items-center justify-center py-8 text-gray-500'>
+        {/* <small className='flex items-center justify-center py-8 text-gray-500'>
           *Todas as gratuidades oferecidas no site são para empresas do Simples
           Nacional com contrato de prestação de serviços com a MCD de no mínimo
           12 meses.
-        </small>
+        </small> */}
       </section>
 
       {/* /////////////////////// */}

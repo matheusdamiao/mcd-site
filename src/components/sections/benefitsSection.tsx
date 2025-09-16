@@ -16,7 +16,7 @@ const BenefitsSection = () => {
           de ser cliente MCD
         </h2>
         <ul className='m-auto flex max-w-3xl flex-col justify-center gap-8 pt-20'>
-          <li className='flex items-center  gap-3'>
+          {/* <li className='flex items-center  gap-3'>
             <Image
               src='/icons/icon_approval.webp'
               width={44}
@@ -40,7 +40,7 @@ const BenefitsSection = () => {
                 </Link>{' '}
               </h4>
             </div>
-          </li>
+          </li> */}
           <li className='flex items-center  gap-3'>
             <Image
               src='/icons/icon_approval.webp'
@@ -101,10 +101,14 @@ const BenefitsSection = () => {
               className='self-start'
             />
             <div>
-              <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+              {/* <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
                 {' '}
                 Um mês
                 <span className='text-[#1D81A2]'> gratuito*</span> de assessoria
+                administrativa e financeira
+              </h3> */}
+               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+               Assessoria
                 administrativa e financeira
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
@@ -135,11 +139,16 @@ const BenefitsSection = () => {
               className='self-start'
             />
             <div>
-              <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+              {/* <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
                 {' '}
                 Diagnóstico preliminar
                 <span className='text-[#1D81A2]'> grátis*</span> para
                 consultoria
+              </h3> */}
+               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+                {' '}
+                Diagnóstico preliminar
+              de ação
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
