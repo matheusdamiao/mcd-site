@@ -46,9 +46,7 @@ export type BlogPostView = {
 
 function apiBase(): string {
   return (
-    (isProd
-      ? process.env.NEXT_PUBLIC_API_URL
-      : 'http://127.0.0.1:1337') || ''
+    (isProd ? process.env.NEXT_PUBLIC_API_URL : 'http://127.0.0.1:1337') || ''
   ).replace(/\/$/, '');
 }
 

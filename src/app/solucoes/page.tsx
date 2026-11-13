@@ -90,10 +90,9 @@ export default function SolutionsPage() {
               Comece <span className='text-[#1C81A2]'>de graça</span> e evolua
               com a MCD
             </h2> */}
-             <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
+            <h2 className='text-center text-3xl font-normal text-[#40494C] lg:text-4xl'>
               {' '}
-             Evolua
-              com a <span className='text-[#1C81A2]'>MCD</span> 
+              Evolua com a <span className='text-[#1C81A2]'>MCD</span>
             </h2>
             {/* <h3 className='m-auto text-center text-xl font-normal text-[#647073] lg:w-[50%] '>
               {' '}
@@ -105,9 +104,9 @@ export default function SolutionsPage() {
               início, fortalecendo parcerias duradouras baseadas em confiança e
               transparência. Ao contratar a MCD, você ganha muitas vantagens
             </h3> */}
-             <h3 className='m-auto text-center text-xl font-normal text-[#647073] lg:w-[50%] '>
-              Nosso compromisso é apoiar empreendedores desde o
-              início, fortalecendo parcerias duradouras baseadas em confiança e
+            <h3 className='m-auto text-center text-xl font-normal text-[#647073] lg:w-[50%] '>
+              Nosso compromisso é apoiar empreendedores desde o início,
+              fortalecendo parcerias duradouras baseadas em confiança e
               transparência. Ao contratar a MCD, você ganha muitas vantagens
             </h3>
           </div>
@@ -132,9 +131,10 @@ export default function SolutionsPage() {
                 honorários gratuitos, permitindo que empreendedores iniciem seus
                 negócios sem preocupações financeiras adicionais.
               </p> */}
-                <p className='text-base text-[#647073]'>
-                Simplificamos o processo de abertura de empresas, permitindo que empreendedores iniciem seus
-                negócios sem preocupações financeiras adicionais.
+              <p className='text-base text-[#647073]'>
+                Simplificamos o processo de abertura de empresas, permitindo que
+                empreendedores iniciem seus negócios sem preocupações
+                financeiras adicionais.
               </p>
             </div>
 
@@ -149,17 +149,18 @@ export default function SolutionsPage() {
               {/* <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Primeira Mensalidade de Serviços Contábeis Gratuita*
               </h4> */}
-               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
-               Serviços Contábeis 
+              <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+                Serviços Contábeis
               </h4>
               {/* <p className='text-base text-[#647073]'>
                 Incentivamos uma transição suave para nossos serviços contábeis
                 ao oferecer a primeira mensalidade gratuitamente, garantindo
                 qualidade e economia desde o primeiro dia de colaboração.
               </p> */}
-                 <p className='text-base text-[#647073]'>
-                Incentivamos uma transição suave para nossos serviços contábeis, garantindo
-                qualidade e economia desde o primeiro dia de colaboração.
+              <p className='text-base text-[#647073]'>
+                Incentivamos uma transição suave para nossos serviços contábeis,
+                garantindo qualidade e economia desde o primeiro dia de
+                colaboração.
               </p>
             </div>
 
@@ -174,7 +175,7 @@ export default function SolutionsPage() {
               {/* <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Diagnóstico Preliminar Gratuito* para Consultorias
               </h4> */}
-               <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
+              <h4 className='text-xl font-medium text-[#40494C] lg:text-xl '>
                 Diagnóstico Preliminar para ação
               </h4>
               {/* <p className='text-base text-[#647073]'>
@@ -183,10 +184,10 @@ export default function SolutionsPage() {
                 dos desafios e oportunidades específicos enfrentados por cada
                 cliente.
               </p> */}
-                <p className='text-base text-[#647073]'>
+              <p className='text-base text-[#647073]'>
                 Nosso processo de consultoria começa com um diagnóstico
-                preliminar, fornecendo uma avaliação inicial detalhada
-                dos desafios e oportunidades específicos enfrentados por cada
+                preliminar, fornecendo uma avaliação inicial detalhada dos
+                desafios e oportunidades específicos enfrentados por cada
                 cliente.
               </p>
             </div>

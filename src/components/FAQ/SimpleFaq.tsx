@@ -23,7 +23,7 @@ export default function SimpleFaq({
         <div className='mt-10 divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white'>
           {items.map((item) => (
             <details key={item.q} className='group px-5 py-4'>
-              <summary className='flex cursor-pointer list-none items-center justify-between gap-4 font-primary text-base font-semibold text-[#40494C] lg:text-lg'>
+              <summary className='font-primary flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-[#40494C] lg:text-lg'>
                 {item.q}
                 <span
                   aria-hidden='true'

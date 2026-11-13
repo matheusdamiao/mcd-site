@@ -67,7 +67,9 @@ export default function HomePage() {
           </h1>
           <h3 className='font-primary w-full pt-2  text-center text-base font-normal leading-snug text-white lg:max-w-[70%] lg:text-2xl'>
             Sede no Centro do Rio de Janeiro e{' '}
-            <span className='font-bold text-[#F7C027]'>atendimento digital</span>{' '}
+            <span className='font-bold text-[#F7C027]'>
+              atendimento digital
+            </span>{' '}
             para empresas de todo o Brasil.
           </h3>
           <div className='absolute bottom-0 left-0 right-0 mx-auto my-0 flex flex-col items-center lg:mb-8'>

@@ -100,7 +100,10 @@ const CustomFooter = () => {
             </div>
             <div className='space-y-1 sm:text-right'>
               <p>
-                <a className='hover:underline' href={`tel:${company.phoneHref}`}>
+                <a
+                  className='hover:underline'
+                  href={`tel:${company.phoneHref}`}
+                >
                   {company.phone}
                 </a>
               </p>
@@ -115,10 +118,7 @@ const CustomFooter = () => {
                 </a>
               </p>
               <p>
-                <a
-                  className='hover:underline'
-                  href={`mailto:${company.email}`}
-                >
+                <a className='hover:underline' href={`mailto:${company.email}`}>
                   {company.email}
                 </a>
               </p>

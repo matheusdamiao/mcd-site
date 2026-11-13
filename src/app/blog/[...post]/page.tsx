@@ -4,12 +4,7 @@ import { notFound } from 'next/navigation';
 import * as React from 'react';
 import Markdown from 'react-markdown';
 
-import {
-  excerptFrom,
-  getArtigo,
-  imageUrl,
-  postPath,
-} from '@/lib/strapi';
+import { excerptFrom, getArtigo, imageUrl, postPath } from '@/lib/strapi';
 
 import JsonLd from '@/components/seo/JsonLd';
 

@@ -48,9 +48,7 @@ export default function LeadForm({ oferta, cta = 'Enviar' }: LeadFormProps) {
   ) => {
     const { name, value, type } = event.target;
     const nextValue =
-      type === 'checkbox'
-        ? (event.target as HTMLInputElement).checked
-        : value;
+      type === 'checkbox' ? (event.target as HTMLInputElement).checked : value;
     setForm((prev) => ({ ...prev, [name]: nextValue }));
   };
 

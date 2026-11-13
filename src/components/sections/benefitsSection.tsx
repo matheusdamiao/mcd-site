@@ -105,9 +105,8 @@ const BenefitsSection = () => {
                 <span className='text-[#1D81A2]'> gratuito*</span> de assessoria
                 administrativa e financeira
               </h3> */}
-               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
-               Assessoria
-                administrativa e financeira
+              <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+                Assessoria administrativa e financeira
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
@@ -119,7 +118,6 @@ const BenefitsSection = () => {
                 >
                   Conheça melhor
                 </Link>{' '}
-
               </h4>
             </div>
           </li>
@@ -138,10 +136,9 @@ const BenefitsSection = () => {
                 <span className='text-[#1D81A2]'> grátis*</span> para
                 consultoria
               </h3> */}
-               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+              <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
                 {' '}
-                Diagnóstico preliminar
-              de ação
+                Diagnóstico preliminar de ação
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
@@ -153,7 +150,6 @@ const BenefitsSection = () => {
                 >
                   Conheça melhor
                 </Link>{' '}
-
               </h4>
             </div>
           </li>

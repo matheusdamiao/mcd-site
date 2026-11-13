@@ -51,9 +51,9 @@ export default function TermosDeUso() {
           Constituem o acordo legal realizado entre você e MCD Contabilidade
           Consultiva Ltda ("MCD"), inscrita no CNPJ sob o n.º
           59.150.772/0001-52, endereço: Rua da Assembleia, 10, sala 1601 -
-          Centro, Rio de Janeiro/RJ, CEP 20011-901,
-          para utilização e acesso ao site da Mcd Contabil Ltda ("MCD"), bem
-          como a qualquer aplicação, produto ou serviço relacionado a esta.
+          Centro, Rio de Janeiro/RJ, CEP 20011-901, para utilização e acesso ao
+          site da Mcd Contabil Ltda ("MCD"), bem como a qualquer aplicação,
+          produto ou serviço relacionado a esta.
         </p>
         <br />
         <p>
@@ -386,9 +386,9 @@ export default function TermosDeUso() {
           presentes Termos de Uso, bem como a utilização da plataforma digital e
           dos serviços da MCD serão regidos pelas leis em vigência na República
           Federativa do Brasil, sendo estipulado, desde já, o foro da cidade de
-          Rio de Janeiro - RJ como o competente para dirimir quaisquer controvérsias ou
-          divergências decorrentes destes Termos de Uso, utilização do site e
-          serviços.
+          Rio de Janeiro - RJ como o competente para dirimir quaisquer
+          controvérsias ou divergências decorrentes destes Termos de Uso,
+          utilização do site e serviços.
         </p>
         <br />
         <br />

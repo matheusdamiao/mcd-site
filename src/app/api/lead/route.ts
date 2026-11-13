@@ -29,15 +29,27 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'invalid_body' }, { status: 400 });
   }
 
-  const { oferta, nome, whatsapp, email, cidadeUf, atividade, regime, faturamento, consent } =
-    body ?? {};
+  const {
+    oferta,
+    nome,
+    whatsapp,
+    email,
+    cidadeUf,
+    atividade,
+    regime,
+    faturamento,
+    consent,
+  } = body ?? {};
 
   if (!nome || !whatsapp || !email || !consent) {
     return NextResponse.json({ error: 'missing_fields' }, { status: 400 });
   }
 
   if (!resend) {
-    return NextResponse.json({ error: 'email_not_configured' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'email_not_configured' },
+      { status: 500 }
+    );
   }
 
   try {

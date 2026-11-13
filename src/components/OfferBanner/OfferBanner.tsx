@@ -44,7 +44,9 @@ export default function OfferBanner({
       {badge ? (
         <span
           className={`w-fit rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${
-            isPrimary ? 'bg-[#F7C027] text-[#40494C]' : 'bg-[#F7C027] text-[#40494C]'
+            isPrimary
+              ? 'bg-[#F7C027] text-[#40494C]'
+              : 'bg-[#F7C027] text-[#40494C]'
           }`}
         >
           {badge}
@@ -55,7 +57,11 @@ export default function OfferBanner({
         <h3 className='font-primary text-xl font-semibold lg:text-2xl'>
           {title}
         </h3>
-        <p className={`text-sm lg:text-base ${isPrimary ? 'text-white/90' : 'text-[#647073]'}`}>
+        <p
+          className={`text-sm lg:text-base ${
+            isPrimary ? 'text-white/90' : 'text-[#647073]'
+          }`}
+        >
           {text}
         </p>
       </div>

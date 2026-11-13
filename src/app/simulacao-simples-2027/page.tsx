@@ -82,10 +82,7 @@ export default function SimulacaoSimplesPage() {
             </a>
           </div>
 
-          <LeadForm
-            oferta='Simulação Simples 2027'
-            cta='Quero a simulação'
-          />
+          <LeadForm oferta='Simulação Simples 2027' cta='Quero a simulação' />
         </div>
       </section>
 
