@@ -133,7 +133,7 @@ export default function SolutionsPage() {
                 negócios sem preocupações financeiras adicionais.
               </p> */}
                 <p className='text-base text-[#647073]'>
-                Simplificamos o processo de abertura de empresass, permitindo que empreendedores iniciem seus
+                Simplificamos o processo de abertura de empresas, permitindo que empreendedores iniciem seus
                 negócios sem preocupações financeiras adicionais.
               </p>
             </div>

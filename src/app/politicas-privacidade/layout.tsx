@@ -1,26 +1,17 @@
 import { Metadata } from 'next';
 import * as React from 'react';
 
-import '@/styles/globals.css';
-
-import { siteConfig } from '@/constant/config';
-
 export const metadata: Metadata = {
-  title: {
-    default: 'Políticas de Privacidade',
-    template: ``,
-  },
-  description: siteConfig.description,
+  title: 'Política de Privacidade',
+  description:
+    'Saiba como a MCD Contabilidade Consultiva trata os seus dados pessoais, conforme a LGPD.',
+  alternates: { canonical: '/politicas-privacidade' },
 };
 
-export default function RootLayout({
+export default function PrivacidadeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  );
+  return <>{children}</>;
 }

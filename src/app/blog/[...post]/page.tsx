@@ -1,47 +1,90 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import * as React from 'react';
 import Markdown from 'react-markdown';
 
-import { isProd } from '@/constant/env';
+import {
+  excerptFrom,
+  getArtigo,
+  imageUrl,
+  postPath,
+} from '@/lib/strapi';
 
-export default async function Page({
-  params,
-}: {
+import JsonLd from '@/components/seo/JsonLd';
+
+import { company } from '@/constant/company';
+
+export const revalidate = 3600;
+
+type PageProps = {
   params: { post: [id: string, title: string] };
-}) {
-  const res = await fetch(
-    `${
-      isProd
-        ? `${process.env.NEXT_PUBLIC_API_URL}/api/artigos/${params.post[0]}?populate=*`
-        : `http://127.0.0.1:1337/api/artigos/${params.post[0]}?populate=*`
-    }`,
-    {
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  const data = await res.json();
+};
 
-  // const autor = data.data.attributes.autors.data[0].id;
-  // // fetch the author
-  // const author = await fetch(
-  //   `${
-  //     isProd
-  //       ? `${process.env.NEXT_PUBLIC_API_URL}/api/autors/${autor}?populate=*`
-  //       : `http://127.0.0.1:1337/api/autors/${autor}?populate=*`
-  //   }`,
-  //   {
-  //     cache: 'no-store',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   }
-  // );
-  // const authorData = await author.json();
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const artigo = await getArtigo(params.post[0]);
+  if (!artigo) {
+    return { title: 'Artigo não encontrado' };
+  }
+
+  const description = excerptFrom(artigo);
+  const image = imageUrl(artigo);
+
+  return {
+    title: artigo.attributes.titulo,
+    description,
+    alternates: { canonical: postPath(artigo) },
+    openGraph: {
+      type: 'article',
+      title: artigo.attributes.titulo,
+      description,
+      url: postPath(artigo),
+      images: image ? [image] : undefined,
+    },
+  };
+}
+
+export default async function Page({ params }: PageProps) {
+  const artigo = await getArtigo(params.post[0]);
+
+  if (!artigo) {
+    notFound();
+  }
+
+  const attributes = artigo.attributes;
+  const description = excerptFrom(artigo);
+  const image = imageUrl(artigo);
+  const autores = attributes.autors?.data ?? [];
+  const path = postPath(artigo);
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: attributes.titulo,
+    description,
+    datePublished: attributes.data || attributes.publishedAt,
+    dateModified: attributes.updatedAt || attributes.publishedAt,
+    author: autores.length
+      ? autores.map((autor) => ({
+          '@type': 'Person',
+          name: autor.attributes.nome,
+          description: autor.attributes.cargo,
+        }))
+      : { '@type': 'Organization', name: company.name },
+    publisher: {
+      '@type': 'Organization',
+      name: company.name,
+      logo: { '@type': 'ImageObject', url: company.logo },
+    },
+    image: image || undefined,
+    mainEntityOfPage: `${company.url}${path}`,
+  };
 
   return (
     <>
+      <JsonLd data={articleJsonLd} />
       <span className='absolute top-0 block h-[70px] w-full bg-[#1C81A2] sm:h-[100px] lg:hidden' />
 
       <article className='m-auto w-full max-w-7xl px-6 pt-[100px] lg:pt-[150px]'>
@@ -55,72 +98,57 @@ export default async function Page({
           </Link>
 
           <h1 className='font-primary  max-w-4xl pt-16  text-center text-4xl font-normal text-[#40494C] lg:pt-8 '>
-            {data.data.attributes.titulo}
+            {attributes.titulo}
           </h1>
           <h3 className='font-primary max-w-2xl text-center text-lg font-normal text-[#647073]'>
             {' '}
-            {data.data.attributes.subtitulo}
+            {attributes.subtitulo}
           </h3>
 
           <div className='flex flex-wrap items-center justify-center gap-10 lg:flex-nowrap lg:justify-start'>
-            <div className='flex gap-2'>
-              <div className='flex flex-col'>
-                <h4 className='m-0 text-sm text-[#647073]'>
-                  {/* {authorData.data.attributes.nome} */}
-                </h4>
-                <small className='text-[#647073]'>
-                  {/* {authorData.data.attributes.cargo} */}
-                </small>
+            {autores.length > 0 ? (
+              <div className='flex gap-2'>
+                {autores.map((autor) => (
+                  <div key={autor.id} className='flex flex-col'>
+                    <h4 className='m-0 text-sm text-[#647073]'>
+                      {autor.attributes.nome}
+                    </h4>
+                    <small className='text-[#647073]'>
+                      {autor.attributes.cargo}
+                    </small>
+                  </div>
+                ))}
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              {/* <img
-                alt='avatar'
-                width={50}
-                height={50}
-                className={`${
-                  !authorData.data.attributes.avatar.data && `hidden`
-                }`}
-                src={`${
-                  isProd &&
-                  authorData.data.attributes.avatar.data.attributes.url
-                    ? authorData.data.attributes.avatar.data.attributes.url
-                    : authorData.data.attributes.avatar.data
-                    ? `http://localhost:1337${authorData.data.attributes.avatar.data.attributes.url}`
-                    : null
-                }`}
-              /> */}
-            </div>
+            ) : null}
 
             <p className='text-[#647073]'>
               Publicado em{' '}
-              <time dateTime={data.data.attributes.publishedAt}>
+              <time dateTime={attributes.data || attributes.publishedAt}>
                 {' '}
-                {data.data.attributes.data}
+                {attributes.data}
               </time>
             </p>
           </div>
         </header>
 
-        <section className='bg-[#E0E0E0] '>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className='m-auto mt-12 lg:mt-0'
-            alt='algo'
-            width={616}
-            height={503.31}
-            src={`${
-              isProd
-                ? data.data.attributes.image.data.attributes.url
-                : `http://127.0.0.1:1337${data.data.attributes.image.data.attributes.url}`
-            } `}
-          />
-        </section>
+        {image ? (
+          <section className='bg-[#E0E0E0] '>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className='m-auto mt-12 lg:mt-0'
+              alt={attributes.titulo}
+              width={616}
+              height={503.31}
+              src={image}
+            />
+          </section>
+        ) : null}
 
         <Markdown
           className='m-auto w-full max-w-3xl py-16 text-base'
           skipHtml={false}
         >
-          {data.data.attributes.texto}
+          {attributes.texto}
         </Markdown>
       </article>
     </>

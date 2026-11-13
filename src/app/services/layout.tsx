@@ -1,26 +1,17 @@
 import { Metadata } from 'next';
 import * as React from 'react';
 
-import '@/styles/globals.css';
-
-import { siteConfig } from '@/constant/config';
-
 export const metadata: Metadata = {
-  title: {
-    default: 'Serviços Personalizados',
-    template: ``,
-  },
-  description: siteConfig.description,
+  title: 'Serviços personalizados',
+  description:
+    'Serviços contábeis, abertura de empresa, consultoria e planejamento tributário para a sua empresa, com atendimento digital em todo o Brasil.',
+  alternates: { canonical: '/services' },
 };
 
-export default function RootLayout({
+export default function ServicesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  );
+  return <>{children}</>;
 }

@@ -53,9 +53,9 @@ export default function PoliticasPrivacidade() {
           <span className='font-bold text-gray-600'>
             Controladora de Dados:{' '}
           </span>{' '}
-          Mcd Contabil Ltda (“MCD”), inscrita no CNPJ sob o n.º
-          23.104.282/0002-53, endereço: Rua General Andrade Neves, 9 - Sala 501
-          Centro, Niterói, CEP 24210-000.
+          MCD Contabilidade Consultiva Ltda (“MCD”), inscrita no CNPJ sob o n.º
+          59.150.772/0001-52, endereço: Rua da Assembleia, 10, sala 1601 -
+          Centro, Rio de Janeiro/RJ, CEP 20011-901.
         </p>
         <br />
         <p className='font-bold text-gray-600'>O que faz a MCD? </p>

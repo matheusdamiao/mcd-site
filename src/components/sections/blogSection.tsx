@@ -4,7 +4,8 @@ import { Card, Carousel, CustomFlowbiteTheme } from 'flowbite-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { Daum, Root } from '@/app/blog/page';
+import { Artigo } from '@/lib/strapi';
+
 import { isProd } from '@/constant/env';
 
 const BlogSection = () => {
@@ -58,7 +59,7 @@ const BlogSection = () => {
     },
   };
 
-  const [lastOnes, setLastOnes] = useState<Daum[]>();
+  const [lastOnes, setLastOnes] = useState<Artigo[]>();
 
   const fetchData = async () => {
     const res = await fetch(
@@ -74,7 +75,7 @@ const BlogSection = () => {
         },
       }
     );
-    const data: Root = await res.json();
+    const data: { data: Artigo[] } = await res.json();
     // console.log(data.data);
     const lastPosts = data.data.slice(0, 3);
     setLastOnes(lastPosts);

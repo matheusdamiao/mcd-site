@@ -5,10 +5,16 @@ import {
   NewCompanyTemplate,
 } from '@/components/emailTemplates/newCompanyTemplate';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function POST(request: Request) {
   const data: NewCompanyEmailProps = await request.json();
+
+  if (!resend) {
+    return new Response(null, { status: 500 });
+  }
 
   try {
     await resend.emails.send({

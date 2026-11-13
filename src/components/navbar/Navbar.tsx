@@ -49,14 +49,14 @@ export default function NavBar() {
                 ? '/svg/logo-mob.svg'
                 : '/svg/logo-branca-mobile.svg'
             }`}
-            alt=''
+            alt='MCD Contabilidade Consultiva'
             className='w-full lg:hidden '
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             // src='/svg/mcd-logo-desktop.svg'
             src='/svg/logo-desktop.svg'
-            alt=''
+            alt='MCD Contabilidade Consultiva'
             className='hidden lg:block'
           />
         </Navbar.Brand>

@@ -1,5 +1,7 @@
 export const siteConfig = {
-  title: 'MCD Assessoria Contábil',
-  description: 'Escritório de contabilidade de Niterói',
+  name: 'MCD Contabilidade Consultiva',
+  title: 'Contabilidade consultiva para todo o Brasil | MCD',
+  description:
+    'Contabilidade consultiva para PMEs, MEIs e profissionais liberais. Sede no Centro do Rio e atendimento digital em todo o Brasil.',
   url: 'https://www.mcdcontabil.com.br',
 };

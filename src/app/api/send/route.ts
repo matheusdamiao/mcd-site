@@ -6,7 +6,9 @@ import {
   WelcomeTemplate,
 } from '@/components/emailTemplates/emailTemplate';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function POST(request: NextRequest) {
   const data = await request.formData();
@@ -15,6 +17,10 @@ export async function POST(request: NextRequest) {
   const telefone = data.get('telefone');
   const serviço = data.get('serviço');
   const mensagem = data.get('mensagem');
+
+  if (!resend) {
+    return new Response(null, { status: 500 });
+  }
 
   try {
     await resend.emails.send({
