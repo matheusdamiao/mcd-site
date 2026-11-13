@@ -12,7 +12,7 @@ const StepsSection = () => {
             {' '}
             <Image
               src='/images/three-steps.webp'
-              alt=''
+              alt='Três passos para planejar o negócio'
               width={158}
               height={268}
               className='w-[80px] lg:w-[108px]'

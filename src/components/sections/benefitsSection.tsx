@@ -51,16 +51,14 @@ const BenefitsSection = () => {
             />
             <div>
               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
-                <span className='text-[#1D81A2]'>
-                  Economize até R$1000 reais{' '}
-                </span>{' '}
-                na abertura da sua empresa
+                <span className='text-[#1D81A2]'>Atendimento digital</span> para
+                empresas de todo o Brasil
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
-                Esse é o primeiro passo para o empresário formalizar o seu
-                negócio.{' '}
-                <Link href='/solucoes#solutions' className='underline'>
+                Sede no Centro do Rio de Janeiro e atendimento on-line para
+                empresas de qualquer estado.{' '}
+                <Link href='/services' className='underline'>
                   Conheça melhor
                 </Link>{' '}
               </h4>
@@ -107,9 +105,8 @@ const BenefitsSection = () => {
                 <span className='text-[#1D81A2]'> gratuito*</span> de assessoria
                 administrativa e financeira
               </h3> */}
-               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
-               Assessoria
-                administrativa e financeira
+              <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+                Assessoria administrativa e financeira
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
@@ -121,12 +118,6 @@ const BenefitsSection = () => {
                 >
                   Conheça melhor
                 </Link>{' '}
-                <br />
-                <small className='text-gray-400'>
-                  *Exclusivo para empresas do Simples Nacional e com contrato
-                  mínimo de 12 meses.
-                </small>
-                <br />
               </h4>
             </div>
           </li>
@@ -145,10 +136,9 @@ const BenefitsSection = () => {
                 <span className='text-[#1D81A2]'> grátis*</span> para
                 consultoria
               </h3> */}
-               <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
+              <h3 className='font-primary font-semibold text-[#647073] lg:text-xl'>
                 {' '}
-                Diagnóstico preliminar
-              de ação
+                Diagnóstico preliminar de ação
               </h3>
               <h4 className='font-primary pt-2 text-base font-normal text-[#647073]'>
                 {' '}
@@ -160,11 +150,6 @@ const BenefitsSection = () => {
                 >
                   Conheça melhor
                 </Link>{' '}
-                <br />
-                <small className='mt-4 text-gray-400'>
-                  *Exclusivo para clientes que contratarem o serviço de
-                  consultoria
-                </small>
               </h4>
             </div>
           </li>

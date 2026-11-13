@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     template: ``,
   },
   description: siteConfig.description,
+  alternates: { canonical: '/abrir-empresa' },
 };
 
 export default function OpenCompanyLayout({

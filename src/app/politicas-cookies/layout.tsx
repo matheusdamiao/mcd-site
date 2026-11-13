@@ -1,26 +1,17 @@
 import { Metadata } from 'next';
 import * as React from 'react';
 
-import '@/styles/globals.css';
-
-import { siteConfig } from '@/constant/config';
-
 export const metadata: Metadata = {
-  title: {
-    default: 'Políticas de Cookies',
-    template: ``,
-  },
-  description: siteConfig.description,
+  title: 'Política de Cookies',
+  description:
+    'Entenda como a MCD Contabilidade Consultiva utiliza cookies neste site.',
+  alternates: { canonical: '/politicas-cookies' },
 };
 
-export default function RootLayout({
+export default function CookiesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  );
+  return <>{children}</>;
 }

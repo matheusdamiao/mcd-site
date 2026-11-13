@@ -1,4 +1,4 @@
-'use-client';
+'use client';
 import autoAnimate from '@formkit/auto-animate';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import Image from 'next/image';

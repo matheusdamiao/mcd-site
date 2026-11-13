@@ -109,14 +109,14 @@ export default function ServicesPage() {
             <p className='w-full text-base  text-[#647073] lg:w-[80%] lg:text-lg'>
               A Abertura e Legalização de Empresas é o primeiro passo para o
               empresário formalizar o seu negócio. Optando pela MCD para abrir a
-              sua nova empresa e firmando um contrato para prestações de
-              serviços contábeis, você já vai estar economizando quase R$ 1.000
-              reais.
+              sua nova empresa, você conta com um planejamento tributário,
+              administrativo e financeiro desde o primeiro dia, com atendimento
+              digital em todo o Brasil.
             </p>
           </div>
           <Image
             src='/images/services-1.webp'
-            alt=''
+            alt='Abertura e legalização de empresas'
             height={243}
             width={609}
             className='object-cover'
@@ -128,7 +128,7 @@ export default function ServicesPage() {
         <div className='m-auto flex max-w-6xl flex-wrap gap-5 py-14 lg:flex-nowrap lg:py-0'>
           <Image
             src='/images/services-2.webp'
-            alt=''
+            alt='Serviços contábeis do dia a dia'
             height={243}
             width={609}
           />
@@ -167,7 +167,7 @@ export default function ServicesPage() {
           </div>
           <Image
             src='/images/services-3.webp'
-            alt=''
+            alt='Assessoria administrativa e financeira'
             height={243}
             width={609}
             className='object-cover'
@@ -179,7 +179,7 @@ export default function ServicesPage() {
         <div className='m-auto flex max-w-6xl flex-wrap gap-5 py-14 lg:flex-nowrap lg:py-0'>
           <Image
             src='/images/services-4.webp'
-            alt=''
+            alt='Consultoria empresarial'
             height={243}
             width={609}
           />
@@ -213,7 +213,7 @@ export default function ServicesPage() {
           </div>
           <Image
             src='/images/services-5.webp'
-            alt=''
+            alt='Planejamento estratégico'
             height={243}
             width={609}
             className='object-cover'
@@ -225,7 +225,7 @@ export default function ServicesPage() {
         <div className='m-auto flex max-w-6xl flex-wrap gap-5 py-14 lg:flex-nowrap lg:py-0'>
           <Image
             src='/images/services-6.webp'
-            alt=''
+            alt='BPO financeiro'
             height={243}
             width={609}
           />

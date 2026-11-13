@@ -13,7 +13,7 @@ const AboutSection = () => {
             width={444}
             height={231.93}
             src='/images/MCD_logo_amarelo_sem_tg.webp'
-            alt=''
+            alt='MCD Contabilidade Consultiva'
             className='absolute left-[30%] top-[-60%] hidden lg:block'
           />
           <h3 className=' text-center text-xl font-normal text-[#647073] lg:w-[50%] '>

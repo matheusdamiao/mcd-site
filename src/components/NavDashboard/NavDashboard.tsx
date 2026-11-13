@@ -48,7 +48,7 @@ const NavDashboard = ({ user }: { user: any }) => {
           {(user && user.nome) || user?.username}
         </h2>
         <h3 className='font-primary text-xs font-normal text-[#646464] lg:text-lg'>
-          Seja bem-vindo a MCD Assessoria Contábil
+          Seja bem-vindo à MCD Contabilidade Consultiva
         </h3>
       </div>
     </>

@@ -4,20 +4,20 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 
-// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
+import JsonLd from '@/components/seo/JsonLd';
+
+import { company } from '@/constant/company';
 import { siteConfig } from '@/constant/config';
 
-// !STARTERCONF Change these default meta
-// !STARTERCONF Look at @/constant/config to change them
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  applicationName: siteConfig.name,
   robots: { index: true, follow: true },
-  // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
-  // ! copy to /favicon folder
   icons: {
     icon: '/favicon/favicon.ico',
     shortcut: '/favicon/favicon-16x16.png',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
-    siteName: siteConfig.title,
+    siteName: siteConfig.name,
     images: [`${siteConfig.url}/images/og.jpg`],
     type: 'website',
     locale: 'pt_BR',
@@ -38,14 +38,36 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/images/og.jpg`],
-    // creator: '@th_clarence',
   },
-  // authors: [
-  //   {
-  //     name: 'Theodorus Clarence',
-  //     url: 'https://theodorusclarence.com',
-  //   },
-  // ],
+};
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  name: company.name,
+  legalName: company.legalName,
+  url: company.url,
+  logo: company.logo,
+  image: company.logo,
+  telephone: company.phone,
+  taxID: company.cnpj,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.address.street,
+    addressLocality: company.address.city,
+    addressRegion: company.address.state,
+    postalCode: company.address.postalCode,
+    addressCountry: company.address.country,
+  },
+  areaServed: { '@type': 'Country', name: 'Brasil' },
+  knowsAbout: [
+    'Contabilidade consultiva',
+    'Planejamento tributário',
+    'Simples Nacional',
+    'Abertura de empresas',
+    'Contabilidade para profissionais liberais',
+  ],
+  sameAs: [company.socials.instagram, company.socials.linkedin].filter(Boolean),
 };
 
 export default function RootLayout({
@@ -54,29 +76,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      {/* <Script id='chat'>
-        {` window.chatwootSettings = {"position":"right","type":"standard", "launcherTitle":""};
-      (function(d,t) {
-        var BASE_URL="https://app.chatwoot.com";
-        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=BASE_URL+"/packs/js/sdk.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g,s);
-        g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: 'YmdDUu7ehWxs8EyDuohTgUGB',
-            baseUrl: BASE_URL
-          })
-        }
-      })(document,"script");
-     `}
-      </Script> */}
-
+    <html lang='pt-BR'>
       {/* <!-- Google Tag Manager --> */}
-
-      <Script id='2222'>
+      <Script id='gtm'>
         {` (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -84,10 +86,12 @@ export default function RootLayout({
         })(window,document,'script','dataLayer','GTM-TL29CFGN');
         `}
       </Script>
-
       {/* <!-- End Google Tag Manager --> */}
 
-      <body>{children}</body>
+      <body>
+        <JsonLd data={orgJsonLd} />
+        {children}
+      </body>
     </html>
   );
 }

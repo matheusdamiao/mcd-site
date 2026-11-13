@@ -1,19 +1,14 @@
 import { Metadata } from 'next';
 import * as React from 'react';
 
-import '@/styles/globals.css';
-
-import { siteConfig } from '@/constant/config';
-
 export const metadata: Metadata = {
-  title: {
-    default: 'Termos de Uso',
-    template: ``,
-  },
-  description: siteConfig.description,
+  title: 'Termos de Uso',
+  description:
+    'Termos de uso do site e dos serviços da MCD Contabilidade Consultiva.',
+  alternates: { canonical: '/termos-de-uso' },
 };
 
-export default function RootLayout({
+export default function TermosLayout({
   children,
 }: {
   children: React.ReactNode;
